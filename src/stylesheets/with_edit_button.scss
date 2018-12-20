@@ -1,0 +1,11 @@
+.with-edit-button {
+  > span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .edit {
+    color: #AAA;
+    cursor: pointer;
+  }
+}

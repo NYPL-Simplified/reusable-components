@@ -1,0 +1,10 @@
+lib/*
+dist/*
+node_modules/*
+typings/*
+tests/browser/globals.js
+*~
+npm-debug.log
+selenium-debug.log
+tests/browser/reports/*
+selenium-server.log

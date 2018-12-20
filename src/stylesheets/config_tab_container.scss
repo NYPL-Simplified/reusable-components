@@ -1,0 +1,86 @@
+$dangercolor: #D9534F;
+
+.config {
+  .tab-container {
+    position: relative;
+
+    .nav-tabs {
+      width: 25%;
+      position: absolute;
+      left: 0;
+      border-right: 1px solid #DDD;
+
+      li {
+        display: block;
+        width: 100%;
+        border-top: 1px solid #DDD;
+
+        a {
+          padding-left: 15px;
+          width: 100%;
+        }
+      }
+    }
+
+    .tab-content {
+      width: 73%;
+      max-width: 700px;
+      position: absolute;
+      left: 27%;
+      padding: 40px;
+
+      ul {
+        padding-left: 10px;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          max-width: 600px;
+          margin: 20px 0px;
+          padding-bottom: 5px;
+          border-bottom: 1px solid $pagetextcolor;
+
+          h4 {
+            margin-right: 20px;
+            flex-grow: 1;
+          }
+
+          .btn-default {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      a.btn-default, button.btn-default, a.btn-danger, button.btn-danger {
+        color: $pagecolor;
+        svg {
+          height: 0.7em;
+          width: 0.7em;
+          margin-left: 5px;
+          fill: $pagecolor;
+        }
+    
+        &:hover, &:focus {
+          color: $pagetextcolor;
+          svg {
+            fill: $pagetextcolor;
+          }
+        }
+      }
+
+      a.btn-danger, button.btn-danger {
+        border-radius: 0;
+        &:hover {
+          background-color: white;
+          border-color: $dangercolor;
+          color: $dangercolor;
+          svg {
+            fill: $dangercolor;
+          }
+        }
+      }
+    }
+  }
+}
