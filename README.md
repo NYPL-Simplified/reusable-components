@@ -1,9 +1,9 @@
-# circulation-web
-Web front-end for the Circulation Manager administrative interface.
+# registry-admin
+Web front-end for the Library Registry administrative interface.
 
-[![npm version](https://badge.fury.io/js/simplified-circulation-web.svg)](https://badge.fury.io/js/simplified-circulation-web)
+<!-- [![npm version](https://badge.fury.io/js/simplified-circulation-web.svg)](https://badge.fury.io/js/simplified-circulation-web)
 
-[![Build Status](https://travis-ci.org/NYPL-Simplified/circulation-web.svg?branch=master)](https://travis-ci.org/NYPL-Simplified/circulation-web)
+[![Build Status](https://travis-ci.org/NYPL-Simplified/circulation-web.svg?branch=master)](https://travis-ci.org/NYPL-Simplified/circulation-web) -->
 
 ## Library Simplified Documentation
 
@@ -11,38 +11,36 @@ To see screenshots, read in-depth documentation, and find out more about the pro
 
 ## Setup
 
-This package is meant to be used with the Library Simplified [Circulation Manager](https://github.com/NYPL-Simplified/circulation).
+This package is meant to be used with the Library Simplified [Library Registry](https://github.com/NYPL-Simplified/library_registry).
 
 #### Use npm version
 
 Suggested local folder setup:
-- `/[path to project folder]/circulation`
+- `/[path to project folder]/library_registry`
 
-To use the published version with your circulation manager, run `npm install` from `api/admin` in the `circulation` local installed repository.
+To use the published version with your circulation manager, run `npm install` from the `library_registry` local installed repository.
 
 #### Use local development version
 
 Suggested local folder setup:
-- `/[path to project folder]/circulation`
-- `/[path to project folder]/circulation-web`
+- `/[path to project folder]/library_registry`
+- `/[path to project folder]/registry_admin`
 
 If you're working on the administrative interface and want to test local changes, you can link your local clone of this repository to your local circulation manager. These steps will allow you to work on the front-end administrative interface and see updates while developing.
 
-1. Run `npm link` in this `circulation-web` repository,
-2. run `npm link simplified-circulation-web` from `api/admin` in the `circulation` repository,
-2. run the circulation manager using `python app.py` at the root in the `circulation` repository,
-3. run the web interface using `npm run dev` at the root of this `circulation-web` repository,
-4. visit `localhost:6500/admin/`
+1. Run `npm link` in this `registry_admin` repository,
+2. run `npm link simplified-registry-admin` from the `library_registry` repository,
+2. run the library registry using `python app.py` at the root in the `library_registry` repository,
+3. run the web interface using `npm run dev` at the root of this `registry_admin` repository,
+4. visit `localhost:7000/admin/`
 
-Webpack will take care of compiling and updating any new changes made locally for development. Just refresh the page to see updates without having to restart either the `circulation` or `circulation-web` servers.
+Webpack will take care of compiling and updating any new changes made locally for development. Just refresh the page to see updates without having to restart either the `library_registry` or `registry_admin` servers.
 
-## Web Catalog
 
-The Circulation Manager administrative interface relies on the [OPDS Web Catalog](https://github.com/NYPL-Simplified/opds-web-client) as its base React component and application. For more information, please check out the repository.
 
 ## Publishing
 
-This package is [published to npm](https://www.npmjs.com/package/simplified-circulation-web).
+<!-- This package is [published to npm](https://www.npmjs.com/package/simplified-circulation-web). -->
 
 To publish a new version, you need to create an npm account and be a collaborator on the package. Then you can run `npm publish` from your local copy of the repository.
 

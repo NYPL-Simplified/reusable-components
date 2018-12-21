@@ -10,7 +10,7 @@ var config = {
   },
   output: {
     path: "./dist",
-    filename: "circulation-web.js",
+    filename: "registry-admin.js",
     library: "CirculationWeb",
     libraryTarget: "umd"
   },
@@ -21,7 +21,7 @@ var config = {
     new webpack.IgnorePlugin(/jsdom$/),
 
     // Extract separate css file.
-    new ExtractTextPlugin("circulation-web.css")
+    new ExtractTextPlugin("registry-admin.css")
   ],
   module: {
     loaders: [

@@ -46,34 +46,17 @@ class CirculationWeb {
     let div = document.createElement("div");
     div.id = "opds-catalog";
     document.getElementsByTagName("body")[0].appendChild(div);
-
-    let catalogEditorPath = "/admin/web(/collection/:collectionUrl)(/book/:bookUrl)(/tab/:tab)";
-    let customListPagePath = "/admin/web/lists(/:library)(/:editOrCreate)(/:identifier)";
-    let lanePagePath = "/admin/web/lanes(/:library)(/:editOrCreate)(/:identifier)";
-
-    if (config.settingUp) {
-      ReactDOM.render(
-        <ContextProvider {...config}>
-          <SetupPage />
-        </ContextProvider>,
-        document.getElementById("opds-catalog")
-      );
-    } else {
-      ReactDOM.render(
-        <ContextProvider {...config}>
-          <Router history={browserHistory}>
-            <Route path={catalogEditorPath} component={CatalogPage} />
-            <Route path={customListPagePath} component={CustomListPage} />
-            <Route path={lanePagePath} component={LanePage} />
-            <Route path="/admin/web/dashboard(/:library)" component={DashboardPage} />
-            <Route path="/admin/web/config(/:tab)(/:editOrCreate)(/:identifier)" component={ConfigPage} />
-            <Route path="/admin/web/account" component={AccountPage} />
-            <Route path="/admin/web/patrons/:library(/:tab)" component={ManagePatrons} />
-          </Router>
-        </ContextProvider>,
-        document.getElementById("opds-catalog")
-      );
-    }
+    let h1 = document.createElement("h1");
+    h1.innerText = "LIBRARY REGISTRY ADMIN UI!!!"
+    div.appendChild(h1);
+    ReactDOM.render(
+      <ContextProvider {...config}>
+        <Router history={browserHistory}>
+          <Route path="/admin" component={CatalogPage} />
+        </Router>
+      </ContextProvider>,
+      document.getElementById("opds-catalog")
+    );
   }
 }
 
