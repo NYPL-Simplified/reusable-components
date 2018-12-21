@@ -4,7 +4,7 @@
   "description": "Web Front-end for Library Simplified Circulation Manager Admin Interface",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NYPL-Simplified/registry-admin.git"
+    "url": "https://github.com/NYPL-Simplified/registry_admin.git"
   },
   "main": "dist/registry-admin.js",
   "author": "NYPL",
