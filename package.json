@@ -39,7 +39,8 @@
     "recharts": "^1.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.1.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "uswds": "^1.6.9"
   },
   "devDependencies": {
     "chai": "^3.5.0",

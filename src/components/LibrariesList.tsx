@@ -4,7 +4,7 @@ import { State } from "../reducers/index";
 import { LibrariesData, LibraryData } from "../interfaces";
 import { connect } from "react-redux";
 import ActionCreator from "../actions";
-
+import LibrariesListItem from "./LibrariesListItem";
 
 export interface LibrariesListStateProps {
   libraries?: LibrariesData;
@@ -25,13 +25,12 @@ export class LibrariesList extends React.Component<LibrariesListProps, void> {
 
   render(): JSX.Element {
     return(
-      <div id="list">
-          <h1>LIST OF ALL LIBRARIES</h1>
-          { this.props.libraries &&
-            this.props.libraries.libraries.map(library =>
-              <li>{library.name}</li>
-            )
-          }
+      <div id="list" className="list-group">
+        { this.props.libraries &&
+          this.props.libraries.libraries.map(library =>
+            <LibrariesListItem library={library} />
+          )
+        }
       </div>
     );
   }
