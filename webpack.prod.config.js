@@ -11,7 +11,7 @@ var config = {
   output: {
     path: "./dist",
     filename: "registry-admin.js",
-    library: "CirculationWeb",
+    library: "RegistryAdmin",
     libraryTarget: "umd"
   },
   plugins: [
