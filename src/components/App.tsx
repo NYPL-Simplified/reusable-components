@@ -1,5 +1,5 @@
 import * as React from "react";
-import WelcomePage from "./WelcomePage";
+import Header from "./Header";
 import LibrariesListContainer from "./LibrariesListContainer";
 
 export default class App extends React.Component<void, void> {
@@ -7,7 +7,7 @@ export default class App extends React.Component<void, void> {
   render(): JSX.Element {
     return(
       <div id="main-app-component">
-          <WelcomePage />
+          <Header />
           <LibrariesListContainer />
       </div>
     );

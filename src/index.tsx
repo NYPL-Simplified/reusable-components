@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Router, Route, browserHistory } from "react-router";
+import { Router, Route, browserHistory, hashHistory } from "react-router";
 import ContextProvider from "./components/ContextProvider";
 import App from "./components/App";
 import LibrariesListContainer from "./components/LibrariesListContainer";
@@ -20,7 +20,7 @@ class RegistryAdmin {
     div.id = "landing-page";
     document.getElementsByTagName("body")[0].appendChild(div);
     let h1 = document.createElement("h1");
-    h1.innerText = "The component isn't loading"
+    h1.innerText = "The component isn't loading";
     div.appendChild(h1);
     ReactDOM.render(
       <ContextProvider {...config}>

@@ -7,12 +7,12 @@ import { connect } from "react-redux";
 import ActionCreator from "../actions";
 
 export interface LibrariesListContainerContext {
-  editorStore: Store<State>;
+  store: Store<State>;
   csrfToken: string;
 }
 
 export interface LibrariesListContainerStateProps<T> {
-  store?: Store<State>
+  store?: Store<State>;
 }
 
 export interface LibrariesListContainerDispatchProps<T> {
@@ -29,14 +29,16 @@ export interface LibrariesListContainerProps<T> extends LibrariesListContainerDi
 export default class LibrariesListContainer extends React.Component<LibrariesListContainerProps<LibrariesData>, void> {
   context: LibrariesListContainerContext;
   static contextTypes: React.ValidationMap<LibrariesListContainerContext> = {
-      editorStore: React.PropTypes.object.isRequired,
+      store: React.PropTypes.object.isRequired,
       csrfToken: React.PropTypes.string.isRequired,
   };
 
   render(): JSX.Element {
     return(
-      <div id="libraries-list-container">
-          <LibrariesList store={this.context.editorStore} />
+      <div className="libraries-list-container">
+        <div>
+          <LibrariesList store={this.context.store} />
+        </div>
       </div>
     );
   }

@@ -1,15 +1,13 @@
 import * as React from "react";
 
 export interface SaveButtonProps {
-  disabled: boolean;
-  submit?: any;
-  form: any;
+  submit: (event: __React.MouseEvent) => Promise<void>;
   text?: string;
 }
 
 export default class SaveButton extends React.Component<SaveButtonProps, void> {
 
-  constructor(props) {
+  constructor(props: SaveButtonProps) {
     super(props);
   }
 
@@ -19,7 +17,6 @@ export default class SaveButton extends React.Component<SaveButtonProps, void> {
      <button
        type="submit"
        className="btn btn-default"
-       disabled={this.props.disabled}
        onClick={this.props.submit}
     >{text}</button>
    );

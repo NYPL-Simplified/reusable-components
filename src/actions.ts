@@ -1,7 +1,6 @@
 import {
-
+  LibraryData,
   LibrariesData
-
 } from "./interfaces";
 import DataFetcher from "opds-web-client/lib/DataFetcher";
 import { RequestError, RequestRejector } from "opds-web-client/lib/DataFetcher";
@@ -12,6 +11,9 @@ import BaseActionCreator from "opds-web-client/lib/actions";
 export default class ActionCreator extends BaseActionCreator {
 
   static readonly GET_ALL_LIBRARIES = "GET_ALL_LIBRARIES";
+  static readonly GET_ONE_LIBRARY = "GET_ONE_LIBRARY";
+
+  static readonly EDIT_STAGES = "EDIT_STAGES";
 
 
   csrfToken: string;
@@ -26,6 +28,16 @@ export default class ActionCreator extends BaseActionCreator {
   fetchLibraries() {
     let url = "/admin/libraries";
     return this.fetchJSON<LibrariesData>(ActionCreator.GET_ALL_LIBRARIES, url).bind(this);
+  }
+
+  fetchLibrary(uuid: string) {
+    let url = "/admin/libraries/" + uuid;
+    return this.fetchJSON<LibraryData>(ActionCreator.GET_ONE_LIBRARY, url).bind(this);
+  }
+
+  editStages(data: FormData) {
+    let url = "/admin/libraries/registration";
+    return this.postForm(ActionCreator.EDIT_STAGES, url, data).bind(this);
   }
 
 

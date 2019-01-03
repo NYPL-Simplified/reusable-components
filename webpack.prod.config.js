@@ -10,6 +10,7 @@ var config = {
   },
   output: {
     path: "./dist",
+    publicPath: "/",
     filename: "registry-admin.js",
     library: "RegistryAdmin",
     libraryTarget: "umd"
@@ -51,6 +52,9 @@ var config = {
   resolve: {
     extensions: ["", ".js", ".ts", ".tsx", ".scss"],
     root: path.resolve(__dirname, "node_modules")
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };
 

@@ -1,20 +1,21 @@
 import { combineReducers } from "redux";
 import libraries from "./libraries";
+import library from "./library";
 
 import { FetchEditState } from "./createFetchEditReducer";
-import { RegisterLibraryState } from "./createRegisterLibraryReducer";
 
 import {
-  LibrariesData
+  LibrariesData,
+  LibraryData,
 } from "../interfaces";
 
 
 export interface State {
   libraries: FetchEditState<LibrariesData>;
+  library: FetchEditState<LibraryData>;
 }
 
 export default combineReducers<State>({
-
-  libraries
-
+  libraries,
+  library
 });

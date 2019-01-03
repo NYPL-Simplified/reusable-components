@@ -1,5 +1,6 @@
 import { RequestError } from "opds-web-client/lib/DataFetcher";
 import ActionCreator from "../actions";
+import { Action } from "redux";
 
 export interface FetchEditState<T> {
   data: T | null;
@@ -32,7 +33,7 @@ export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: Extr
     successMessage: null
   };
 
-  const fetchEditReducer = (state: FetchEditState<T> = initialState, action): FetchEditState<T> => {
+  const fetchEditReducer = (state: FetchEditState<T> = initialState, action: Action): FetchEditState<T> => {
     switch (action.type) {
       case `${fetchPrefix}_${ActionCreator.REQUEST}`:
         return Object.assign({}, state, {

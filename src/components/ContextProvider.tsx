@@ -5,13 +5,6 @@ import { State } from "../reducers/index";
 
 export interface ContextProviderProps extends React.Props<any> {
   csrfToken: string;
-  showCircEventsDownload?: boolean;
-  settingUp?: boolean;
-  email?: string;
-  roles?: {
-    role: string;
-    library?: string;
-  }[];
 }
 
 /** Provides a redux store, configuration options, and a function to create URLs
@@ -19,20 +12,19 @@ export interface ContextProviderProps extends React.Props<any> {
 export default class ContextProvider extends React.Component<ContextProviderProps, void> {
   store: Store<State>;
 
-  constructor(props) {
+  constructor(props: ContextProviderProps) {
     super(props);
     this.store = buildStore();
   }
 
-
   static childContextTypes: React.ValidationMap<any> = {
-    editorStore: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object.isRequired,
     csrfToken: React.PropTypes.string.isRequired,
   };
 
   getChildContext() {
     return {
-      editorStore: this.store,
+      store: this.store,
       csrfToken: this.props.csrfToken
     };
   }
