@@ -14,7 +14,6 @@
     "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/**/*.ts src/**/*.tsx src/**/**/*.ts src/**/**/*.tsx && sass-lint -c .sass-lint.yml -v -q",
     "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js lib/__tests__/*.js lib/**/__tests__/*.js lib/**/**/__tests__/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
-    "test-browser": "npm run test-chrome && npm run test-firefox",
     "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --config webpack.prod.config",
     "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --config webpack.prod.config"
   },
