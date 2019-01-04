@@ -1,5 +1,0 @@
-module.exports = {
-  homeUrl: "http://localhost:6500/admin/web/",
-  username: "fakeusername",
-  password: "fakepassword"
-};
