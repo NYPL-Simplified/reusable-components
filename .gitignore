@@ -1,5 +1,6 @@
 lib/*
 dist/*
+src/*
 node_modules/*
 typings/*
 tests/browser/globals.js
