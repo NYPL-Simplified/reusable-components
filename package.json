@@ -21,26 +21,15 @@
     "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --config webpack.prod.config"
   },
   "dependencies": {
-    "@nypl/dgx-svg-icons": "0.3.4",
     "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.3",
-    "isomorphic-fetch": "^2.2.1",
-    "numeral": "^2.0.6",
-    "opds-feed-parser": "0.0.14",
     "opds-web-client": "0.1.27",
-    "qs": "^6.2.0",
     "react": "^15.4.0",
-    "react-beautiful-dnd": "^2.3.1",
     "react-bootstrap": "0.29.4",
-    "react-color": "^2.14.1",
     "react-dom": "^15.4.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.2.0",
-    "recharts": "^1.0.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.1.0",
-    "request": "^2.88.0",
-    "uswds": "^1.6.9"
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -53,7 +42,6 @@
     "mocha": "^5.2.0",
     "nightwatch": "^1.0.0",
     "node-sass": "^3.8.0",
-    "react-addons-test-utils": "^15.3.0",
     "sass-lint": "^1.9.1",
     "sass-loader": "^4.0.0",
     "selenium-standalone": "^6.15.4",

@@ -33,7 +33,7 @@ export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: Extr
     successMessage: null
   };
 
-  const fetchEditReducer = (state: FetchEditState<T> = initialState, action: Action): FetchEditState<T> => {
+  const fetchEditReducer = (state: FetchEditState<T> = initialState, action): FetchEditState<T> => {
     switch (action.type) {
       case `${fetchPrefix}_${ActionCreator.REQUEST}`:
         return Object.assign({}, state, {
