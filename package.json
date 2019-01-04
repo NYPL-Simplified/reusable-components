@@ -42,6 +42,7 @@
     "mocha": "^5.2.0",
     "nightwatch": "^1.0.0",
     "node-sass": "^3.8.0",
+    "react-addons-test-utils": "^15.3.0",
     "sass-lint": "^1.9.1",
     "sass-loader": "^4.0.0",
     "selenium-standalone": "^6.15.4",
