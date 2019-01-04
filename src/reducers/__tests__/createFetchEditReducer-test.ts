@@ -53,9 +53,9 @@ describe("fetch-edit reducer", () => {
   let extraActionReducer = createFetchEditReducer<TestData>("TEST_FETCH", "TEST_EDIT", extraActions);
 
   it("returns initial state for unrecognized action", () => {
-    expect(reducer(undefined, {})).to.deep.equal(initState);
-    expect(fetchOnlyReducer(undefined, {})).to.deep.equal(initState);
-    expect(extraActionReducer(undefined, {})).to.deep.equal(initState);
+    expect(reducer(undefined, {type: ""})).to.deep.equal(initState);
+    expect(fetchOnlyReducer(undefined, {type: ""})).to.deep.equal(initState);
+    expect(extraActionReducer(undefined, {type: ""})).to.deep.equal(initState);
   });
 
   it("handles fetch request", () => {
