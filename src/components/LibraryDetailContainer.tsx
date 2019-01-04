@@ -11,15 +11,11 @@ export interface LibraryDetailContainerContext {
 }
 
 export interface LibraryDetailContainerOwnProps {
-  id: string;
+  uuid: string;
   toggle: () => void;
 }
 
-export interface LibraryDetailContainerDispatchProps {
-  fetchData?: () => Promise<LibraryData>;
-}
-
-export interface LibraryDetailContainerProps extends LibraryDetailContainerOwnProps, LibraryDetailContainerDispatchProps {};
+export interface LibraryDetailContainerProps extends LibraryDetailContainerOwnProps {};
 
 export default class LibraryDetailContainer extends React.Component<LibraryDetailContainerProps, void> {
 
@@ -31,7 +27,7 @@ export default class LibraryDetailContainer extends React.Component<LibraryDetai
   render(): JSX.Element {
     return(
       <div id="library-detail-container">
-        <LibraryDetailPage store={this.context.store} uuid={this.props.id} toggle={this.props.toggle}/>
+        <LibraryDetailPage store={this.context.store} uuid={this.props.uuid} toggle={this.props.toggle}/>
       </div>
     );
   }

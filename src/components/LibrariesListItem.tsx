@@ -63,7 +63,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
         expanded={this.props.active}
       >
         { this.props.active &&
-          <LibraryDetailContainer id={this.props.library.uuid} toggle={this.toggle} />
+          <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.toggle} />
         }
       </Panel>
     );

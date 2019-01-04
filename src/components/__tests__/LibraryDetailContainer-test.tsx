@@ -20,7 +20,7 @@ describe("LibraryDetailContainer", () => {
     toggle = stub();
     wrapper = mount(
       <LibraryDetailContainer
-        id="123"
+        uuid="123"
         toggle={toggle}
       />,
       { context }
