@@ -37,10 +37,7 @@ describe("LibrariesListItem", () => {
       expect(header.length).to.equal(1);
       let title = header.find(".panel-title");
       expect(title.length).to.equal(1);
-      expect(title.text()).to.equal("Test Library (test_lib)");
-      let icon = header.find(".glyphicon");
-      expect(icon.length).to.equal(1);
-      expect(icon.props().glyph).to.equal("menu-down");
+      expect(title.text()).to.contain("Test Library (test_lib)");
     });
   });
   describe("behavior", () => {

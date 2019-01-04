@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Panel, Glyphicon } from "react-bootstrap";
+import { Panel } from "react-bootstrap";
 import { LibraryData } from "../interfaces";
 import LibraryDetailContainer from "./LibraryDetailContainer";
+import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 
 export interface LibrariesListItemProps {
   library: LibraryData;
@@ -30,7 +31,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
     return (
       <div onClick={this.toggle}>
         <span>{this.props.library.name} ({this.props.library.short_name})</span>
-        <Glyphicon glyph={this.props.active ? "menu-up" : "menu-down"} />
+        <GenericWedgeIcon className={this.props.active ? "up-icon" : "down-icon"} />
       </div>
     );
   }

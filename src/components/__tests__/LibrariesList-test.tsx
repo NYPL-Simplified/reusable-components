@@ -48,9 +48,9 @@ describe("LibrariesList", () => {
 
     it("should render each library's  name and short name", () => {
       let lib1 = wrapper.find(".panel").at(0);
-      expect(lib1.text()).to.equal("Test Library 1 (lib1)");
+      expect(lib1.text()).to.contain("Test Library 1 (lib1)");
       let lib2 = wrapper.find(".panel").at(1);
-      expect(lib2.text()).to.equal("Test Library 2 (lib2)");
+      expect(lib2.text()).to.contain("Test Library 2 (lib2)");
     });
 
     it("should initially have no active key", () => {
