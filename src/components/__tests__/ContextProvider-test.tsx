@@ -24,7 +24,6 @@ describe("ContextProvider", () => {
     expect(context.store.getState().libraries).to.be.ok;
     expect(context.store.getState().library).to.be.ok;
     expect(context.pathFor).to.equal(instance.pathFor);
-    expect(context.csrfToken).to.equal("token");
   });
 
   it("renders child", () => {

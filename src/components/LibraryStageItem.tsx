@@ -8,7 +8,7 @@ export default class LibraryStageItem extends React.Component<LibraryStageItemPr
   render(): JSX.Element {
     return(
       <fieldset className="form-group">
-        <label>{this.props.label}: {this.props.value}</label>
+        <legend className="control-label">{this.props.label}: {this.props.value}</legend>
         <select name={this.props.label} className="form-control" defaultValue={this.props.value}>
           <option value="testing">Testing</option>
           <option value="production">Production</option>

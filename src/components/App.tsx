@@ -7,8 +7,8 @@ export default class App extends React.Component<void, void> {
   render(): JSX.Element {
     return(
       <div id="main-app-component">
-          <Header />
-          <LibrariesListContainer />
+        <Header />
+        <LibrariesListContainer />
       </div>
     );
   }

@@ -20,7 +20,7 @@ describe("LibraryStageItem", () => {
     );
   });
   it("should display a label", () => {
-    let label = wrapper.find("label");
+    let label = wrapper.find("legend");
     expect(label.length).to.equal(1);
     expect(label.text()).to.equal("Registry Stage: cancelled");
   });
@@ -39,7 +39,7 @@ describe("LibraryStageItem", () => {
   it("should update when the value prop changes", () => {
     wrapper.setProps({ value: "production" });
 
-    let label = wrapper.find("label");
+    let label = wrapper.find("legend");
     expect(label.text()).to.equal("Registry Stage: production");
 
     let dropdown = wrapper.find("select") as any;

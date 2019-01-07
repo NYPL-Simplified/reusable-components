@@ -8,22 +8,20 @@ import ActionCreator from "../actions";
 
 export interface LibrariesListContainerContext {
   store: Store<State>;
-  csrfToken: string;
+  csrfToken?: string;
 }
 
 export default class LibrariesListContainer extends React.Component<void, void> {
   context: LibrariesListContainerContext;
   static contextTypes: React.ValidationMap<LibrariesListContainerContext> = {
-      store: React.PropTypes.object.isRequired,
-      csrfToken: React.PropTypes.string.isRequired,
+      store: React.PropTypes.object.isRequired
+      // csrfToken: React.PropTypes.string.isRequired,
   };
 
   render(): JSX.Element {
     return(
       <div className="libraries-list-container">
-        <div>
-          <LibrariesList store={this.context.store} />
-        </div>
+        <LibrariesList store={this.context.store} />
       </div>
     );
   }

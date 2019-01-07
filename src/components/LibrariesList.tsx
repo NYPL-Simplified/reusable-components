@@ -50,7 +50,7 @@ export class LibrariesList extends React.Component<LibrariesListProps, Libraries
       return `${this.props.libraries.libraries.indexOf(library)}`;
     };
     return(
-      <PanelGroup accordion activeKey={this.state.activeKey}>
+      <PanelGroup activeKey={this.state.activeKey}>
         { this.props.libraries &&
           this.props.libraries.libraries.map(library =>
             <LibrariesListItem
@@ -80,7 +80,7 @@ function mapStateToProps(state: State, ownProps: LibrariesListOwnProps) {
 function mapDispatchToProps(dispatch: Function, ownProps: LibrariesListOwnProps) {
   let actions = new ActionCreator(null, ownProps.csrfToken);
   return {
-    fetchData: () => dispatch(actions.fetchLibraries()),
+    fetchData: () => dispatch(actions.fetchLibraries())
   };
 }
 

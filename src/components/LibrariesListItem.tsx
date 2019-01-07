@@ -9,40 +9,35 @@ export interface LibrariesListItemProps {
   active: boolean;
   select: (event: __React.MouseEvent) => void;
 }
-export interface LibrariesListItemState {
-  open: boolean;
-}
 
-export default class LibrariesListItem extends React.Component<LibrariesListItemProps, LibrariesListItemState> {
+export default class LibrariesListItem extends React.Component<LibrariesListItemProps, void> {
   constructor(props: LibrariesListItemProps) {
     super(props);
     this.colorCode = this.colorCode.bind(this);
+    this.header = this.header.bind(this);
   }
 
   header() {
     return (
-      <div onClick={this.props.select}>
+      <button onClick={this.props.select}>
         <span>{this.props.library.name} ({this.props.library.short_name})</span>
         <GenericWedgeIcon className={this.props.active ? "up-icon" : "down-icon"} />
-      </div>
+      </button>
     );
   }
 
   colorCode() {
-    // If both stages are in production, background is green;
-    // if at least one stage is cancelled, background is red;
+    // If both library_stage and registry_stage are in production, background is green;
+    // if at least one of them is cancelled, background is red;
     // otherwise, background is yellow.
     let stages = [this.props.library.registry_stage, this.props.library.library_stage];
 
     if (stages.every((stage) => stage === "production")) {
       return "success";
-    }
-    else if (stages.some((stage) => stage === "cancelled")) {
+    } else if (stages.some((stage) => stage === "cancelled")) {
       return "danger";
     }
-    else {
-      return "warning";
-    }
+    return "warning";
   }
 
   render(): JSX.Element {
@@ -55,9 +50,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
         collapsible={true}
         expanded={this.props.active}
       >
-        { this.props.active &&
-          <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.props.select} />
-        }
+        <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.props.select} />
       </Panel>
     );
   }
