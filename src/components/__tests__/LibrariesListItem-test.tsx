@@ -32,12 +32,17 @@ describe("LibrariesListItem", () => {
     it("should display a panel", () => {
       expect(wrapper.hasClass("panel")).to.be.true;
     });
-    it("should render a header with a title and an icon", () => {
+    it("should render a header with a title", () => {
       let header = wrapper.find(".panel-heading");
       expect(header.length).to.equal(1);
       let title = header.find(".panel-title");
       expect(title.length).to.equal(1);
       expect(title.text()).to.contain("Test Library (test_lib)");
+    });
+    it("should display an icon in the header", () => {
+      let header = wrapper.find(".panel-heading");
+      let icon = header.find("svg");
+      expect(icon.hasClass("down-icon")).to.be.true;
     });
   });
   describe("behavior", () => {

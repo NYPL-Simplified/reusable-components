@@ -1,7 +1,11 @@
 svg {
-  height: 0.7em;
-  width: 0.7em;
-  fill: $pagetextcolor;
+  height: 1em;
+  width: 1em;
+  fill: black;
+}
+
+svg:hover {
+  fill: $blue;
 }
 
 .down-icon {
