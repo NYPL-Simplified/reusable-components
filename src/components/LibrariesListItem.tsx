@@ -7,8 +7,7 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 export interface LibrariesListItemProps {
   library: LibraryData;
   active: boolean;
-  select: (idx: string) => void;
-  idx: string;
+  select: (event: __React.MouseEvent) => void;
 }
 export interface LibrariesListItemState {
   open: boolean;
@@ -17,19 +16,12 @@ export interface LibrariesListItemState {
 export default class LibrariesListItem extends React.Component<LibrariesListItemProps, LibrariesListItemState> {
   constructor(props: LibrariesListItemProps) {
     super(props);
-    this.toggle = this.toggle.bind(this);
     this.colorCode = this.colorCode.bind(this);
-  }
-
-  toggle() {
-    // If it's already open, just close everything.
-    let idx = this.props.active ? "" : this.props.idx;
-    this.props.select(idx);
   }
 
   header() {
     return (
-      <div onClick={this.toggle}>
+      <div onClick={this.props.select}>
         <span>{this.props.library.name} ({this.props.library.short_name})</span>
         <GenericWedgeIcon className={this.props.active ? "up-icon" : "down-icon"} />
       </div>
@@ -64,7 +56,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
         expanded={this.props.active}
       >
         { this.props.active &&
-          <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.toggle} />
+          <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.props.select} />
         }
       </Panel>
     );

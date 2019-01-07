@@ -22,7 +22,6 @@ describe("LibrariesListItem", () => {
     beforeEach(() => {
       wrapper = mount(
         <LibrariesListItem
-          idx="0"
           library={library}
           active={false}
           select={select}
@@ -49,7 +48,6 @@ describe("LibrariesListItem", () => {
     beforeEach(() => {
       wrapper = mount(
         <LibrariesListItem
-          idx="0"
           library={library}
           active={false}
           select={select}

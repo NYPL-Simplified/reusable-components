@@ -12,7 +12,7 @@ export interface LibraryDetailContainerContext {
 
 export interface LibraryDetailContainerOwnProps {
   uuid: string;
-  toggle: () => void;
+  toggle: (event: __React.MouseEvent) => void;
 }
 
 export interface LibraryDetailContainerProps extends LibraryDetailContainerOwnProps {};

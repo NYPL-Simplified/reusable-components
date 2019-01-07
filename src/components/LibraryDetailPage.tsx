@@ -20,7 +20,7 @@ export interface LibraryDetailPageDispatchProps {
 export interface LibraryDetailPageOwnProps {
   store?: Store<State>;
   uuid: string;
-  toggle: () => void;
+  toggle: (event: __React.MouseEvent) => void;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
@@ -67,7 +67,7 @@ async submit(event: __React.MouseEvent): Promise<void> {
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
     await this.props.editStages(data);
-    this.props.toggle();
+    this.props.toggle(event);
     this.props.fetchData();
   }
 

@@ -40,21 +40,24 @@ export class LibrariesList extends React.Component<LibrariesListProps, Libraries
   }
 
   select(idx: string) {
-    this.setState({ activeKey: idx});
+    let key = this.state.activeKey === idx ? "" : idx;
+    this.setState({ activeKey: key});
     this.props.fetchData();
   }
 
   render(): JSX.Element {
+    let idx = (library: LibraryData): string => {
+      return `${this.props.libraries.libraries.indexOf(library)}`;
+    };
     return(
       <PanelGroup accordion activeKey={this.state.activeKey}>
         { this.props.libraries &&
           this.props.libraries.libraries.map(library =>
             <LibrariesListItem
               key={library.uuid}
-              idx={`${this.props.libraries.libraries.indexOf(library)}`}
               library={library}
               active={this.isActive(library)}
-              select={this.select}
+              select={() => this.select(idx(library))}
             />
           )
         }
