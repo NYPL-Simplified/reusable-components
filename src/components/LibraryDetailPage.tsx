@@ -53,8 +53,8 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, v
           name="uuid"
           value={this.props.uuid}
         />
-        <LibraryStageItem key={"libraryStage"} label={"Library Stage"} value={libraryStage} />
-        <LibraryStageItem key={"registryStage"} label={"Registry Stage"} value={registryStage} />
+        <LibraryStageItem label={"Library Stage"} value={libraryStage} />
+        <LibraryStageItem label={"Registry Stage"} value={registryStage} />
         <SaveButton
           submit={this.submit}
         />
@@ -62,25 +62,24 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, v
     );
   }
 
-async submit(event: __React.MouseEvent): Promise<void> {
+  async submit(event: __React.MouseEvent): Promise<void> {
     event.preventDefault();
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
     await this.props.editStages(data);
     this.props.toggle(event);
-    this.props.fetchData();
   }
 
   render(): JSX.Element {
     if (!this.props.fullLibrary) {
-      return <div></div>;
+      return null;
     }
     return(
       <div>
         { this.renderStages() }
-        <div id="info" className="list-group">
+        <ul id="info" className="list-group">
           { this.renderInfo() }
-        </div>
+        </ul>
       </div>
     );
   }

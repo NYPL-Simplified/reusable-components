@@ -4,6 +4,7 @@ import { stub } from "sinon";
 import * as React from "react";
 import * as Enzyme from "enzyme";
 import { shallow, mount } from "enzyme";
+import buildStore from "../../store";
 
 import LibrariesListItem from "../LibrariesListItem";
 
@@ -18,13 +19,16 @@ describe("LibrariesListItem", () => {
   };
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let select = stub();
+  let store;
   describe("rendering", () => {
     beforeEach(() => {
+      store = buildStore();
       wrapper = mount(
         <LibrariesListItem
           library={library}
           active={false}
           select={select}
+          store={store}
         />
       );
     });
@@ -46,11 +50,13 @@ describe("LibrariesListItem", () => {
   });
   describe("behavior", () => {
     beforeEach(() => {
+      store = buildStore();
       wrapper = mount(
         <LibrariesListItem
           library={library}
           active={false}
           select={select}
+          store={store}
         />
       );
     });

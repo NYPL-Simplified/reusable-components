@@ -1,13 +1,16 @@
 import * as React from "react";
 import { Panel } from "react-bootstrap";
+import { Store } from "redux";
+import { State } from "../reducers/index";
 import { LibraryData } from "../interfaces";
-import LibraryDetailContainer from "./LibraryDetailContainer";
+import LibraryDetailPage from "./LibraryDetailPage";
 import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 
 export interface LibrariesListItemProps {
   library: LibraryData;
   active: boolean;
   select: (event: __React.MouseEvent) => void;
+  store: Store<State>;
 }
 
 export default class LibrariesListItem extends React.Component<LibrariesListItemProps, void> {
@@ -50,7 +53,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
         collapsible={true}
         expanded={this.props.active}
       >
-        <LibraryDetailContainer uuid={this.props.library.uuid} toggle={this.props.select} />
+        <LibraryDetailPage uuid={this.props.library.uuid} toggle={this.props.select} store={this.props.store} />
       </Panel>
     );
   }

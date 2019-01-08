@@ -6,3 +6,7 @@ form {
     font-size: 1em;
   }
 }
+
+.list-group-item:nth-child(even) {
+  background-color: tint($light-gray, 75);
+}

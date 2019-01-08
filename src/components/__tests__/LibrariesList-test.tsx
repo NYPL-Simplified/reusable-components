@@ -3,6 +3,7 @@ import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
+import buildStore from "../../store";
 
 import { LibrariesList } from "../LibrariesList";
 
@@ -29,14 +30,17 @@ describe("LibrariesList", () => {
   let fetchData;
   let isActive;
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
+  let store;
   describe("rendering", () => {
     beforeEach(() => {
       fetchData = stub();
       isActive = stub();
+      store = buildStore();
       wrapper = mount(
         <LibrariesList
           fetchData={fetchData}
           libraries={libraries}
+          store={store}
         />
       );
     });

@@ -57,6 +57,7 @@ export class LibrariesList extends React.Component<LibrariesListProps, Libraries
               key={library.uuid}
               library={library}
               active={this.isActive(library)}
+              store={this.props.store}
               select={() => this.select(idx(library))}
             />
           )
