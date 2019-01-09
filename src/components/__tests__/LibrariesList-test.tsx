@@ -28,13 +28,11 @@ describe("LibrariesList", () => {
       }]
   };
   let fetchData;
-  let isActive;
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
   describe("rendering", () => {
     beforeEach(() => {
       fetchData = stub();
-      isActive = stub();
       store = buildStore();
       wrapper = mount(
         <LibrariesList
@@ -55,16 +53,6 @@ describe("LibrariesList", () => {
       expect(lib1.text()).to.contain("Test Library 1 (lib1)");
       let lib2 = wrapper.find(".panel").at(1);
       expect(lib2.text()).to.contain("Test Library 2 (lib2)");
-    });
-
-    it("should initially have no active key", () => {
-      expect(wrapper.state().activeKey).to.equal("");
-    });
-
-    it("should update the active key on select", () => {
-      let select = (wrapper.instance() as any).select;
-      select("1");
-      expect(wrapper.state().activeKey).to.equal("1");
     });
 
   });

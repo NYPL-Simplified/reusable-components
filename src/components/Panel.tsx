@@ -14,10 +14,10 @@ export interface PanelState {
 
 export default class Panel extends React.Component<PanelOwnProps, PanelState> {
   constructor() {
-    super()
+    super();
     this.renderHeader = this.renderHeader.bind(this);
     this.open = this.open.bind(this);
-    this.state = { display: "collapse", icon: "down-icon" }
+    this.state = { display: "collapse", icon: "down-icon" };
   }
 
   open() {
@@ -32,7 +32,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
         <span className="panel-title">{this.props.headerText}</span>
         <GenericWedgeIcon className={this.state.icon} />
       </button>
-    )
+    );
   }
 
   render(): JSX.Element {

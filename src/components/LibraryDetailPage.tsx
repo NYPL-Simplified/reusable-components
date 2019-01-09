@@ -37,7 +37,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     this.submit = this.submit.bind(this);
     this.renderInfo = this.renderInfo.bind(this);
     this.renderStages = this.renderStages.bind(this);
-    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage }
+    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage };
   }
 
   renderInfo() {
@@ -62,7 +62,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
           submit={this.submit}
         />
       </form>
-    )
+    );
   }
 
   async submit(event: __React.MouseEvent): Promise<void> {
