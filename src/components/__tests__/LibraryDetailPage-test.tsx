@@ -57,14 +57,14 @@ describe("LibraryDetailPage", () => {
     let libraryStage = form.find("fieldset").at(0);
     let libraryLegend = libraryStage.find("legend");
     let librarySelect = libraryStage.find("select");
-    expect(libraryLegend.text()).to.equal("Library Stage: production");
+    expect(libraryLegend.find("span").text()).to.equal("Library Stage");
     expect(librarySelect.props().name).to.equal("Library Stage");
     expect(librarySelect.props().defaultValue).to.equal("production");
 
     let registryStage = form.find("fieldset").at(1);
     let registryLegend = registryStage.find("legend");
     let registrySelect = registryStage.find("select");
-    expect(registryLegend.text()).to.equal("Registry Stage: testing");
+    expect(registryLegend.find("span").text()).to.equal("Registry Stage");
     expect(registrySelect.props().name).to.equal("Registry Stage");
     expect(registrySelect.props().defaultValue).to.equal("testing");
 

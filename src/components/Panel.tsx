@@ -39,7 +39,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     return (
       <li className={`panel panel-${this.props.style ? this.props.style : "default"}`}>
         { this.renderHeader() }
-        <section className={this.state.display}>{this.props.body}</section>
+        <section className={`panel-body ${this.state.display}`}>{this.props.body}</section>
       </li>
     );
   }

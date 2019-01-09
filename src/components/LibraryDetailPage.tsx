@@ -50,7 +50,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   renderStages() {
 
     return (
-      <form ref="form" className="well">
+      <form ref="form" className="">
         <input
           type="hidden"
           name="uuid"

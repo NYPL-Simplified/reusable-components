@@ -6,9 +6,18 @@ export interface LibraryStageItemProps {
 }
 export default class LibraryStageItem extends React.Component<LibraryStageItemProps, void> {
   render(): JSX.Element {
+    let colors = {
+      "testing": "warning",
+      "production": "success",
+      "cancelled": "danger"
+    };
+
     return(
-      <fieldset className="form-group">
-        <legend className="control-label">{this.props.label}: {this.props.value}</legend>
+      <fieldset className="form-group well">
+        <legend>
+          <span>{this.props.label}</span>
+          <label className={`label label-${colors[this.props.value]}`}>{this.props.value}</label>
+        </legend>
         <select name={this.props.label} className="form-control" defaultValue={this.props.value}>
           <option value="testing">Testing</option>
           <option value="production">Production</option>
