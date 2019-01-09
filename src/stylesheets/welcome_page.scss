@@ -1,6 +1,10 @@
-nav.navbar-default span.navbar-brand {
-  color: white;
-  &:hover {
-    color: white;
+nav.navbar-default {
+  background-color: $blue;
+  border-radius: 0;
+  span.navbar-brand {
+    color: $white;
+    &:hover {
+      color: $white;
+    }
   }
 }
