@@ -75,6 +75,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   }
 
   render(): JSX.Element {
+    console.log(this.state);
     if (!this.props.library) {
       return null;
     }

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import { stub, spy } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import { mount } from "enzyme";
@@ -79,4 +79,5 @@ describe("LibraryDetailPage", () => {
     let saveButton = form.find("button");
     expect(saveButton.length).to.equal(1);
   });
+
 });

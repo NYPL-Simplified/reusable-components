@@ -2,7 +2,7 @@ import * as React from "react";
 import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 
 export interface PanelOwnProps {
-  style: string;
+  style?: string;
   headerText: string;
   body: JSX.Element;
 }
@@ -37,7 +37,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
 
   render(): JSX.Element {
     return (
-      <li className={`panel panel-${this.props.style}`}>
+      <li className={`panel panel-${this.props.style ? this.props.style : "default"}`}>
         { this.renderHeader() }
         <section className={this.state.display}>{this.props.body}</section>
       </li>

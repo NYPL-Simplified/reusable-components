@@ -2,7 +2,6 @@ import { expect } from "chai";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
-import { shallow } from "enzyme";
 import App from "../App";
 import Header from "../Header";
 import LibrariesListContainer from "../LibrariesListContainer";
@@ -10,7 +9,7 @@ import LibrariesListContainer from "../LibrariesListContainer";
 describe("App", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = Enzyme.shallow(
       <App />
     );
   });
