@@ -7,6 +7,7 @@ import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import SaveButton from "./SaveButton";
+import Form from "./Form";
 
 export interface LibraryDetailPageDispatchProps {
   editStages: (data: FormData) => Promise<void>;
@@ -50,32 +51,25 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   renderStages() {
 
     return (
-      <form ref="form" className="">
-        <input
-          type="hidden"
-          name="uuid"
-          value={this.props.uuid}
-        />
-        <LibraryStageItem label={"Library Stage"} value={this.state.libraryStage} />
-        <LibraryStageItem label={"Registry Stage"} value={this.state.registryStage} />
-        <SaveButton
-          submit={this.submit}
-        />
-      </form>
+      <Form
+        hiddenName="uuid"
+        hiddenValue={this.props.uuid}
+        onSave={this.submit}
+        content={[
+          <LibraryStageItem key="lib" label={"Library Stage"} value={this.state.libraryStage} />,
+          <LibraryStageItem key="reg" label={"Registry Stage"} value={this.state.registryStage} />
+        ]}
+      />
     );
   }
 
-  async submit(event: __React.MouseEvent): Promise<void> {
-    event.preventDefault();
-    let form = (this.refs["form"] as any);
-    const data = new (window as any).FormData(form);
+  async submit(data): Promise<void> {
     this.props.updateColor(data.get("Library Stage"), data.get("Registry Stage"));
     await this.props.editStages(data);
     this.setState({ libraryStage: data.get("Library Stage"), registryStage: data.get("Registry Stage") });
   }
 
   render(): JSX.Element {
-    console.log(this.state);
     if (!this.props.library) {
       return null;
     }
