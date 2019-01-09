@@ -8,44 +8,47 @@ import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import SaveButton from "./SaveButton";
 
+export interface LibraryDetailPageDispatchProps {
+  editStages: (data: FormData) => Promise<void>;
+}
+
 export interface LibraryDetailPageStateProps {
   fullLibrary?: LibraryData;
 }
 
-export interface LibraryDetailPageDispatchProps {
-  fetchData: () => Promise<LibraryData>;
-  editStages: (data: FormData) => Promise<void>;
+export interface LibraryDetailPageOwnProps {
+  library: LibraryData;
+  store: Store<State>;
+  uuid: string;
+  updateColor: (library_stage: string, registry_stage: string) => void;
 }
 
-export interface LibraryDetailPageOwnProps {
-  store?: Store<State>;
-  uuid: string;
-  toggle: (event: __React.MouseEvent) => void;
+export interface LibraryDetailPageState {
+  libraryStage: string;
+  registryStage: string;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
 
-export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, void> {
+export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, LibraryDetailPageState> {
 
   constructor(props: LibraryDetailPageProps) {
     super(props);
     this.submit = this.submit.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.fetchData();
+    this.renderInfo = this.renderInfo.bind(this);
+    this.renderStages = this.renderStages.bind(this);
+    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage }
   }
 
   renderInfo() {
-    let fields = Object.keys(this.props.fullLibrary).map(label =>
-      <LibraryDetailItem key={label} label={label} value={this.props.fullLibrary[label]} />
+    let fields = Object.keys(this.props.library).map(label =>
+      <LibraryDetailItem key={label} label={label} value={this.props.library[label]} />
     );
     return fields;
   }
 
   renderStages() {
-    let libraryStage = this.props.fullLibrary["library_stage"];
-    let registryStage = this.props.fullLibrary["registry_stage"];
+
     return (
       <form ref="form" className="well">
         <input
@@ -53,27 +56,29 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, v
           name="uuid"
           value={this.props.uuid}
         />
-        <LibraryStageItem label={"Library Stage"} value={libraryStage} />
-        <LibraryStageItem label={"Registry Stage"} value={registryStage} />
+        <LibraryStageItem label={"Library Stage"} value={this.state.libraryStage} />
+        <LibraryStageItem label={"Registry Stage"} value={this.state.registryStage} />
         <SaveButton
           submit={this.submit}
         />
       </form>
-    );
+    )
   }
 
   async submit(event: __React.MouseEvent): Promise<void> {
     event.preventDefault();
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
+    this.props.updateColor(data.get("Library Stage"), data.get("Registry Stage"));
     await this.props.editStages(data);
-    this.props.toggle(event);
+    this.setState({ libraryStage: data.get("Library Stage"), registryStage: data.get("Registry Stage") });
   }
 
   render(): JSX.Element {
-    if (!this.props.fullLibrary) {
+    if (!this.props.library) {
       return null;
     }
+
     return(
       <div>
         { this.renderStages() }
@@ -94,7 +99,6 @@ function mapStateToProps(state: State, ownProps: LibraryDetailPageOwnProps) {
 function mapDispatchToProps(dispatch: Function, ownProps: LibraryDetailPageOwnProps) {
   let actions = new ActionCreator(null, null);
   return {
-    fetchData: () => dispatch(actions.fetchLibrary(ownProps.uuid)),
     editStages: (data: FormData) => dispatch(actions.editStages(data))
   };
 }

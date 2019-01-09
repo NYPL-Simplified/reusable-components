@@ -1,8 +1,6 @@
 import { expect } from "chai";
 import * as Enzyme from "enzyme";
-
 import * as React from "react";
-import { shallow } from "enzyme";
 
 import ContextProvider from "../ContextProvider";
 class FakeChild extends React.Component<any, any> {}
@@ -11,7 +9,7 @@ describe("ContextProvider", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = Enzyme.shallow(
       <ContextProvider csrfToken="token">
         <FakeChild />
       </ContextProvider>

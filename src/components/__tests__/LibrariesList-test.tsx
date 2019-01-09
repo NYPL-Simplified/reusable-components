@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import buildStore from "../../store";
 
 import { LibrariesList } from "../LibrariesList";
@@ -59,6 +59,12 @@ describe("LibrariesList", () => {
 
     it("should initially have no active key", () => {
       expect(wrapper.state().activeKey).to.equal("");
+    });
+
+    it("should update the active key on select", () => {
+      let select = (wrapper.instance() as any).select;
+      select("1");
+      expect(wrapper.state().activeKey).to.equal("1");
     });
 
   });
