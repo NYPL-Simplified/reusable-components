@@ -49,7 +49,6 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   }
 
   renderStages() {
-
     return (
       <Form
         hiddenName="uuid"
