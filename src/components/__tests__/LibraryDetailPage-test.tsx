@@ -9,7 +9,6 @@ import LibraryDetailPage from "../LibraryDetailPage";
 describe("LibraryDetailPage", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let fetchData = stub();
-  let editStages = stub();
   let uuid = "123";
   let store;
 
@@ -57,14 +56,14 @@ describe("LibraryDetailPage", () => {
     let libraryStage = form.find("fieldset").at(0);
     let libraryLegend = libraryStage.find("legend");
     let librarySelect = libraryStage.find("select");
-    expect(libraryLegend.find("span").text()).to.equal("Library Stage");
+    expect(libraryLegend.find("span").text()).to.equal("Current Library Stage:");
     expect(librarySelect.props().name).to.equal("Library Stage");
     expect(librarySelect.props().defaultValue).to.equal("production");
 
     let registryStage = form.find("fieldset").at(1);
     let registryLegend = registryStage.find("legend");
     let registrySelect = registryStage.find("select");
-    expect(registryLegend.find("span").text()).to.equal("Registry Stage");
+    expect(registryLegend.find("span").text()).to.equal("Current Registry Stage:");
     expect(registrySelect.props().name).to.equal("Registry Stage");
     expect(registrySelect.props().defaultValue).to.equal("testing");
 
@@ -80,4 +79,17 @@ describe("LibraryDetailPage", () => {
     expect(saveButton.length).to.equal(1);
   });
 
+  it("should submit a form", () => {
+    let form = wrapper.find("form");
+    let saveButton = form.find("button");
+    saveButton.simulate("click");
+
+    expect(updateColor.callCount).to.equal(1);
+    let libStage = updateColor.args[0][0];
+    let regStage = updateColor.args[0][1];
+    expect(libStage).to.equal("production");
+    expect(regStage).to.equal("testing");
+
+    // Still figuring out how to test whether editStages (a dispatch prop) is getting called...
+  });
 });

@@ -3,46 +3,48 @@ form {
   width: 40%;
   border-radius: 0;
 
-  legend {
-    font-size: 1em;
-    border-bottom: none;
-    margin-bottom: 10px;
+  fieldset {
 
-    span {
-      background: $nypl-blue;
-      padding: .25em .5em;
-      border-radius: .25em;
-      color: $white;
-    }
+    legend {
+      font-size: 1em;
+      border-bottom: none;
+      margin-bottom: 10px;
 
-    .label {
-      float: right;
-      margin: 0;
-      line-height: normal;
-      padding-top: .25em;
-      padding-bottom: .25em;
+      span {
+        background: $blue;
+        padding: .25em .5em;
+        border-radius: .25em;
+        color: $white;
+      }
+
+      .label {
+        float: right;
+        margin: 0;
+        line-height: normal;
+        padding-top: .25em;
+        padding-bottom: .25em;
+
+        &.label-success {
+          background: $green-bright;
+        }
+        &.label-warning {
+          background: darken($orange-desaturated, 20);
+        }
+        &.label-danger {
+          background: $red;
+        }
+      }
     }
   }
 
   .btn {
-    background: $nypl-blue;
+    background: $blue;
     border-radius: .25em;
     font-weight: bold;
     transition: background 1s, color 1s;
-    &:hover{
-      background: $nypl-light-blue;
-      color: $nypl-dark-gray;
+    &:hover {
+      background: $light-blue;
+      color: $dark-gray;
     }
   }
-
-  fieldset label.label-success {
-    background: $nypl-green-dark;
-  }
-  fieldset label.label-warning {
-    background: $nypl-orange-desaturated;
-  }
-  fieldset label.label-danger {
-    background: $nypl-red-dark;
-  }
-
 }

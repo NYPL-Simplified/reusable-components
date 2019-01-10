@@ -22,7 +22,7 @@ describe("LibraryStageItem", () => {
   it("should display a legend", () => {
     let legend = wrapper.find("legend");
     expect(legend.length).to.equal(1);
-    expect(legend.find("span").text()).to.equal("Registry Stage");
+    expect(legend.find("span").text()).to.equal("Current Registry Stage:");
   });
   it("should display a label", () => {
     let label = wrapper.find(".label");

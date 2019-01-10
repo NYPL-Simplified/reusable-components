@@ -37,7 +37,7 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
 
   updateColor(library_stage: string, registry_stage: string): void {
       let color = this.colorCode(library_stage, registry_stage);
-      this.setState({ color: color });
+      this.setState({ color });
   }
 
   colorCode(library_stage: string, registry_stage: string): string {

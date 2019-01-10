@@ -12,7 +12,7 @@ describe("Form", () => {
   let element2: JSX.Element;
   let hiddenName = "hidden name";
   let hiddenValue = "hidden value";
-  let onSave = stub();
+  let onSubmit = stub();
 
   beforeEach(() => {
     element1 = <input type="text" name="Element1" defaultValue="element1"/>;
@@ -26,7 +26,7 @@ describe("Form", () => {
         content={[element1, element2]}
         hiddenName={hiddenName}
         hiddenValue={hiddenValue}
-        onSave={onSave}
+        onSubmit={onSubmit}
       />
     );
   });
@@ -59,9 +59,9 @@ describe("Form", () => {
   it("should call the onSave prop", () => {
     let button = wrapper.find("SaveButton");
     button.simulate("click");
-    expect(onSave.callCount).to.equal(1);
+    expect(onSubmit.callCount).to.equal(1);
 
-    let data = onSave.args[0][0];
+    let data = onSubmit.args[0][0];
     expect(data.get("Element1")).to.equal("element1");
     expect(data.get("Element2")).to.equal("abc");
   });

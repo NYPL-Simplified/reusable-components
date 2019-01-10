@@ -11,7 +11,7 @@
   transition: background .5s;
 
   span {
-    color: $nypl-black;
+    color: $black;
     transition: color .5s;
     font-weight: bold;
   }
@@ -28,21 +28,21 @@
 }
 
 .panel-success .panel-heading {
-  background: tint($nypl-green, 30%);
+  background: tint($green-dark, 30%);
   &:hover {
-    background: $nypl-green;
+    background: $green-dark;
   }
 }
 .panel-warning .panel-heading {
-  background: tint($nypl-orange, 30%);
+  background: tint($orange, 30%);
   &:hover {
-    background: $nypl-orange;
+    background: darken($orange, 25);
   }
 }
 .panel-danger .panel-heading {
-  background: tint($nypl-red, 30%);
+  background: lighten($red, 10);
   &:hover {
-    background: $nypl-red;
+    background: darken($red, 10);
   }
 }
 

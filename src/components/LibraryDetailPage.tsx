@@ -53,7 +53,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
       <Form
         hiddenName="uuid"
         hiddenValue={this.props.uuid}
-        onSave={this.submit}
+        onSubmit={this.submit}
         content={[
           <LibraryStageItem key="lib" label={"Library Stage"} value={this.state.libraryStage} />,
           <LibraryStageItem key="reg" label={"Registry Stage"} value={this.state.registryStage} />
@@ -72,7 +72,6 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
-
     return(
       <div>
         { this.renderStages() }
