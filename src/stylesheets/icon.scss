@@ -1,11 +1,8 @@
 svg {
   height: 1em;
   width: 1em;
-  fill: black;
-}
-
-svg:hover {
-  fill: $blue;
+  fill: $nypl-black;
+  transition: fill .5s;
 }
 
 .down-icon {

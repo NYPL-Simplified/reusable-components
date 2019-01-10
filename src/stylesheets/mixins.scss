@@ -4,7 +4,7 @@
 /// @param {Number} $percentage - percentage of `$color` in returned color
 /// @return {Color}
 
-$white: #FFF !default;
+$white: #FFF;
 
 @function tint($color, $percentage) {
   @return mix($white, $color, $percentage);

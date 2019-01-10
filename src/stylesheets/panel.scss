@@ -2,15 +2,47 @@
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 15px;
   background-color: transparent;
   border: 0;
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
+  transition: background .5s;
 
-  span, svg {
-    color: $dark-gray;
+  span {
+    color: $nypl-black;
+    transition: color .5s;
+    font-weight: bold;
+  }
+
+  &:hover {
+    svg {
+      fill: $white;
+    }
+    span {
+      color: $white;
+    }
+  }
+
+}
+
+.panel-success .panel-heading {
+  background: tint($nypl-green, 30%);
+  &:hover {
+    background: $nypl-green;
+  }
+}
+.panel-warning .panel-heading {
+  background: tint($nypl-orange, 30%);
+  &:hover {
+    background: $nypl-orange;
+  }
+}
+.panel-danger .panel-heading {
+  background: tint($nypl-red, 30%);
+  &:hover {
+    background: $nypl-red;
   }
 }
 

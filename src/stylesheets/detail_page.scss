@@ -8,5 +8,5 @@
 }
 
 .list-group-item:nth-child(even) {
-  background-color: tint($light-gray, 75);
+  background-color: $gray-tint;
 }

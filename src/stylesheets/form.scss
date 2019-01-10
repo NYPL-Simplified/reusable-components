@@ -9,7 +9,7 @@ form {
     margin-bottom: 10px;
 
     span {
-      background: $blue;
+      background: $nypl-blue;
       padding: .25em .5em;
       border-radius: .25em;
       color: $white;
@@ -25,10 +25,24 @@ form {
   }
 
   .btn {
-    background: $blue;
+    background: $nypl-blue;
     border-radius: .25em;
     font-weight: bold;
     transition: background 1s, color 1s;
+    &:hover{
+      background: $nypl-light-blue;
+      color: $nypl-dark-gray;
+    }
+  }
+
+  fieldset label.label-success {
+    background: $nypl-green-dark;
+  }
+  fieldset label.label-warning {
+    background: $nypl-orange-desaturated;
+  }
+  fieldset label.label-danger {
+    background: $nypl-red-dark;
   }
 
 }
