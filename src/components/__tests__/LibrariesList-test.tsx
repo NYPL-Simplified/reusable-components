@@ -55,5 +55,11 @@ describe("LibrariesList", () => {
       expect(lib2.text()).to.contain("Test Library 2 (lib2)");
     });
 
+    it("should display a header if there are no libraries", () => {
+      wrapper.setProps({ libraries: [] });
+      let header = wrapper.find(".page-header");
+      expect(header.length).to.equal(1);
+      expect(header.text()).to.equal("There are no libraries in this registry yet.");
+    });
   });
 });

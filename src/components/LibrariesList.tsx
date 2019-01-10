@@ -24,16 +24,18 @@ export interface LibrariesListProps extends LibrariesListStateProps, LibrariesLi
 export class LibrariesList extends React.Component<LibrariesListProps, void> {
 
   render(): JSX.Element {
+    let hasLibraries = (this.props.libraries && this.props.libraries.libraries && this.props.libraries.libraries.length);
     return(
       <ul className="list panel-group">
-        { this.props.libraries &&
+        { hasLibraries ?
           this.props.libraries.libraries.map(library =>
             <LibrariesListItem
               key={library.uuid}
               library={library}
               store={this.props.store}
             />
-          )
+          ) :
+          <h1 className="page-header">There are no libraries in this registry yet.</h1>
         }
       </ul>
     );
