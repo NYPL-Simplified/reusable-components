@@ -17,7 +17,7 @@ describe("LibrariesListItem", () => {
       "registry_stage": "testing",
       "library_stage": "production"
   };
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
+  let wrapper;
   let store;
   describe("rendering", () => {
     beforeEach(() => {
@@ -30,7 +30,7 @@ describe("LibrariesListItem", () => {
       );
     });
     it("should display a panel", () => {
-      expect(wrapper.hasClass("panel")).to.be.true;
+      expect(wrapper.find(".panel").length).to.equal(1);
     });
     it("should render a header with a title", () => {
       let header = wrapper.find(".panel-heading");
@@ -57,15 +57,15 @@ describe("LibrariesListItem", () => {
     });
     it("should determine background color based on registry_stage and library_stage", () => {
       expect(wrapper.state().color).to.equal("warning");
-      expect(wrapper.hasClass("panel-warning")).to.be.true;
+      expect(wrapper.find(".panel-warning").length).to.equal(1);
 
       (wrapper.instance() as any).updateColor("cancelled", "production");
       expect(wrapper.state().color).to.equal("danger");
-      expect(wrapper.hasClass("panel-danger")).to.be.true;
+      expect(wrapper.find(".panel-danger").length).to.equal(1);
 
       (wrapper.instance() as any).updateColor("production", "production");
       expect(wrapper.state().color).to.equal("success");
-      expect(wrapper.hasClass("panel-success")).to.be.true;
+      expect(wrapper.find(".panel-success").length).to.equal(1);
     });
   });
 });

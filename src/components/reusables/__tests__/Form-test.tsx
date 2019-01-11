@@ -2,8 +2,8 @@ import { expect } from "chai";
 import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Form from "../../reusables/Form";
-import SaveButton from "../../reusables/SaveButton";
+import Form from "../Form";
+import SaveButton from "../SaveButton";
 
 describe("Form", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;

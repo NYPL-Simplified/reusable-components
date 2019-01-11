@@ -2,7 +2,7 @@ import { expect } from "chai";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
-import Panel from "../../reusables/Panel";
+import Panel from "../Panel";
 
 describe("Panel", () => {
   let wrapper;
@@ -19,12 +19,12 @@ describe("Panel", () => {
   });
 
   it("should have a default class if there is no style prop", () => {
-    expect(wrapper.hasClass("panel-default")).to.be.true;
+    expect(wrapper.find(".panel-default").length).to.equal(1);
   });
 
   it("should accept a style prop", () => {
     wrapper.setProps({ style: "success" });
-    expect(wrapper.hasClass("panel-success")).to.be.true;
+    expect(wrapper.find(".panel-success").length).to.equal(1);
   });
 
   it("should render a header with title and icon", () => {

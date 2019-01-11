@@ -3,11 +3,10 @@ nav.navbar-default {
   border-radius: 0;
   padding: 20px;
   .navbar-header {
-    width: 100%;
     span {
       color: $white;
       font-size: 1.5em;
-      margin: 0;
+      margin: 0 1em;
       padding: 0;
       &:hover {
         color: $white;
@@ -15,9 +14,16 @@ nav.navbar-default {
     }
     .navbar-brand {
       background: $white;
-      float: right;
       padding: 5px;
       height: 40px;
     }
+  }
+  .navbar-btn {
+    .logoutIcon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+    float: right;
+    margin: 0;
   }
 }
