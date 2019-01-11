@@ -6,8 +6,7 @@ import { Store } from "redux";
 import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
-import SaveButton from "./SaveButton";
-import Form from "./Form";
+import Form from "./reusables/Form";
 
 export interface LibraryDetailPageDispatchProps {
   editStages: (data: FormData) => Promise<void>;

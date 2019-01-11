@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PanelGroup } from "react-bootstrap";
 import { Store, Reducer } from "redux";
 import { State } from "../reducers/index";
 import { LibrariesData, LibraryData } from "../interfaces";

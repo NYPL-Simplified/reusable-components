@@ -1,5 +1,5 @@
 import * as React from "react";
-import Panel from "./Panel";
+import Panel from "./reusables/Panel";
 import { Store } from "redux";
 import { State } from "../reducers/index";
 import { LibraryData } from "../interfaces";

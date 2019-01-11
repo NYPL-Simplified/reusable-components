@@ -2,7 +2,7 @@ import { expect } from "chai";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
-import Panel from "../Panel";
+import Panel from "../../reusables/Panel";
 
 describe("Panel", () => {
   let wrapper;
