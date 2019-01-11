@@ -18,7 +18,7 @@ export default class LibraryStageItem extends React.Component<LibraryStageItemPr
           <span>Current {this.props.label}:</span>
           <label className={`label label-${colors[this.props.value]}`}>{this.props.value}</label>
         </legend>
-        <select name={this.props.label} className="form-control" defaultValue={this.props.value}>
+        <select name={this.props.label} defaultValue={this.props.value}>
           <option value="testing">Testing</option>
           <option value="production">Production</option>
           <option value="cancelled">Cancelled</option>

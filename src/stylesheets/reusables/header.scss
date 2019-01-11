@@ -1,0 +1,23 @@
+nav.navbar-default {
+  background-color: $blue;
+  border-radius: 0;
+  padding: 20px;
+  .navbar-header {
+    width: 100%;
+    span {
+      color: $white;
+      font-size: 1.5em;
+      margin: 0;
+      padding: 0;
+      &:hover {
+        color: $white;
+      }
+    }
+    .navbar-brand {
+      background: $white;
+      float: right;
+      padding: 5px;
+      height: 40px;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { expect } from "chai";
 import * as React from "react";
 import * as Enzyme from "enzyme";
 import App from "../App";
-import Header from "../Header";
+import Header from "../reusables/Header";
 import LibrariesListContainer from "../LibrariesListContainer";
 
 describe("App", () => {
