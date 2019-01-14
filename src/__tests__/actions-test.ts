@@ -330,4 +330,26 @@ describe("actions", () => {
       expect(fetchMock.args[0][1].body).to.equal(formData);
     });
   });
+
+  describe("logIn", () => {
+    it("submits credentials", async () => {
+      const dispatch = stub();
+      const formData = new (window as any).FormData();
+      formData.append("admin", "123");
+      const fetchMock = stub().returns(new Promise<any>((update, reject) => {
+        update({ status: 200 });
+      }));
+      fetch = fetchMock;
+      await actions.logIn(formData)(dispatch);
+
+      expect(dispatch.callCount).to.equal(2);
+      expect(dispatch.args[0][0].type).to.equal(`${ActionCreator.LOG_IN}_${ActionCreator.REQUEST}`);
+      expect(dispatch.args[1][0].type).to.equal(`${ActionCreator.LOG_IN}_${ActionCreator.SUCCESS}`);
+
+      expect(fetchMock.callCount).to.equal(1);
+      expect(fetchMock.args[0][0]).to.equal("/admin/log_in");
+      expect(fetchMock.args[0][1].method).to.equal("POST");
+      expect(fetchMock.args[0][1].body).to.equal(formData);
+    });
+  });
 });

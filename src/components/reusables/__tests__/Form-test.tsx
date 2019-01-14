@@ -50,6 +50,13 @@ describe("Form", () => {
     expect(select.find("option").length).to.equal(2);
   });
 
+  it("should optionally render a title", () => {
+    wrapper.setProps({ title: "Test" });
+    let title = wrapper.find(".form-title");
+    expect(title.length).to.equal(1);
+    expect(title.text()).to.equal("Test");
+  });
+
   it("should render a SubmitButton", () => {
     let button = wrapper.find("SubmitButton");
     expect(button.length).to.equal(1);

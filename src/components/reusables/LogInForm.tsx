@@ -40,9 +40,9 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
   }
 
   render(): JSX.Element {
-    let username = <Input name="username" label="Username" />;
-    let password = <Input type="password" name="password" label="Password" />;
-    let fieldset = <Fieldset legend="Credentials" elements={[username, password]} />;
+    let username = <Input key="username" name="username" label="Username" />;
+    let password = <Input key="password" type="password" name="password" label="Password" />;
+    let fieldset = <Fieldset key="credentials" legend="Credentials" elements={[username, password]} />;
     return(
       <Form title="Library Registry Interface" content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
     );

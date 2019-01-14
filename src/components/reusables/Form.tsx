@@ -32,6 +32,7 @@ export default class Form extends React.Component<FormProps, void> {
           <label className="form-title">{this.props.title}</label>
         }
         <input
+          key="hidden"
           type="hidden"
           name={this.props.hiddenName}
           value={this.props.hiddenValue}
