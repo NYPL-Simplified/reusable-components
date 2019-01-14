@@ -15,6 +15,7 @@ export default class ActionCreator extends BaseActionCreator {
 
   static readonly EDIT_STAGES = "EDIT_STAGES";
 
+  static readonly LOG_IN = "LOG_IN";
 
   csrfToken: string;
 
@@ -159,6 +160,11 @@ export default class ActionCreator extends BaseActionCreator {
   editStages(data: FormData) {
     let url = "/admin/libraries/registration";
     return this.postForm(ActionCreator.EDIT_STAGES, url, data).bind(this);
+  }
+
+  logIn(data: FormData) {
+    let url = "/admin/log_in";
+    return this.postForm(ActionCreator.LOG_IN, url, data).bind(this);
   }
 
 }

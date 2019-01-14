@@ -1,7 +1,17 @@
 form {
-  padding: 20px;
-  width: 40%;
+  padding: 40px;
+  width: 30vw;
   border-radius: 0;
+  border: 1px solid $dark-gray;
+  border-radius: .25em;
+  margin: 20px;
+
+  .form-title {
+    border-bottom: 1px solid $dark-gray;
+    padding-bottom: .5em;
+    margin-bottom: 2em;
+    width: 100%;
+  }
 
   fieldset {
 
@@ -34,6 +44,11 @@ form {
           background: $red;
         }
       }
+    }
+    input {
+      border: 1px solid $blue;
+      border-radius: .25em;
+      padding: 5px;
     }
   }
 

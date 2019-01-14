@@ -12,7 +12,7 @@ import { Router } from "react-router";
 describe("RegistryAdmin", () => {
   it("renders ContextProvider", () => {
     const renderSpy = spy(ReactDOM, "render");
-    new RegistryAdmin({ csrfToken: "token" });
+    new RegistryAdmin({ username: "admin" });
     expect(renderSpy.callCount).to.equal(1);
     const component = renderSpy.args[0][0];
     const wrapper = mount(component);
@@ -23,7 +23,7 @@ describe("RegistryAdmin", () => {
 
   it("renders Router", () => {
     const renderSpy = spy(ReactDOM, "render");
-    new RegistryAdmin({});
+    new RegistryAdmin({ username: "admin" });
     expect(renderSpy.callCount).to.equal(1);
     const component = renderSpy.args[0][0];
     const wrapper = mount(component);

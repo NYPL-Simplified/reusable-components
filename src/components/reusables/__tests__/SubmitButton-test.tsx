@@ -4,14 +4,14 @@ import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
 
-import SaveButton from "../SaveButton";
+import SubmitButton from "../SubmitButton";
 
-describe("SaveButton", () => {
+describe("SubmitButton", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
   let callback = stub();
   beforeEach(() => {
     wrapper = shallow(
-      <SaveButton
+      <SubmitButton
         callback={callback}
       />
     );
@@ -21,7 +21,7 @@ describe("SaveButton", () => {
     expect(callback.callCount).to.equal(1);
   });
   it("optionally renders custom text", () => {
-    expect(wrapper.text()).to.equal("Save");
+    expect(wrapper.text()).to.equal("Submit");
     wrapper.setProps({ text: "Some other string" });
     expect(wrapper.text()).to.equal("Some other string");
   });

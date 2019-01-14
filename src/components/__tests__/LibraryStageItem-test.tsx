@@ -2,17 +2,16 @@ import { expect } from "chai";
 import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import { shallow, mount } from "enzyme";
 import LibraryStageItem from "../LibraryStageItem";
 
 describe("LibraryStageItem", () => {
-  let wrapper: Enzyme.ShallowWrapper<any, {}>;
+  let wrapper;
   let label;
   let value;
   beforeEach(() => {
     label = "Registry Stage";
     value = "cancelled";
-    wrapper = shallow(
+    wrapper = Enzyme.mount(
       <LibraryStageItem
         label={label}
         value={value}

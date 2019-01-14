@@ -4,6 +4,7 @@ import { LogoutIcon } from "@nypl/dgx-svg-icons";
 export interface HeaderProps {
   text?: string;
   imgSrc?: string;
+  logOut: string;
 }
 
 export default class Header extends React.Component<HeaderProps, void> {
@@ -15,7 +16,7 @@ export default class Header extends React.Component<HeaderProps, void> {
           <img className="navbar-brand img-rounded" alt="SimplyE" src={src} />
           <span>{this.props.text}</span>
         </div>
-        <button className="btn navbar-btn"><LogoutIcon /></button>
+        <a href={this.props.logOut} className="btn navbar-btn"><LogoutIcon /></a>
       </nav>
     );
   }

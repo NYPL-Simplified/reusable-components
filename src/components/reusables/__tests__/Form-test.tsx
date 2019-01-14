@@ -3,7 +3,7 @@ import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import Form from "../Form";
-import SaveButton from "../SaveButton";
+import SubmitButton from "../SubmitButton";
 
 describe("Form", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
@@ -50,14 +50,14 @@ describe("Form", () => {
     expect(select.find("option").length).to.equal(2);
   });
 
-  it("should render a SaveButton", () => {
-    let button = wrapper.find("SaveButton");
+  it("should render a SubmitButton", () => {
+    let button = wrapper.find("SubmitButton");
     expect(button.length).to.equal(1);
     expect(button.props()["submit"]).to.equal(wrapper.instance()["save"]);
   });
 
   it("should call the onSave prop", () => {
-    let button = wrapper.find("SaveButton");
+    let button = wrapper.find("SubmitButton");
     button.simulate("click");
     expect(onSubmit.callCount).to.equal(1);
 

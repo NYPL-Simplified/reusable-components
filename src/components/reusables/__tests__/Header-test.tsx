@@ -8,7 +8,7 @@ describe("Header", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   beforeEach(() => {
     wrapper = Enzyme.shallow(
-      <Header text="Test Header!" />
+      <Header text="Test Header!" logOut="logout_url"/>
     );
   });
   it("should render text", () => {
@@ -19,5 +19,6 @@ describe("Header", () => {
     let logout = wrapper.find(".navbar-btn");
     expect(logout.length).to.equal(1);
     expect(logout.find(".logoutIcon").length).to.equal(1);
+    expect(logout.props().href).to.equal("logout_url");
   });
 });

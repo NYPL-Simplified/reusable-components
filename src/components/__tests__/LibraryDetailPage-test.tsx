@@ -75,14 +75,14 @@ describe("LibraryDetailPage", () => {
       expect(options.at(2).props().value).to.equal("cancelled");
     });
 
-    let saveButton = form.find("button");
-    expect(saveButton.length).to.equal(1);
+    let submitButton = form.find("button");
+    expect(submitButton.length).to.equal(1);
   });
 
   it("should submit a form", () => {
     let form = wrapper.find("form");
-    let saveButton = form.find("button");
-    saveButton.simulate("click");
+    let submitButton = form.find("button");
+    submitButton.simulate("click");
 
     expect(updateColor.callCount).to.equal(1);
     let libStage = updateColor.args[0][0];

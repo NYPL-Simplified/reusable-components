@@ -11,6 +11,7 @@ $gray-tint: tint($light-gray, 75);
 $black: #111;
 $blue: #1B7FA7;
 $light-blue: lighten($blue, 30%);
+$blue-tint: tint($blue, 80%);
 $green: #799A05;
 $green-dark: #497629;
 $green-bright: #008918;
@@ -18,6 +19,9 @@ $yellow: #FEE24A;
 $yellow-tint: tint($yellow, 50%);
 $orange: #FFB81D;
 $orange-desaturated: desaturate($orange, 40%);
+$teal: #07818D;
+$teal-dark: #047074;
+$teal-tint: tint($teal, 50%);
 
 // field error bg
 $red-error: tint($red, 80%);

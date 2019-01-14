@@ -1,11 +1,14 @@
 import * as React from "react";
-import SaveButton from "./SaveButton";
+import SubmitButton from "./SubmitButton";
+import Fieldset from "./Fieldset";
 
 export interface FormProps {
   content: Array<JSX.Element>;
   onSubmit: any;
+  title?: string;
   hiddenName?: string;
   hiddenValue?: string;
+  buttonText?: string;
 }
 
 export default class Form extends React.Component<FormProps, void> {
@@ -25,14 +28,18 @@ export default class Form extends React.Component<FormProps, void> {
   render(): JSX.Element {
     return(
       <form ref="form">
+        { this.props.title &&
+          <label className="form-title">{this.props.title}</label>
+        }
         <input
           type="hidden"
           name={this.props.hiddenName}
           value={this.props.hiddenValue}
         />
         { this.props.content }
-        <SaveButton
+        <SubmitButton
           callback={this.submit}
+          text={this.props.buttonText && this.props.buttonText}
         />
       </form>
     );
