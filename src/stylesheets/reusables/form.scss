@@ -45,8 +45,7 @@ form {
         }
       }
     }
-    input {
-      border: 1px solid $blue;
+    input.form-control {
       border-radius: .25em;
       padding: 5px;
     }
