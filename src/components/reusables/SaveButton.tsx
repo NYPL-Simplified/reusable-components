@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export interface SaveButtonProps {
-  callback: (event: __React.MouseEvent) => Promise<void>;
+  callback: (event: __React.MouseEvent) => void;
   text?: string;
 }
 
