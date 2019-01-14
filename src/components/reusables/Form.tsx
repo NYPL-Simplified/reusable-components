@@ -25,11 +25,13 @@ export default class Form extends React.Component<FormProps, void> {
   render(): JSX.Element {
     return(
       <form ref="form">
-        <input
-          type="hidden"
-          name={this.props.hiddenName}
-          value={this.props.hiddenValue}
-        />
+        { this.props.hiddenName &&
+          <input
+            type="hidden"
+            name={this.props.hiddenName}
+            value={this.props.hiddenValue}
+          />
+        }
         { this.props.content }
         <SaveButton
           callback={this.submit}

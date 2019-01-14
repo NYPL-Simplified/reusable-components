@@ -31,11 +31,15 @@ describe("Form", () => {
     );
   });
 
-  it("should render a hidden input field", () => {
+  it("should optionally render a hidden input field", () => {
     let hidden = wrapper.find("[type='hidden']");
     expect(hidden.length).to.equal(1);
     expect(hidden.props().name).to.equal("hidden name");
     expect(hidden.props().value).to.equal("hidden value");
+
+    wrapper.setProps({ hiddenName: null });
+    hidden = wrapper.find("[type='hidden']");
+    expect(hidden.length).to.equal(0);
   });
 
   it("should render elements", () => {

@@ -79,11 +79,10 @@ describe("LibraryDetailPage", () => {
     expect(saveButton.length).to.equal(1);
   });
 
-  it("should submit a form", () => {
+  it("should submit a form", async () => {
     let form = wrapper.find("form");
     let saveButton = form.find("button");
     saveButton.simulate("click");
-
     expect(updateColor.callCount).to.equal(1);
     let libStage = updateColor.args[0][0];
     let regStage = updateColor.args[0][1];
