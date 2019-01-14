@@ -7,7 +7,7 @@ export default class App extends React.Component<void, void> {
   render(): JSX.Element {
     return(
       <div id="main-app-component">
-        <Header text="Library Registry Interface" imgSrc="./logo.png"/>
+        <Header text="Library Registry Interface" imgSrc="./logo.png" alt="SimplyE" />
         <LibrariesListContainer />
       </div>
     );

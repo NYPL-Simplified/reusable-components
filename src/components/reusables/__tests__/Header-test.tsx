@@ -4,7 +4,7 @@ import * as React from "react";
 import * as Enzyme from "enzyme";
 import Header from "../../reusables/Header";
 
-describe("Header", () => {
+describe.only("Header", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   beforeEach(() => {
     wrapper = Enzyme.shallow(
