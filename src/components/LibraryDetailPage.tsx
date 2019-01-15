@@ -43,7 +43,8 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
 
   renderInfo() {
     let library = this.props.fullLibrary || this.props.library;
-    let fields = Object.keys(library).map(label =>
+    // Only create LibraryDetailItems for fields which actually have a value.
+    let fields = Object.keys(library).filter(label => library[label]).map(label =>
       <LibraryDetailItem key={label} label={label} value={library[label]} />
     );
     return fields;

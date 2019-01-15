@@ -18,7 +18,8 @@ describe("LibraryDetailPage", () => {
       "short_name": "test_lib",
       "id": 1,
       "registry_stage": "testing",
-      "library_stage": "production"
+      "library_stage": "production",
+      "description": undefined
   };
 
   let updateColor;
@@ -47,12 +48,16 @@ describe("LibraryDetailPage", () => {
     expect(infoList.length).to.equal(1);
     let infoItems = infoList.find("li");
     expect(infoItems.length).to.equal(6);
-
     infoItems.map((item) => {
       let key = item.find(".control-label").text();
       let value = item.find(".form-control-static").text();
       expect(`${library[key]}`).to.equal(value);
     });
+  });
+
+  it("should not display blank values", () => {
+    let infoLabels = wrapper.find(".list-group-item .control-label").map(label => label.text());
+    expect(infoLabels.indexOf("description")).to.equal(-1);
   });
 
   it("should display a form", () => {
