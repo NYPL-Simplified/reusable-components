@@ -7,6 +7,7 @@ import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import Form from "./reusables/Form";
+import Tabs from "./reusables/Tabs";
 
 export interface LibraryDetailPageDispatchProps {
   editStages: (data: FormData) => Promise<void>;
@@ -20,13 +21,13 @@ export interface LibraryDetailPageStateProps {
 export interface LibraryDetailPageOwnProps {
   library: LibraryData;
   store: Store<State>;
-  uuid: string;
   updateColor: (library_stage: string, registry_stage: string) => void;
 }
 
 export interface LibraryDetailPageState {
-  libraryStage: string;
-  registryStage: string;
+  libraryStage?: string;
+  registryStage?: string;
+  tab?: string;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
@@ -36,26 +37,33 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   constructor(props: LibraryDetailPageProps) {
     super(props);
     this.submit = this.submit.bind(this);
-    this.renderInfo = this.renderInfo.bind(this);
+    this.renderItems = this.renderItems.bind(this);
     this.renderStages = this.renderStages.bind(this);
-    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage };
+    this.goToTab = this.goToTab.bind(this);
+    this.state = {
+                  libraryStage: this.props.library.stages.library_stage,
+                  registryStage: this.props.library.stages.registry_stage,
+                  tab: "Basic Information"
+                 };
   }
 
-  renderInfo() {
+  renderItems(key: string) {
     let library = this.props.fullLibrary || this.props.library;
+    let details = library[key];
+    let detailKeys = Object.keys(details);
+
     // Only create LibraryDetailItems for fields which actually have a value.
-    let fields = Object.keys(library).filter(label => library[label]).map(label =>
-      <LibraryDetailItem key={label} label={label} value={library[label]} />
+    let fields = detailKeys.filter(label => details[label]).map(label =>
+      <LibraryDetailItem key={label} label={label} value={details[label]} />
     );
     return fields;
   }
 
   renderStages() {
-
     return (
       <Form
         hiddenName="uuid"
-        hiddenValue={this.props.uuid}
+        hiddenValue={this.props.library.uuid}
         onSubmit={this.submit}
         content={[
           <LibraryStageItem key="lib" label={"Library Stage"} value={this.state.libraryStage} />,
@@ -65,13 +73,16 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     );
   }
 
+  goToTab(tab: string) {
+    this.setState({ tab: tab });
+  }
+
   async submit(data): Promise<void> {
     await this.props.editStages(data);
-    await this.props.fetchLibrary(this.props.uuid);
+    await this.props.fetchLibrary(this.props.library.uuid);
 
-    let libraryStage = this.props.fullLibrary.library_stage;
-    let registryStage = this.props.fullLibrary.registry_stage;
-
+    let libraryStage = this.props.fullLibrary.stages.library_stage;
+    let registryStage = this.props.fullLibrary.stages.registry_stage;
     this.props.updateColor(libraryStage, registryStage);
     this.setState({ libraryStage, registryStage });
   }
@@ -80,12 +91,21 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
+
+    let hidden = (tab) => tab === this.state.tab ? "" : "hidden";
+
     return(
       <div>
         { this.renderStages() }
-        <ul id="info" className="list-group">
-          { this.renderInfo() }
-        </ul>
+        <div className="detail-content">
+          <Tabs items={["Basic Information", "Contact & URLs"]} goTo={this.goToTab} />
+          <ul className={`list-group ${this.state.tab === "Basic Information" ? "" : "hidden"}`}>
+            { this.renderItems("basic_info") }
+          </ul>
+          <ul className={`list-group ${this.state.tab === "Contact & URLs" ? "" : "hidden"}`}>
+            { this.renderItems("urls_and_contact") }
+          </ul>
+        </div>
       </div>
     );
   }

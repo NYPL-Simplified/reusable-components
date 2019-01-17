@@ -1,12 +1,12 @@
-.list-group {
-  margin-bottom: 0;
-  .list-group-item {
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+.detail-content {
+  padding: 20px;
+  .list-group {
+    margin-bottom: 0;
+    .list-group-item {
+      border-radius: 0;
+    }
   }
-}
-
-.list-group-item:nth-child(even) {
-  background-color: $gray-tint;
+  .list-group-item:nth-child(even) {
+    background-color: $gray-tint;
+  }
 }

@@ -1,0 +1,13 @@
+.tabs {
+  button.btn.btn-default {
+    background: $blue-dark;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+    transition: background .5s, color .5s;
+    &:hover {
+      background: $light-gray;
+    }
+  }
+}

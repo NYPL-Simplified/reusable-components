@@ -18,7 +18,11 @@ export interface LibrariesListItemState {
 export default class LibrariesListItem extends React.Component<LibrariesListItemProps, LibrariesListItemState> {
   constructor(props: LibrariesListItemProps) {
     super(props);
-    this.state = { color: this.colorCode(this.props.library.library_stage, this.props.library.registry_stage) };
+    this.state = { color: this.colorCode(
+                            this.props.library.stages.library_stage,
+                            this.props.library.stages.registry_stage
+                          )
+                };
     this.colorCode = this.colorCode.bind(this);
     this.updateColor = this.updateColor.bind(this);
     this.body = this.body.bind(this);
@@ -27,7 +31,6 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
   body() {
     return (
         <LibraryDetailPage
-          uuid={this.props.library.uuid}
           library={this.props.library}
           updateColor={this.updateColor}
           store={this.props.store}
@@ -56,8 +59,9 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
 
   render(): JSX.Element {
     let style = this.state.color;
-    let headerText = `${this.props.library.name} (${this.props.library.short_name})`;
-
+    let name = this.props.library.basic_info.name;
+    let short_name = this.props.library.basic_info.short_name;
+    let headerText = `${name} (${short_name})`;
     return(
       <Panel style={style} headerText={headerText} body={this.body()} />
     );

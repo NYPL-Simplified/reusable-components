@@ -9,12 +9,22 @@ import LibrariesListItem from "../LibrariesListItem";
 
 describe("LibrariesListItem", () => {
   let library = {
-      "uuid": "UUID1",
+    uuid: "UUID1",
+    basic_info: {
       "name": "Test Library",
       "short_name": "test_lib",
-      "id": 1,
-      "registry_stage": "testing",
-      "library_stage": "production"
+
+    },
+    urls_and_contact: {
+      "authentication_url": "test_auth",
+      "contact_email": "test_email",
+      "opds_url": "test_opds",
+      "web_url": "test_web"
+    },
+    stages: {
+      "library_stage": "production",
+      "registry_stage": "testing"
+    }
   };
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
