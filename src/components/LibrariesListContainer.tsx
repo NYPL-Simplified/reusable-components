@@ -8,38 +8,17 @@ import ActionCreator from "../actions";
 
 export interface LibrariesListContainerContext {
   store: Store<State>;
-  csrfToken: string;
 }
 
-export interface LibrariesListContainerStateProps<T> {
-  store?: Store<State>;
-}
-
-export interface LibrariesListContainerDispatchProps<T> {
-  fetchData?: () => Promise<T>;
-}
-
-export interface LibrariesListContainerOwnProps {
-  store?: Store<State>;
-  csrfToken?: string;
-}
-
-export interface LibrariesListContainerProps<T> extends LibrariesListContainerDispatchProps<T>, LibrariesListContainerOwnProps {}
-
-export default class LibrariesListContainer extends React.Component<LibrariesListContainerProps<LibrariesData>, void> {
+export default class LibrariesListContainer extends React.Component<void, void> {
   context: LibrariesListContainerContext;
   static contextTypes: React.ValidationMap<LibrariesListContainerContext> = {
-      store: React.PropTypes.object.isRequired,
-      csrfToken: React.PropTypes.string.isRequired,
+    store: React.PropTypes.object.isRequired
   };
 
   render(): JSX.Element {
     return(
-      <div className="libraries-list-container">
-        <div>
-          <LibrariesList store={this.context.store} />
-        </div>
-      </div>
+      <LibrariesList store={this.context.store} />
     );
   }
 

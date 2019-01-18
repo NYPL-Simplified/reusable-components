@@ -1,13 +1,24 @@
-// Some NYPL specific colors: https://nypl.github.io/design-toolkit/sections/color.html.
 $green-tint: #F3F7E6;
 $green-bright: #008918;
+$medium-gray: #DDD;
+
+// Some NYPL specific colors: https://nypl.github.io/design-toolkit/sections/color.html.
 $red: #D0343A;
 $red-dark: #97272C;
+$light-gray: #D7D4D0;
+$dark-gray: #080807;
+$gray-tint: tint($light-gray, 75);
+$black: #111;
+$blue: #1B7FA7;
+$light-blue: lighten($blue, 30%);
+$green: #799A05;
+$green-dark: #497629;
+$green-bright: #008918;
+$yellow: #FEE24A;
+$yellow-tint: tint($yellow, 50%);
+$orange: #FFB81D;
+$orange-desaturated: desaturate($orange, 40%);
+
 // field error bg
 $red-error: tint($red, 80%);
 $red-tint: tint($red, 30%);
-$light-gray: #D7D4D0;
-$medium-gray: #DDD;
-$dark-gray: #080807;
-$white: #FFF;
-$blue: #1B7FA7;

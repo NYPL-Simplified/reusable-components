@@ -18,14 +18,14 @@ export default class ContextProvider extends React.Component<ContextProviderProp
   }
 
   static childContextTypes: React.ValidationMap<any> = {
-    store: React.PropTypes.object.isRequired,
-    csrfToken: React.PropTypes.string.isRequired,
+    store: React.PropTypes.object.isRequired
+    // csrfToken: React.PropTypes.string.isRequired,
   };
 
   getChildContext() {
     return {
       store: this.store,
-      csrfToken: this.props.csrfToken
+      // csrfToken: this.props.csrfToken
     };
   }
 

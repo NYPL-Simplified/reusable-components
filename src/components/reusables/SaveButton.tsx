@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export interface SaveButtonProps {
-  submit: (event: __React.MouseEvent) => Promise<void>;
+  callback: (event: __React.MouseEvent) => void;
   text?: string;
 }
 
@@ -17,7 +17,7 @@ export default class SaveButton extends React.Component<SaveButtonProps, void> {
      <button
        type="submit"
        className="btn btn-default"
-       onClick={this.props.submit}
+       onClick={this.props.callback}
     >{text}</button>
    );
  }

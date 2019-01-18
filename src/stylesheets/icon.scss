@@ -1,5 +1,14 @@
 svg {
-  height: 0.7em;
-  width: 0.7em;
-  fill: $pagetextcolor;
+  height: 1em;
+  width: 1em;
+  fill: $black;
+  transition: fill .5s;
+}
+
+.down-icon {
+  transform: rotate(270deg);
+}
+
+.up-icon {
+  transform: rotate(90deg);
 }

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PanelGroup } from "react-bootstrap";
 import { Store, Reducer } from "redux";
 import { State } from "../reducers/index";
 import { LibrariesData, LibraryData } from "../interfaces";
@@ -13,52 +12,31 @@ export interface LibrariesListStateProps {
 
 export interface LibrariesListOwnProps {
   store?: Store<State>;
-  csrfToken?: string;
 }
 
 export interface LibrariesListDispatchProps {
   fetchData: () => Promise<LibrariesData>;
 }
 
-export interface LibrariesListState {
-  activeKey: string;
-}
-
 export interface LibrariesListProps extends LibrariesListStateProps, LibrariesListOwnProps, LibrariesListDispatchProps {};
 
-export class LibrariesList extends React.Component<LibrariesListProps, LibrariesListState> {
-
-  constructor(props: LibrariesListProps) {
-    super(props);
-    this.state = { activeKey: "" };
-    this.isActive = this.isActive.bind(this);
-    this.select = this.select.bind(this);
-  }
-
-  isActive(library: LibraryData) {
-    return this.props.libraries.libraries.indexOf(library) === parseInt(this.state.activeKey);
-  }
-
-  select(idx: string) {
-    this.setState({ activeKey: idx});
-    this.props.fetchData();
-  }
+export class LibrariesList extends React.Component<LibrariesListProps, void> {
 
   render(): JSX.Element {
+    let hasLibraries = (this.props.libraries && this.props.libraries.libraries && this.props.libraries.libraries.length > 0);
     return(
-      <PanelGroup accordion activeKey={this.state.activeKey}>
-        { this.props.libraries &&
+      <ul className="list panel-group">
+        { hasLibraries ?
           this.props.libraries.libraries.map(library =>
             <LibrariesListItem
               key={library.uuid}
-              idx={`${this.props.libraries.libraries.indexOf(library)}`}
               library={library}
-              active={this.isActive(library)}
-              select={this.select}
+              store={this.props.store}
             />
-          )
+          ) :
+          <span className="page-header">There are no libraries in this registry yet.</span>
         }
-      </PanelGroup>
+      </ul>
     );
   }
 
@@ -75,9 +53,9 @@ function mapStateToProps(state: State, ownProps: LibrariesListOwnProps) {
 }
 
 function mapDispatchToProps(dispatch: Function, ownProps: LibrariesListOwnProps) {
-  let actions = new ActionCreator(null, ownProps.csrfToken);
+  let actions = new ActionCreator(null);
   return {
-    fetchData: () => dispatch(actions.fetchLibraries()),
+    fetchData: () => dispatch(actions.fetchLibraries())
   };
 }
 

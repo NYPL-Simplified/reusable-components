@@ -1,71 +1,65 @@
 import * as React from "react";
-import { Panel, Glyphicon } from "react-bootstrap";
+import Panel from "./reusables/Panel";
+import { Store } from "redux";
+import { State } from "../reducers/index";
 import { LibraryData } from "../interfaces";
-import LibraryDetailContainer from "./LibraryDetailContainer";
+import LibraryDetailPage from "./LibraryDetailPage";
+import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 
 export interface LibrariesListItemProps {
   library: LibraryData;
-  active: boolean;
-  select: (idx: string) => void;
-  idx: string;
+  store: Store<State>;
 }
+
 export interface LibrariesListItemState {
-  open: boolean;
+  color: string;
 }
 
 export default class LibrariesListItem extends React.Component<LibrariesListItemProps, LibrariesListItemState> {
   constructor(props: LibrariesListItemProps) {
     super(props);
-    this.toggle = this.toggle.bind(this);
+    this.state = { color: this.colorCode(this.props.library.library_stage, this.props.library.registry_stage) };
     this.colorCode = this.colorCode.bind(this);
+    this.updateColor = this.updateColor.bind(this);
+    this.body = this.body.bind(this);
   }
 
-  toggle() {
-    // If it's already open, just close everything.
-    let idx = this.props.active ? "" : this.props.idx;
-    this.props.select(idx);
-  }
-
-  header() {
+  body() {
     return (
-      <div onClick={this.toggle}>
-        <span>{this.props.library.name} ({this.props.library.short_name})</span>
-        <Glyphicon glyph={this.props.active ? "menu-up" : "menu-down"} />
-      </div>
+        <LibraryDetailPage
+          uuid={this.props.library.uuid}
+          library={this.props.library}
+          updateColor={this.updateColor}
+          store={this.props.store}
+        />
     );
   }
 
-  colorCode() {
-    // If both stages are in production, background is green;
-    // if at least one stage is cancelled, background is red;
-    // otherwise, background is yellow.
-    let stages = [this.props.library.registry_stage, this.props.library.library_stage];
+  updateColor(library_stage: string, registry_stage: string): void {
+      let color = this.colorCode(library_stage, registry_stage);
+      this.setState({ color });
+  }
 
+  colorCode(library_stage: string, registry_stage: string): string {
+    // If both library_stage and registry_stage are in production, background is green;
+    // if at least one of them is cancelled, background is red;
+    // otherwise, background is yellow.
+
+    let stages = [library_stage, registry_stage];
     if (stages.every((stage) => stage === "production")) {
       return "success";
-    }
-    else if (stages.some((stage) => stage === "cancelled")) {
+    } else if (stages.some((stage) => stage === "cancelled")) {
       return "danger";
     }
-    else {
-      return "warning";
-    }
+    return "warning";
   }
 
   render(): JSX.Element {
-    let style = this.colorCode();
+    let style = this.state.color;
+    let headerText = `${this.props.library.name} (${this.props.library.short_name})`;
 
     return(
-      <Panel
-        bsStyle={style}
-        header={this.header()}
-        collapsible={true}
-        expanded={this.props.active}
-      >
-        { this.props.active &&
-          <LibraryDetailContainer id={this.props.library.uuid} toggle={this.toggle} />
-        }
-      </Panel>
+      <Panel style={style} headerText={headerText} body={this.body()} />
     );
   }
 }

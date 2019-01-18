@@ -25,29 +25,6 @@ export default class ActionCreator extends BaseActionCreator {
     this.csrfToken = csrfToken;
   }
 
-  fetchLibraries() {
-    let url = "/admin/libraries";
-    return this.fetchJSON<LibrariesData>(ActionCreator.GET_ALL_LIBRARIES, url).bind(this);
-  }
-
-  fetchLibrary(uuid: string) {
-    let url = "/admin/libraries/" + uuid;
-    return this.fetchJSON<LibraryData>(ActionCreator.GET_ONE_LIBRARY, url).bind(this);
-  }
-
-  editStages(data: FormData) {
-    let url = "/admin/libraries/registration";
-    return this.postForm(ActionCreator.EDIT_STAGES, url, data).bind(this);
-  }
-
-
-
-
-
-
-
-
-
   postForm(
     type: string,
     url: string,
@@ -169,5 +146,19 @@ export default class ActionCreator extends BaseActionCreator {
     });
   }
 
+  fetchLibraries() {
+    let url = "/admin/libraries";
+    return this.fetchJSON<LibrariesData>(ActionCreator.GET_ALL_LIBRARIES, url).bind(this);
+  }
+
+  fetchLibrary(uuid: string) {
+    let url = "/admin/libraries/" + uuid;
+    return this.fetchJSON<LibraryData>(ActionCreator.GET_ONE_LIBRARY, url).bind(this);
+  }
+
+  editStages(data: FormData) {
+    let url = "/admin/libraries/registration";
+    return this.postForm(ActionCreator.EDIT_STAGES, url, data).bind(this);
+  }
 
 }

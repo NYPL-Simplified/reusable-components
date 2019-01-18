@@ -6,81 +6,86 @@ import { Store } from "redux";
 import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
-import SaveButton from "./SaveButton";
+import Form from "./reusables/Form";
+
+export interface LibraryDetailPageDispatchProps {
+  editStages: (data: FormData) => Promise<void>;
+  fetchLibrary: (uuid: string) => LibraryData;
+}
 
 export interface LibraryDetailPageStateProps {
   fullLibrary?: LibraryData;
 }
 
-export interface LibraryDetailPageDispatchProps {
-  fetchData: () => Promise<LibraryData>;
-  editStages: (data: FormData) => Promise<void>;
+export interface LibraryDetailPageOwnProps {
+  library: LibraryData;
+  store: Store<State>;
+  uuid: string;
+  updateColor: (library_stage: string, registry_stage: string) => void;
 }
 
-export interface LibraryDetailPageOwnProps {
-  store?: Store<State>;
-  uuid: string;
-  toggle: () => void;
+export interface LibraryDetailPageState {
+  libraryStage: string;
+  registryStage: string;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
 
-export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, void> {
+export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, LibraryDetailPageState> {
 
   constructor(props: LibraryDetailPageProps) {
     super(props);
     this.submit = this.submit.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.fetchData();
+    this.renderInfo = this.renderInfo.bind(this);
+    this.renderStages = this.renderStages.bind(this);
+    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage };
   }
 
   renderInfo() {
-    let fields = Object.keys(this.props.fullLibrary).map(label =>
-      <LibraryDetailItem key={label} label={label} value={this.props.fullLibrary[label]} />
+    let library = this.props.fullLibrary || this.props.library;
+    // Only create LibraryDetailItems for fields which actually have a value.
+    let fields = Object.keys(library).filter(label => library[label]).map(label =>
+      <LibraryDetailItem key={label} label={label} value={library[label]} />
     );
     return fields;
   }
 
   renderStages() {
-    let libraryStage = this.props.fullLibrary["library_stage"];
-    let registryStage = this.props.fullLibrary["registry_stage"];
+
     return (
-      <form ref="form" className="well">
-        <input
-          type="hidden"
-          name="uuid"
-          value={this.props.uuid}
-        />
-        <LibraryStageItem key={"libraryStage"} label={"Library Stage"} value={libraryStage} />
-        <LibraryStageItem key={"registryStage"} label={"Registry Stage"} value={registryStage} />
-        <SaveButton
-          submit={this.submit}
-        />
-      </form>
+      <Form
+        hiddenName="uuid"
+        hiddenValue={this.props.uuid}
+        onSubmit={this.submit}
+        content={[
+          <LibraryStageItem key="lib" label={"Library Stage"} value={this.state.libraryStage} />,
+          <LibraryStageItem key="reg" label={"Registry Stage"} value={this.state.registryStage} />
+        ]}
+      />
     );
   }
 
-async submit(event: __React.MouseEvent): Promise<void> {
-    event.preventDefault();
-    let form = (this.refs["form"] as any);
-    const data = new (window as any).FormData(form);
+  async submit(data): Promise<void> {
     await this.props.editStages(data);
-    this.props.toggle();
-    this.props.fetchData();
+    await this.props.fetchLibrary(this.props.uuid);
+
+    let libraryStage = this.props.fullLibrary.library_stage;
+    let registryStage = this.props.fullLibrary.registry_stage;
+
+    this.props.updateColor(libraryStage, registryStage);
+    this.setState({ libraryStage, registryStage });
   }
 
   render(): JSX.Element {
-    if (!this.props.fullLibrary) {
-      return <div></div>;
+    if (!this.props.library) {
+      return null;
     }
     return(
       <div>
         { this.renderStages() }
-        <div id="info" className="list-group">
+        <ul id="info" className="list-group">
           { this.renderInfo() }
-        </div>
+        </ul>
       </div>
     );
   }
@@ -95,8 +100,8 @@ function mapStateToProps(state: State, ownProps: LibraryDetailPageOwnProps) {
 function mapDispatchToProps(dispatch: Function, ownProps: LibraryDetailPageOwnProps) {
   let actions = new ActionCreator(null, null);
   return {
-    fetchData: () => dispatch(actions.fetchLibrary(ownProps.uuid)),
-    editStages: (data: FormData) => dispatch(actions.editStages(data))
+    editStages: (data: FormData) => dispatch(actions.editStages(data)),
+    fetchLibrary: (uuid: string) => dispatch(actions.fetchLibrary(uuid))
   };
 }
 

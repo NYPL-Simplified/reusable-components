@@ -13,15 +13,17 @@ export interface FetchEditState<T> {
   successMessage?: string;
 }
 
+export interface FullAction extends Action {
+    error?: RequestError | String;
+    data?: Object;
+    url?: String;
+}
+
 export interface FetchEditReducer<T> {
-  (state: FetchEditState<T>, action): FetchEditState<T>;
+  (state: FetchEditState<T>, action: FullAction): FetchEditState<T>;
 }
 
-export interface ExtraActions<T> {
-  [key: string]: (state: FetchEditState<T>, action: any) => FetchEditState<T>;
-}
-
-export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: ExtraActions<T>): FetchEditReducer<T> => {
+export default<T> (fetchPrefix: string, editPrefix?: string): FetchEditReducer<T> => {
   const initialState: FetchEditState<T> = {
     data: null,
     isFetching: false,
@@ -33,7 +35,7 @@ export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: Extr
     successMessage: null
   };
 
-  const fetchEditReducer = (state: FetchEditState<T> = initialState, action: Action): FetchEditState<T> => {
+  const fetchEditReducer = (state: FetchEditState<T> = initialState, action: FullAction): FetchEditState<T> => {
     switch (action.type) {
       case `${fetchPrefix}_${ActionCreator.REQUEST}`:
         return Object.assign({}, state, {
@@ -61,14 +63,6 @@ export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: Extr
         });
 
       default:
-        if (extraActions) {
-          let manipulateDataFunction;
-
-          if (action.type in extraActions) {
-            manipulateDataFunction = extraActions[action.type];
-            return manipulateDataFunction(state, action);
-          }
-        }
 
         if (editPrefix) {
           switch (action.type) {
