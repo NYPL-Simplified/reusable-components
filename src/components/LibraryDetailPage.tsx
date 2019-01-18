@@ -27,7 +27,6 @@ export interface LibraryDetailPageOwnProps {
 export interface LibraryDetailPageState {
   libraryStage?: string;
   registryStage?: string;
-  tab?: string;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
@@ -39,11 +38,9 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     this.submit = this.submit.bind(this);
     this.renderItems = this.renderItems.bind(this);
     this.renderStages = this.renderStages.bind(this);
-    this.goToTab = this.goToTab.bind(this);
     this.state = {
                   libraryStage: this.props.library.stages.library_stage,
                   registryStage: this.props.library.stages.registry_stage,
-                  tab: "Basic Information"
                  };
   }
 
@@ -56,7 +53,11 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     let fields = detailKeys.filter(label => details[label]).map(label =>
       <LibraryDetailItem key={label} label={label} value={details[label]} />
     );
-    return fields;
+    return (
+      <ul className={`list-group`}>
+        {fields}
+      </ul>
+    );
   }
 
   renderStages() {
@@ -73,10 +74,6 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     );
   }
 
-  goToTab(tab: string) {
-    this.setState({ tab: tab });
-  }
-
   async submit(data): Promise<void> {
     await this.props.editStages(data);
     await this.props.fetchLibrary(this.props.library.uuid);
@@ -91,20 +88,14 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
-
-    let hidden = (tab) => tab === this.state.tab ? "" : "hidden";
-
     return(
       <div>
         { this.renderStages() }
         <div className="detail-content">
-          <Tabs items={["Basic Information", "Contact & URLs"]} goTo={this.goToTab} />
-          <ul className={`list-group ${this.state.tab === "Basic Information" ? "" : "hidden"}`}>
-            { this.renderItems("basic_info") }
-          </ul>
-          <ul className={`list-group ${this.state.tab === "Contact & URLs" ? "" : "hidden"}`}>
-            { this.renderItems("urls_and_contact") }
-          </ul>
+          <Tabs items={{
+            "Basic Information": this.renderItems("basic_info"),
+            "Contact & URLs": this.renderItems("urls_and_contact"),
+          }}/>
         </div>
       </div>
     );

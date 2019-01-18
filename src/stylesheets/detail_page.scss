@@ -1,12 +1,17 @@
 .detail-content {
-  padding: 20px;
   .list-group {
     margin-bottom: 0;
     .list-group-item {
       border-radius: 0;
+      border: none;
+      span {
+        padding: 0 1em;
+      }
     }
   }
   .list-group-item:nth-child(even) {
     background-color: $gray-tint;
+    border-top: 1px solid $medium-gray;
+    border-bottom: 1px solid $medium-gray;
   }
 }
