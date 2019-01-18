@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub, spy } from "sinon";
+import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import buildStore from "../../store";
@@ -65,7 +65,7 @@ describe("LibraryDetailPage", () => {
     let libraryData = Object.assign(library.basic_info, library.urls_and_contact);
     allItems.map((item) => {
       let key = item.find(".control-label").text();
-      let value = item.find(".form-control-static").text();
+      let value = item.find("span").text();
       expect(`${libraryData[key]}`).to.equal(value);
     });
   });

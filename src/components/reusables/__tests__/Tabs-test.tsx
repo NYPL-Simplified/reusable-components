@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { spy } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import Tabs from "../../reusables/Tabs";
@@ -41,7 +40,7 @@ describe("Tabs", () => {
     expect(wrapper.find(".tab-content").at(1).hasClass("hidden")).to.be.true;
     expect(wrapper.find(".tab-content").at(2).hasClass("hidden")).to.be.true;
   });
-  it.only("should switch tabs on click", () => {
+  it("should switch tabs on click", () => {
     let tabNav2 = wrapper.find(".tab-nav").at(1);
     tabNav2.find("button").simulate("click", {currentTarget: {innerText: tabNav2.text()}});
     expect(wrapper.state()["tab"]).to.equal("content2");

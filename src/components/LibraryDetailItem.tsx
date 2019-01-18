@@ -8,8 +8,8 @@ export default class LibraryDetailItem extends React.Component<LibraryDetailItem
   render(): JSX.Element {
     return(
       <li className="list-group-item">
-        <label className="control-label">{this.props.label}:</label>
-        <span className="">{this.props.value}</span>
+        <label className="control-label">{this.props.label}</label>
+        <span>{this.props.value}</span>
       </li>
     );
   }

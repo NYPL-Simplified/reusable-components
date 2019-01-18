@@ -91,6 +91,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     return(
       <div>
         { this.renderStages() }
+        <hr></hr>
         <div className="detail-content">
           <Tabs items={{
             "Basic Information": this.renderItems("basic_info"),

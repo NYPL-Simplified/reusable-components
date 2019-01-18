@@ -2,7 +2,6 @@ import { expect } from "chai";
 import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import { shallow, mount } from "enzyme";
 
 import SaveButton from "../../reusables/SaveButton";
 
@@ -10,7 +9,7 @@ describe("SaveButton", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
   let callback = stub();
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = Enzyme.shallow(
       <SaveButton
         callback={callback}
       />

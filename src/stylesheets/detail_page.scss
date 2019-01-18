@@ -1,17 +1,32 @@
 .detail-content {
+  width: 80%;
   .list-group {
     margin-bottom: 0;
+    .list-group-item:first-child {
+      border-top: none;
+    }
     .list-group-item {
       border-radius: 0;
-      border: none;
+      border-top: 1px solid $blue-dark;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      padding: 0;
+
+      label {
+        width: 30%;
+        padding: .5em 1em;
+        margin: 0;
+        border-right: 1px solid $blue-dark;
+      }
+
       span {
-        padding: 0 1em;
+        padding: .5em 1em;
+        text-align: right;
       }
     }
   }
   .list-group-item:nth-child(even) {
     background-color: $gray-tint;
-    border-top: 1px solid $medium-gray;
-    border-bottom: 1px solid $medium-gray;
   }
 }

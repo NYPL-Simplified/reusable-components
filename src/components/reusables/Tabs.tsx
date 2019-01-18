@@ -1,7 +1,9 @@
 import * as React from "react";
 
 export interface TabsProps {
-  items: Object;
+  items: {
+    [key: string]: JSX.Element;
+  };
 }
 
 export interface TabsState {
@@ -20,7 +22,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     this.setState({ tab: e.currentTarget.innerText });
   }
 
-  makeTabs() {
+  makeTabs(): Array<Array<JSX.Element>> {
     let navs = [];
     let content = [];
     Object.entries(this.props.items).map(item => {
