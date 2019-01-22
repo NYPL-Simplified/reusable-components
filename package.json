@@ -1,6 +1,6 @@
 {
   "name": "simplified-registry-admin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Web Front-end for Library Simplified Circulation Manager Admin Interface",
   "repository": {
     "type": "git",

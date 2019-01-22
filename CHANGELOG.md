@@ -1,5 +1,9 @@
 ## Changelog
 
+###v0.0.3
+#### Updated
+- Organized library details into tabs
+
 ###v0.0.2
 #### Added
 - Rendered list of libraries
