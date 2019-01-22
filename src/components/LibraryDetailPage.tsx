@@ -74,7 +74,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     );
   }
 
-  async submit(data): Promise<void> {
+  async submit(data: FormData): Promise<void> {
     await this.props.editStages(data);
     await this.props.fetchLibrary(this.props.library.uuid);
 

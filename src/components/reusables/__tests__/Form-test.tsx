@@ -57,7 +57,7 @@ describe("Form", () => {
   it("should render a SaveButton", () => {
     let button = wrapper.find("SaveButton");
     expect(button.length).to.equal(1);
-    expect(button.props()["submit"]).to.equal(wrapper.instance()["save"]);
+    expect(button.props()["submit"]).to.equal((wrapper.instance() as any)["save"]);
   });
 
   it("should call the onSave prop", () => {

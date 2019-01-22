@@ -16,7 +16,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     super();
     this.renderHeader = this.renderHeader.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.state = { display: "" };
+    this.state = { display: "collapse" };
   }
 
   toggle() {

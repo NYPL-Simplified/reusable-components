@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import buildStore from "../../store";
@@ -8,7 +8,7 @@ import LibraryDetailItem from "../LibraryDetailItem";
 
 describe("LibraryDetailPage", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let fetchData = stub();
+  let fetchData = Sinon.stub();
   let uuid = "123";
   let store;
 
@@ -31,15 +31,15 @@ describe("LibraryDetailPage", () => {
     }
   };
 
-  let updateColor;
-  let editStages;
-  let fetchLibrary;
+  let updateColor: Sinon.SinonStub;
+  let editStages: Sinon.SinonStub;
+  let fetchLibrary: Sinon.SinonStub;
 
   beforeEach(() => {
     store = buildStore();
-    updateColor = stub();
-    editStages = stub();
-    fetchLibrary = stub();
+    updateColor = Sinon.stub();
+    editStages = Sinon.stub();
+    fetchLibrary = Sinon.stub();
     wrapper = Enzyme.mount(
       <LibraryDetailPage
         library={library}
@@ -63,7 +63,7 @@ describe("LibraryDetailPage", () => {
 
     let allItems = Object.assign(basicInfoItems, contactUrlItems);
     let libraryData = Object.assign(library.basic_info, library.urls_and_contact);
-    allItems.map((item) => {
+    allItems.map((item: Enzyme.CommonWrapper<any, any, {}>) => {
       let key = item.find(".control-label").text();
       let value = item.find("span").text();
       expect(`${libraryData[key]}`).to.equal(value);
@@ -71,7 +71,7 @@ describe("LibraryDetailPage", () => {
   });
 
   it("should not display blank values", () => {
-    let infoLabels = wrapper.find(".list-group-item .control-label").map(label => label.text());
+    let infoLabels = wrapper.find(".list-group-item .control-label").map((label: Enzyme.CommonWrapper<any, any, {}>) => label.text());
     expect(infoLabels.indexOf("description")).to.equal(-1);
   });
 
@@ -111,7 +111,7 @@ describe("LibraryDetailPage", () => {
     saveButton.simulate("click");
 
     let newStages = { stages: { library_stage: "cancelled", registry_stage: "production" } };
-    let fullLibrary = Object.assign({}, wrapper.props()["library"], newStages);
+    let fullLibrary = Object.assign({}, (wrapper.props() as any)["library"], newStages);
     wrapper.setProps({ fullLibrary });
 
     expect(editStages.callCount).to.equal(1);
@@ -122,7 +122,7 @@ describe("LibraryDetailPage", () => {
     await pause();
 
     expect(fetchLibrary.callCount).to.equal(1);
-    expect(fetchLibrary.args[0][0]).to.equal(wrapper.props()["library"].uuid);
+    expect(fetchLibrary.args[0][0]).to.equal((wrapper.props() as any)["library"].uuid);
 
     expect(updateColor.callCount).to.equal(1);
     expect(updateColor.args[0][0]).to.equal("cancelled");
@@ -140,7 +140,7 @@ describe("LibraryDetailPage", () => {
     let saveButton = form.find("button");
     saveButton.simulate("click");
     let newStages = { stages: { library_stage: "testing", registry_stage: "cancelled" } };
-    let fullLibrary = Object.assign({}, wrapper.props()["library"], newStages);
+    let fullLibrary = Object.assign({}, (wrapper.props() as any)["library"], newStages);
     wrapper.setProps({ fullLibrary });
 
     const pause = (): Promise<void> => {

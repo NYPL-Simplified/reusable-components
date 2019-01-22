@@ -11,26 +11,27 @@ export interface TabsState {
 }
 
 export default class Tabs extends React.Component<TabsProps, TabsState> {
-  constructor(props) {
+  constructor(props: TabsProps) {
     super(props);
     this.select = this.select.bind(this);
     this.makeTabs = this.makeTabs.bind(this);
     this.state = { tab: Object.keys(this.props.items)[0] };
   }
 
-  select(e) {
-    this.setState({ tab: e.currentTarget.innerText });
+  select(e: __React.SyntheticEvent) {
+    let tabName = (e.currentTarget as HTMLElement).innerText;
+    this.setState({ tab: tabName });
   }
 
   makeTabs(): Array<Array<JSX.Element>> {
-    let navs = [];
-    let content = [];
+    let navs = [] as Array<JSX.Element>;
+    let content = [] as Array<JSX.Element>;
     Object.entries(this.props.items).map(item => {
       let hidden = item[0] === this.state.tab ? "" : "hidden";
       let current = item[0] === this.state.tab ? "current" : "";
       let navItem = (
-        <li className={`tab-nav ${current}`}>
-          <button key={item[0]} className="btn btn-default" onClick={this.select}>
+        <li key={item[0]} className={`tab-nav ${current}`}>
+          <button className="btn btn-default" onClick={this.select}>
             {item[0]}
           </button>
         </li>

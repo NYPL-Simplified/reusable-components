@@ -4,7 +4,7 @@ import * as React from "react";
 import Tabs from "../../reusables/Tabs";
 
 describe("Tabs", () => {
-  let wrapper;
+  let wrapper: Enzyme.ShallowWrapper<any, {}>;
   let content1 = <p>Content item #1</p>;
   let content2 = <p>Another content item</p>;
   let content3 = <p>More content!</p>;

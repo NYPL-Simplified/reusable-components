@@ -6,7 +6,8 @@ export interface LibraryStageItemProps {
 }
 export default class LibraryStageItem extends React.Component<LibraryStageItemProps, void> {
   render(): JSX.Element {
-    let colors = {
+    let colors: {[index: string]: string};
+    colors = {
       "testing": "warning",
       "production": "success",
       "cancelled": "danger"
