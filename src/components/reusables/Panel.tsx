@@ -9,7 +9,6 @@ export interface PanelOwnProps {
 
 export interface PanelState {
   display: string;
-  icon: string;
 }
 
 export default class Panel extends React.Component<PanelOwnProps, PanelState> {
@@ -17,20 +16,20 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     super();
     this.renderHeader = this.renderHeader.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.state = { display: "collapse", icon: "down-icon" };
+    this.state = { display: "collapse" };
   }
 
   toggle() {
     let display = this.state.display === "collapse" ? "" : "collapse";
-    let icon = this.state.icon === "down-icon" ? "up-icon" : "down-icon";
-    this.setState({ display: display, icon: icon });
+    this.setState({ display });
   }
 
   renderHeader(): JSX.Element {
+    let icon = this.state.display === "collapse" ? "down-icon" : "up-icon";
     return (
       <button className="panel-heading" onClick={this.toggle}>
         <span className="panel-title">{this.props.headerText}</span>
-        <GenericWedgeIcon className={this.state.icon} />
+        <GenericWedgeIcon className={icon} />
       </button>
     );
   }

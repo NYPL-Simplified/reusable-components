@@ -1,8 +1,7 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import { stub, spy } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import { mount } from "enzyme";
 import buildStore from "../../store";
 
 import { LibrariesList } from "../LibrariesList";
@@ -31,16 +30,20 @@ describe("LibrariesList", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
   describe("rendering", () => {
+    fetchData = stub();
     beforeEach(() => {
-      fetchData = stub();
       store = buildStore();
-      wrapper = mount(
+      wrapper = Enzyme.mount(
         <LibrariesList
           fetchData={fetchData}
-          libraries={libraries}
           store={store}
+          libraries={libraries}
         />
       );
+    });
+
+    it("should call fetchData on load", () => {
+      expect(fetchData.callCount).to.equal(1);
     });
 
     it("should display a list of libraries", () => {
@@ -55,8 +58,19 @@ describe("LibrariesList", () => {
       expect(lib2.text()).to.contain("Test Library 2 (lib2)");
     });
 
+    it("should update if the libraries prop changes", () => {
+      let newLib1 = Object.assign({}, libraries.libraries[0], { name: "New" });
+      let newProps = Object.assign({}, libraries, { libraries: [newLib1, libraries.libraries[1]] });
+      wrapper.setProps({ libraries: newProps });
+
+      expect(fetchData.called).to.be.true;
+      expect(wrapper.find(".panel").length).to.equal(2);
+      expect(wrapper.find(".panel-title").at(0).text()).to.contain("New");
+    });
+
     it("should display a header if there are no libraries", () => {
       wrapper.setProps({ libraries: [] });
+      expect(fetchData.called).to.be.true;
       let header = wrapper.find(".page-header");
       expect(header.length).to.equal(1);
       expect(header.text()).to.equal("There are no libraries in this registry yet.");

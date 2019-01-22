@@ -50,14 +50,12 @@ describe("Panel", () => {
   it("should toggle the display and the icon on click", () => {
     expect(wrapper.state().display).to.equal("collapse");
     expect(wrapper.find("section").hasClass("collapse")).to.be.true;
-    expect(wrapper.state().icon).to.equal("down-icon");
     expect(wrapper.find("svg").hasClass("down-icon")).to.be.true;
 
     wrapper.find("button").simulate("click");
 
     expect(wrapper.state().display).to.equal("");
     expect(wrapper.find("section").hasClass("collapse")).to.be.false;
-    expect(wrapper.state().icon).to.equal("up-icon");
     expect(wrapper.find("svg").hasClass("up-icon")).to.be.true;
   });
 

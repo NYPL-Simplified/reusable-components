@@ -10,6 +10,7 @@ import Form from "./reusables/Form";
 
 export interface LibraryDetailPageDispatchProps {
   editStages: (data: FormData) => Promise<void>;
+  fetchLibrary: (uuid: string) => LibraryData;
 }
 
 export interface LibraryDetailPageStateProps {
@@ -41,13 +42,16 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   }
 
   renderInfo() {
-    let fields = Object.keys(this.props.library).map(label =>
-      <LibraryDetailItem key={label} label={label} value={this.props.library[label]} />
+    let library = this.props.fullLibrary || this.props.library;
+    // Only create LibraryDetailItems for fields which actually have a value.
+    let fields = Object.keys(library).filter(label => library[label]).map(label =>
+      <LibraryDetailItem key={label} label={label} value={library[label]} />
     );
     return fields;
   }
 
   renderStages() {
+
     return (
       <Form
         hiddenName="uuid"
@@ -62,9 +66,14 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   }
 
   async submit(data): Promise<void> {
-    this.props.updateColor(data.get("Library Stage"), data.get("Registry Stage"));
     await this.props.editStages(data);
-    this.setState({ libraryStage: data.get("Library Stage"), registryStage: data.get("Registry Stage") });
+    await this.props.fetchLibrary(this.props.uuid);
+
+    let libraryStage = this.props.fullLibrary.library_stage;
+    let registryStage = this.props.fullLibrary.registry_stage;
+
+    this.props.updateColor(libraryStage, registryStage);
+    this.setState({ libraryStage, registryStage });
   }
 
   render(): JSX.Element {
@@ -91,7 +100,8 @@ function mapStateToProps(state: State, ownProps: LibraryDetailPageOwnProps) {
 function mapDispatchToProps(dispatch: Function, ownProps: LibraryDetailPageOwnProps) {
   let actions = new ActionCreator(null, null);
   return {
-    editStages: (data: FormData) => dispatch(actions.editStages(data))
+    editStages: (data: FormData) => dispatch(actions.editStages(data)),
+    fetchLibrary: (uuid: string) => dispatch(actions.fetchLibrary(uuid))
   };
 }
 

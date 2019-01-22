@@ -8,7 +8,6 @@ import ActionCreator from "../actions";
 
 export interface LibrariesListContainerContext {
   store: Store<State>;
-  csrfToken?: string;
 }
 
 export default class LibrariesListContainer extends React.Component<void, void> {

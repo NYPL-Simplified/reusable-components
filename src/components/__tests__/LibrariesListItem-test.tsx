@@ -3,7 +3,6 @@ import { stub } from "sinon";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
-import { mount } from "enzyme";
 import buildStore from "../../store";
 
 import LibrariesListItem from "../LibrariesListItem";
@@ -22,7 +21,7 @@ describe("LibrariesListItem", () => {
   describe("rendering", () => {
     beforeEach(() => {
       store = buildStore();
-      wrapper = mount(
+      wrapper = Enzyme.mount(
         <LibrariesListItem
           library={library}
           store={store}
@@ -48,7 +47,7 @@ describe("LibrariesListItem", () => {
   describe("behavior", () => {
     beforeEach(() => {
       store = buildStore();
-      wrapper = mount(
+      wrapper = Enzyme.mount(
         <LibrariesListItem
           library={library}
           store={store}

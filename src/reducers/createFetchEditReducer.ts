@@ -23,11 +23,7 @@ export interface FetchEditReducer<T> {
   (state: FetchEditState<T>, action: FullAction): FetchEditState<T>;
 }
 
-export interface ExtraActions<T> {
-  [key: string]: (state: FetchEditState<T>, action: FullAction) => FetchEditState<T>;
-}
-
-export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: ExtraActions<T>): FetchEditReducer<T> => {
+export default<T> (fetchPrefix: string, editPrefix?: string): FetchEditReducer<T> => {
   const initialState: FetchEditState<T> = {
     data: null,
     isFetching: false,
@@ -67,14 +63,6 @@ export default<T> (fetchPrefix: string, editPrefix?: string, extraActions?: Extr
         });
 
       default:
-        if (extraActions) {
-          let manipulateDataFunction;
-
-          if (action.type in extraActions) {
-            manipulateDataFunction = extraActions[action.type];
-            return manipulateDataFunction(state, action);
-          }
-        }
 
         if (editPrefix) {
           switch (action.type) {

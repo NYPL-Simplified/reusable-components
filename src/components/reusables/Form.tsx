@@ -18,7 +18,7 @@ export default class Form extends React.Component<FormProps, void> {
     this.submit = this.submit.bind(this);
   }
 
-  submit(event: __React.MouseEvent): any {
+  submit(event: __React.MouseEvent): void {
     event.preventDefault();
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
@@ -31,12 +31,13 @@ export default class Form extends React.Component<FormProps, void> {
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
         }
-        <input
-          key="hidden"
-          type="hidden"
-          name={this.props.hiddenName}
-          value={this.props.hiddenValue}
-        />
+        { this.props.hiddenName &&
+          <input
+            type="hidden"
+            name={this.props.hiddenName}
+            value={this.props.hiddenValue}
+          />
+        }
         { this.props.content }
         <SubmitButton
           callback={this.submit}

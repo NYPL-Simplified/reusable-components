@@ -23,15 +23,15 @@ nav.navbar-default {
       width: 1.5em;
       height: 1.5em;
       fill: $white;
-      &:hover {
-        fill: $dark-gray;
-      }
     }
     float: right;
     margin: 0;
     &:hover {
       background: $white;
       transition: background .5s;
+      .logoutIcon {
+        fill: $dark-gray;
+      }
     }
   }
 }
