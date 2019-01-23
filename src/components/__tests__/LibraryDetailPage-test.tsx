@@ -125,8 +125,8 @@ describe("LibraryDetailPage", () => {
     expect(fetchLibrary.args[0][0]).to.equal((wrapper.props() as any)["library"].uuid);
 
     expect(updateColor.callCount).to.equal(1);
-    expect(updateColor.args[0][0]).to.equal("cancelled");
-    expect(updateColor.args[0][1]).to.equal("production");
+    expect(updateColor.args[0][0][0]).to.equal("cancelled");
+    expect(updateColor.args[0][0][1]).to.equal("production");
   });
 
   it("should re-render to reflect changes", async() => {

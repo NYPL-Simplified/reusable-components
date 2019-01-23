@@ -67,11 +67,11 @@ describe("LibrariesListItem", () => {
       expect(wrapper.state().color).to.equal("warning");
       expect(wrapper.find(".panel-warning").length).to.equal(1);
 
-      (wrapper.instance() as any).updateColor("cancelled", "production");
+      (wrapper.instance() as any).updateColor(["cancelled", "production"]);
       expect(wrapper.state().color).to.equal("danger");
       expect(wrapper.find(".panel-danger").length).to.equal(1);
 
-      (wrapper.instance() as any).updateColor("production", "production");
+      (wrapper.instance() as any).updateColor(["production", "production"]);
       expect(wrapper.state().color).to.equal("success");
       expect(wrapper.find(".panel-success").length).to.equal(1);
     });

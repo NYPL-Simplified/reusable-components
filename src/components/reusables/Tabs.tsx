@@ -27,26 +27,25 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     let navs = [] as Array<JSX.Element>;
     let content = [] as Array<JSX.Element>;
     Object.entries(this.props.items).map(item => {
-      let hidden = item[0] === this.state.tab ? "" : "hidden";
-      let current = item[0] === this.state.tab ? "current" : "";
+      let [name, data] = item;
+      let hidden = name === this.state.tab ? "" : "hidden";
+      let current = name === this.state.tab ? "current" : "";
       let navItem = (
-        <li key={item[0]} className={`tab-nav ${current}`}>
+        <li key={name} className={`tab-nav ${current}`}>
           <button className="btn btn-default" onClick={this.select}>
-            {item[0]}
+            {name}
           </button>
         </li>
       );
       navs.push(navItem);
-      let contentItem = <section key={item[0]} className={`tab-content ${hidden}`}>{item[1]}</section>;
+      let contentItem = <section key={name} className={`tab-content ${hidden}`}>{data}</section>;
       content.push(contentItem);
     });
     return [navs, content];
   }
 
   render(): JSX.Element {
-    let navs = this.makeTabs()[0];
-    let content = this.makeTabs()[1];
-
+    let [navs, content] = this.makeTabs();
     return (
       <section className="tabs">
         <ul className="tab-navs">

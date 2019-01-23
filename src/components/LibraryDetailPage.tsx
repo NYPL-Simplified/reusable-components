@@ -21,12 +21,12 @@ export interface LibraryDetailPageStateProps {
 export interface LibraryDetailPageOwnProps {
   library: LibraryData;
   store: Store<State>;
-  updateColor: (library_stage: string, registry_stage: string) => void;
+  updateColor: (stages: Array<string>) => void;
 }
 
 export interface LibraryDetailPageState {
-  libraryStage?: string;
-  registryStage?: string;
+  libraryStage: string;
+  registryStage: string;
 }
 
 export interface LibraryDetailPageProps extends LibraryDetailPageStateProps, LibraryDetailPageDispatchProps, LibraryDetailPageOwnProps {}
@@ -39,9 +39,9 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     this.renderItems = this.renderItems.bind(this);
     this.renderStages = this.renderStages.bind(this);
     this.state = {
-                  libraryStage: this.props.library.stages.library_stage,
-                  registryStage: this.props.library.stages.registry_stage,
-                 };
+      libraryStage: this.props.library.stages.library_stage,
+      registryStage: this.props.library.stages.registry_stage
+    };
   }
 
   renderItems(key: string) {
@@ -80,7 +80,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
 
     let libraryStage = this.props.fullLibrary.stages.library_stage;
     let registryStage = this.props.fullLibrary.stages.registry_stage;
-    this.props.updateColor(libraryStage, registryStage);
+    this.props.updateColor([libraryStage, registryStage]);
     this.setState({ libraryStage, registryStage });
   }
 
