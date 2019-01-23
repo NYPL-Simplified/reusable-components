@@ -66,7 +66,7 @@ describe("LibraryDetailPage", () => {
     allItems.map((item: Enzyme.CommonWrapper<any, any, {}>) => {
       let key = item.find(".control-label").text();
       let value = item.find("span").text();
-      expect(`${libraryData[key]}`).to.equal(value);
+      expect(libraryData[key]).to.equal(value);
     });
   });
 
