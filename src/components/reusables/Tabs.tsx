@@ -26,19 +26,43 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
   makeTabs(): Array<Array<JSX.Element>> {
     let navs = [] as Array<JSX.Element>;
     let content = [] as Array<JSX.Element>;
-    Object.entries(this.props.items).map(item => {
+    let items = Object.entries(this.props.items);
+
+    items.map(item => {
       let [name, data] = item;
-      let hidden = name === this.state.tab ? "" : "hidden";
-      let current = name === this.state.tab ? "current" : "";
+      let current = name === this.state.tab;
+      let idx = items.indexOf(item);
       let navItem = (
-        <li key={name} className={`tab-nav ${current}`}>
-          <button className="btn btn-default" onClick={this.select}>
+        <li key={name} role="presentation" className={`tab-nav ${current ? "current" : ""}`}>
+          <button
+            aria-controls={`panel-${idx}`}
+            aria-selected={current.toString()}
+            className="btn btn-default"
+            id={`tab-${idx}`}
+            onClick={this.select}
+            role="tab"
+            tabIndex={current ? 0 : -1}
+          >
             {name}
           </button>
         </li>
       );
+
       navs.push(navItem);
-      let contentItem = <section key={name} className={`tab-content ${hidden}`}>{data}</section>;
+
+      let contentItem = (
+        <section
+          aria-labelledby={`tab-${idx}`}
+          className={`tab-content ${current ? "" : "hidden"}`}
+          id={`panel-${idx}`}
+          key={name}
+          role="tabpanel"
+          tabIndex={0}
+        >
+          {data}
+        </section>
+      );
+
       content.push(contentItem);
     });
     return [navs, content];
@@ -48,7 +72,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     let [navs, content] = this.makeTabs();
     return (
       <section className="tabs">
-        <ul className="tab-navs">
+        <ul role="tablist" className="tab-navs">
           {navs}
         </ul>
         {content}
