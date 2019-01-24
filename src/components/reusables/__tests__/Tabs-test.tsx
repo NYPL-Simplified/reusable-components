@@ -43,7 +43,6 @@ describe("Tabs", () => {
   it("should switch tabs on click", () => {
     let tabNav2 = wrapper.find(".tab-nav").at(1);
     let button = tabNav2.find("button");
-    console.log(button.props());
     button.simulate("click", {currentTarget: {id: button.props()["id"]}});
     expect(wrapper.state()["tab"]).to.equal(1);
 
