@@ -28,10 +28,9 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     let content = [] as Array<JSX.Element>;
     let items = Object.entries(this.props.items);
 
-    items.map(item => {
+    items.map((item, idx) => {
       let [name, data] = item;
       let current = name === this.state.tab;
-      let idx = items.indexOf(item);
       let navItem = (
         <li key={name} role="presentation" className={`tab-nav ${current ? "current" : ""}`}>
           <button
