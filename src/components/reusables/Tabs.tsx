@@ -19,12 +19,14 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
   }
 
   select(e:  __React.KeyboardEvent & __React.MouseEvent) {
-    let tabs = Object.keys(this.props.items);
     let idx = parseInt((e.currentTarget as HTMLElement).id);
 
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
+      // idx is the index of the tab you're already on, that you're trying to navigate away from;
+      // newIdx will be the index of the tab you're trying to go to.
       let newIdx: number;
+      let tabs = Object.keys(this.props.items);
       if (e.keyCode === 39) {
         // Right arrow key: go to the next tab, or go back to the beginning if you were already on the last tab
         newIdx = idx < tabs.length - 1 ? idx + 1 : 0;
@@ -34,13 +36,17 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
         newIdx = idx === 0 ? tabs.length - 1 : idx - 1;
       }
       else {
+        // If the user pressed something other than a right/left arrow key, ignore it.
+        // Note: this does not interfere with the tab key's intended functionality.
         return;
       }
       this.setState({ tab: newIdx });
+      // The focus is still on the original tab; manually update it to the new tab.
       (this.refs[newIdx] as HTMLElement).focus();
     }
     else {
       // Click
+      // idx is the index of the tab you're trying to go to.
       this.setState({ tab: idx });
     }
   }
