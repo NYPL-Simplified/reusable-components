@@ -7,7 +7,7 @@ export interface TabsProps {
 }
 
 export interface TabsState {
-  tab: string;
+  tab: number;
 }
 
 export default class Tabs extends React.Component<TabsProps, TabsState> {
@@ -15,15 +15,15 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     super(props);
     this.select = this.select.bind(this);
     this.makeTabs = this.makeTabs.bind(this);
-    this.state = { tab: Object.keys(this.props.items)[0] };
+    this.state = { tab: 0 };
   }
 
   select(e:  __React.KeyboardEvent & __React.MouseEvent) {
-    let tabName = (e.currentTarget as HTMLElement).innerText;
+    let tabs = Object.keys(this.props.items);
+    let idx = parseInt((e.currentTarget as HTMLElement).id);
+
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
-      let tabs = Object.keys(this.props.items);
-      let idx = tabs.indexOf(tabName);
       let newIdx: number;
       if (e.keyCode === 39) {
         // Right arrow key: go to the next tab, or go back to the beginning if you were already on the last tab
@@ -36,12 +36,12 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
       else {
         return;
       }
-      this.setState({ tab: tabs[newIdx] });
+      this.setState({ tab: newIdx });
       (this.refs[newIdx] as HTMLElement).focus();
     }
     else {
       // Click
-      this.setState({ tab: tabName });
+      this.setState({ tab: idx });
     }
   }
 
@@ -52,14 +52,14 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
     items.map((item, idx) => {
       let [name, data] = item;
-      let current = name === this.state.tab;
+      let current = idx === this.state.tab;
       let navItem = (
         <li key={name} role="presentation" className={`tab-nav ${current ? "current" : ""}`}>
           <button
             aria-controls={`panel-${idx}`}
             aria-selected={current.toString()}
             className="btn btn-default"
-            id={`tab-${idx}`}
+            id={idx.toString()}
             onClick={this.select}
             onKeyDown={this.select}
             role="tab"
@@ -75,7 +75,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
       let contentItem = (
         <section
-          aria-labelledby={`tab-${idx}`}
+          aria-labelledby={idx.toString()}
           className={`tab-content ${current ? "" : "hidden"}`}
           id={`panel-${idx}`}
           key={name}

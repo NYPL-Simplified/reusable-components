@@ -32,7 +32,7 @@ describe("Tabs", () => {
     expect(tabContent.at(2).text()).to.equal("More content!");
   });
   it("should start out showing only the first tab", () => {
-    expect(wrapper.state()["tab"]).to.equal("content1");
+    expect(wrapper.state()["tab"]).to.equal(0);
     let currentTab = wrapper.find(".tab-nav").at(0);
     expect(currentTab.hasClass("current")).to.be.true;
     let currentContent = wrapper.find(".tab-content").at(0);
@@ -42,8 +42,10 @@ describe("Tabs", () => {
   });
   it("should switch tabs on click", () => {
     let tabNav2 = wrapper.find(".tab-nav").at(1);
-    tabNav2.find("button").simulate("click", {currentTarget: {innerText: tabNav2.text()}});
-    expect(wrapper.state()["tab"]).to.equal("content2");
+    let button = tabNav2.find("button");
+    console.log(button.props());
+    button.simulate("click", {currentTarget: {id: button.props()["id"]}});
+    expect(wrapper.state()["tab"]).to.equal(1);
 
     tabNav2 = wrapper.find(".tab-nav").at(1);
     expect(tabNav2.hasClass("current")).to.be.true;
