@@ -2,27 +2,28 @@ form {
   padding: 40px;
   width: 30vw;
   border-radius: 0;
-  border: 1px solid $dark-gray;
+  border: 1px solid $blue;
   border-radius: .25em;
   margin: 20px;
 
   .form-title {
     border-bottom: 1px solid $dark-gray;
+    margin: 0;
     padding-bottom: .5em;
-    margin-bottom: 2em;
     width: 100%;
   }
 
-  fieldset {
-
+  fieldset.well {
+    margin: 2em auto;
     legend {
       font-size: 1em;
       border-bottom: none;
-      margin-bottom: 10px;
+      margin: 0;
 
       span {
         background: $blue;
-        padding: .25em .5em;
+        font-weight: bold;
+        padding: .5em;
         border-radius: .25em;
         color: $white;
       }
@@ -45,9 +46,12 @@ form {
         }
       }
     }
-    input.form-control {
-      border-radius: .25em;
-      padding: 5px;
+    .form-group {
+      margin: 15px 0;
+      input.form-control {
+        border-radius: .25em;
+        padding: 5px;
+      }
     }
   }
 
