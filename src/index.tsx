@@ -35,7 +35,7 @@ class RegistryAdmin {
     else {
       ReactDOM.render(
         <ContextProvider {...config}>
-          <LogInForm title="Library Registry Interface"/>
+          <LogInForm title="Library Registry Interface" />
         </ContextProvider>,
         document.getElementById("landing-page")
       );

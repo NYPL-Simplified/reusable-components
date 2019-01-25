@@ -41,7 +41,6 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
   }
 
   async submit(data: FormData): Promise<void> {
-    console.log("hit");
     await this.props.logIn(data);
     window.location.reload();
   }
