@@ -44,15 +44,13 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     };
   }
 
-  renderItems(key: string) {
-    let library = this.props.fullLibrary || this.props.library;
-    let details = library[key];
-    let detailKeys = Object.keys(details);
+  renderItems(category: {[key: string]: string}): JSX.Element {
 
     // Only create LibraryDetailItems for fields which actually have a value.
-    let fields = detailKeys.filter(label => details[label]).map(label =>
-      <LibraryDetailItem key={label} label={label} value={details[label]} />
+    let fields = Object.keys(category).filter(label => category[label]).map(label =>
+      <LibraryDetailItem key={label} label={label} value={category[label]} />
     );
+
     return (
       <ul className={`list-group`}>
         {fields}
@@ -60,7 +58,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     );
   }
 
-  renderStages() {
+  renderStages(): JSX.Element {
     return (
       <Form
         hiddenName="uuid"
@@ -88,15 +86,24 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
+    let library = this.props.fullLibrary || this.props.library;
+    let tabItems = {};
+
+    const categories = {
+      "Basic Information": "basic_info",
+      "Contact & URLs": "urls_and_contact"
+    };
+
+    Object.keys(categories).map(tabName => {
+      tabItems[tabName] = this.renderItems(library[categories[tabName]]);
+    });
+
     return(
       <div>
         { this.renderStages() }
         <hr></hr>
         <div className="detail-content">
-          <Tabs items={{
-            "Basic Information": this.renderItems("basic_info"),
-            "Contact & URLs": this.renderItems("urls_and_contact"),
-          }}/>
+          <Tabs items={tabItems}/>
         </div>
       </div>
     );

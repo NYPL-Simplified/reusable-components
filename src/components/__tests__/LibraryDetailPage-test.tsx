@@ -40,6 +40,7 @@ describe("LibraryDetailPage", () => {
     updateColor = Sinon.stub();
     editStages = Sinon.stub();
     fetchLibrary = Sinon.stub();
+
     wrapper = Enzyme.mount(
       <LibraryDetailPage
         library={library}
@@ -49,6 +50,38 @@ describe("LibraryDetailPage", () => {
         fetchLibrary={fetchLibrary}
       />
     );
+  });
+
+  it("should call renderItems for each category", () => {
+    let spyRenderItems = Sinon.spy(wrapper.instance(), "renderItems");
+    wrapper.instance().render();
+
+    expect(spyRenderItems.callCount).to.equal(2);
+    let [basicInfoCall, urlsContactCall] = [spyRenderItems.firstCall, spyRenderItems.secondCall];
+
+    expect(basicInfoCall.args[0]).to.equal(library.basic_info);
+    expect(basicInfoCall.returnValue.type).to.equal("ul");
+    expect(basicInfoCall.returnValue.props.children.length).to.equal(2);
+    let [name, short_name] = basicInfoCall.returnValue.props.children;
+    expect(name.props.label).to.equal("name");
+    expect(name.props.value).to.equal("Test Library 1");
+    expect(short_name.props.label).to.equal("short_name");
+    expect(short_name.props.value).to.equal("lib1");
+
+    expect(urlsContactCall.args[0]).to.equal(library.urls_and_contact);
+    expect(urlsContactCall.returnValue.type).to.equal("ul");
+    expect(urlsContactCall.returnValue.props.children.length).to.equal(4);
+    let [authentication_url, contact_email, opds_url, web_url] = urlsContactCall.returnValue.props.children;
+    expect(authentication_url.props.label).to.equal("authentication_url");
+    expect(authentication_url.props.value).to.equal("auth1");
+    expect(contact_email.props.label).to.equal("contact_email");
+    expect(contact_email.props.value).to.equal("email1");
+    expect(opds_url.props.label).to.equal("opds_url");
+    expect(opds_url.props.value).to.equal("opds1");
+    expect(web_url.props.label).to.equal("web_url");
+    expect(web_url.props.value).to.equal("web1");
+
+    spyRenderItems.restore();
   });
 
   it("should show the library information", () => {

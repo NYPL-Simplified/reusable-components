@@ -2,7 +2,7 @@
 
 ###v0.0.3
 #### Updated
-- Organized library details into tabs
+- Made library details more readable by implementing an accessible Tabs component
 
 ###v0.0.2
 #### Added
