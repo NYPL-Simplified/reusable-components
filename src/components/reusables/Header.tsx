@@ -5,7 +5,7 @@ export interface HeaderProps {
   text?: string;
   imgSrc?: string;
   alt?: string;
-  logOut: string;
+  logOut?: string;
 }
 
 export default class Header extends React.Component<HeaderProps, void> {

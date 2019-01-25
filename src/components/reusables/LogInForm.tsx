@@ -12,6 +12,12 @@ export interface LogInFormStateProps {
   admin?: AdminData;
 }
 
+export interface LogInFormOwnProps {
+  extraFields?: Array<JSX.Element>;
+  title?: string;
+  legend?: string;
+}
+
 export interface LogInFormDispatchProps {
   logIn: (data: FormData) => Promise<void>;
 }
@@ -20,7 +26,7 @@ export interface LogInFormContext {
   store: Store<State>;
 }
 
-export interface LogInFormProps extends LogInFormStateProps, LogInFormDispatchProps {}
+export interface LogInFormProps extends LogInFormStateProps, LogInFormOwnProps, LogInFormDispatchProps {};
 
 export class LogInForm extends React.Component<LogInFormProps, void> {
 
@@ -35,16 +41,21 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
   }
 
   async submit(data: FormData): Promise<void> {
+    console.log("hit");
     await this.props.logIn(data);
     window.location.reload();
   }
 
   render(): JSX.Element {
+    let title = this.props.title ? this.props.title : "Log In";
+    let legend = this.props.legend ? this.props.legend : "Credentials";
+
     let username = <Input key="username" name="username" label="Username" />;
     let password = <Input key="password" type="password" name="password" label="Password" />;
-    let fieldset = <Fieldset key="credentials" legend="Credentials" elements={[username, password]} />;
+    let elements = this.props.extraFields ? [username, password].concat(this.props.extraFields) : [username, password];
+    let fieldset = <Fieldset key="credentials" legend={legend} elements={elements} />;
     return(
-      <Form title="Library Registry Interface" content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
+      <Form title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
     );
   };
 }
@@ -55,14 +66,14 @@ function mapStateToProps(state: State, ownProps: LogInFormProps) {
   };
 }
 
-function mapDispatchToProps(dispatch: Function, ownProps: LogInFormProps) {
+function mapDispatchToProps(dispatch: Function, ownProps: LogInFormOwnProps) {
   let actions = new ActionCreator(null, null);
   return {
     logIn: (data: FormData) => dispatch(actions.logIn(data))
   };
 }
 
-const ConnectedLogInForm = connect<LogInFormStateProps, LogInFormDispatchProps, {}>(
+const ConnectedLogInForm = connect<LogInFormStateProps, LogInFormDispatchProps, LogInFormOwnProps>(
   mapStateToProps,
   mapDispatchToProps
 )(LogInForm);

@@ -21,9 +21,7 @@ class RegistryAdmin {
     let div = document.createElement("div");
     div.id = "landing-page";
     document.getElementsByTagName("body")[0].appendChild(div);
-    let h1 = document.createElement("h1");
-    h1.innerText = "The component isn't loading";
-    div.appendChild(h1);
+
     if (config["username"]) {
       ReactDOM.render(
         <ContextProvider {...config}>
@@ -37,7 +35,7 @@ class RegistryAdmin {
     else {
       ReactDOM.render(
         <ContextProvider {...config}>
-          <LogInForm />
+          <LogInForm title="Library Registry Interface"/>
         </ContextProvider>,
         document.getElementById("landing-page")
       );
