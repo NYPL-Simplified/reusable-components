@@ -10,8 +10,8 @@ export default class Input extends React.Component<InputProps, void> {
   render(): JSX.Element {
     return(
       <div className="form-group">
-        <label>{this.props.label}</label>
-        <input className="form-control" type={this.props.type || "text"} name={this.props.name} />
+        <label htmlFor={this.props.name}>{this.props.label}</label>
+        <input className="form-control" type={this.props.type || "text"} name={this.props.name} id={this.props.name} />
       </div>
     );
   };

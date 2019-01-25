@@ -17,7 +17,6 @@ interface ConfigurationSettings {
     to render the app and set up routing. */
 class RegistryAdmin {
   constructor(config: ConfigurationSettings) {
-    console.log(config);
     let div = document.createElement("div");
     div.id = "landing-page";
     document.getElementsByTagName("body")[0].appendChild(div);
