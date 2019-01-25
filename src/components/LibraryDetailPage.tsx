@@ -94,7 +94,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
       "Contact & URLs": "urls_and_contact"
     };
 
-    Object.keys(categories).map(tabName => {
+    Object.keys(categories).forEach(tabName => {
       tabItems[tabName] = this.renderItems(library[categories[tabName]]);
     });
 

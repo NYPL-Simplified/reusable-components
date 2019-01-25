@@ -20,7 +20,6 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
   select(e:  __React.KeyboardEvent & __React.MouseEvent) {
     let idx = parseInt((e.currentTarget as HTMLElement).id);
-
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
       // idx is the index of the tab you're already on, that you're trying to navigate away from;
