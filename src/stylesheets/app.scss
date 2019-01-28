@@ -3,10 +3,12 @@
 
 @import "mixins";
 @import "colors";
-@import "reusables/form";
 @import "global";
+
+@import "detail_page";
 @import "icon";
 @import "list";
-@import "reusables/panel";
+@import "reusables/form";
 @import "reusables/header";
-@import "detail_page";
+@import "reusables/panel";
+@import "reusables/tabs";

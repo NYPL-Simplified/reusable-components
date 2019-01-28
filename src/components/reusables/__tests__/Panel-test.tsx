@@ -5,7 +5,7 @@ import * as Enzyme from "enzyme";
 import Panel from "../../reusables/Panel";
 
 describe("Panel", () => {
-  let wrapper;
+  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let style;
   let headerText;
   let body;

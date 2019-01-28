@@ -1,5 +1,6 @@
 form {
-  padding: 20px;
+  padding: 0;
+  margin: 0;
   width: 40%;
   border-radius: 0;
 
@@ -43,8 +44,8 @@ form {
     font-weight: bold;
     transition: background 1s, color 1s;
     &:hover {
-      background: $light-blue;
-      color: $dark-gray;
+      background: $gray-brown;
+      color: $white;
     }
   }
 }

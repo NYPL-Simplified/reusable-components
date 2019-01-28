@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { stub } from "sinon";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
@@ -9,12 +8,22 @@ import LibrariesListItem from "../LibrariesListItem";
 
 describe("LibrariesListItem", () => {
   let library = {
-      "uuid": "UUID1",
+    uuid: "UUID1",
+    basic_info: {
       "name": "Test Library",
       "short_name": "test_lib",
-      "id": 1,
-      "registry_stage": "testing",
-      "library_stage": "production"
+
+    },
+    urls_and_contact: {
+      "authentication_url": "test_auth",
+      "contact_email": "test_email",
+      "opds_url": "test_opds",
+      "web_url": "test_web"
+    },
+    stages: {
+      "library_stage": "production",
+      "registry_stage": "testing"
+    }
   };
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
@@ -58,11 +67,11 @@ describe("LibrariesListItem", () => {
       expect(wrapper.state().color).to.equal("warning");
       expect(wrapper.find(".panel-warning").length).to.equal(1);
 
-      (wrapper.instance() as any).updateColor("cancelled", "production");
+      (wrapper.instance() as any).updateColor(["cancelled", "production"]);
       expect(wrapper.state().color).to.equal("danger");
       expect(wrapper.find(".panel-danger").length).to.equal(1);
 
-      (wrapper.instance() as any).updateColor("production", "production");
+      (wrapper.instance() as any).updateColor(["production", "production"]);
       expect(wrapper.state().color).to.equal("success");
       expect(wrapper.find(".panel-success").length).to.equal(1);
     });

@@ -7,6 +7,7 @@ import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import Form from "./reusables/Form";
+import Tabs from "./reusables/Tabs";
 
 export interface LibraryDetailPageDispatchProps {
   editStages: (data: FormData) => Promise<void>;
@@ -20,8 +21,7 @@ export interface LibraryDetailPageStateProps {
 export interface LibraryDetailPageOwnProps {
   library: LibraryData;
   store: Store<State>;
-  uuid: string;
-  updateColor: (library_stage: string, registry_stage: string) => void;
+  updateColor: (stages: Array<string>) => void;
 }
 
 export interface LibraryDetailPageState {
@@ -36,26 +36,33 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
   constructor(props: LibraryDetailPageProps) {
     super(props);
     this.submit = this.submit.bind(this);
-    this.renderInfo = this.renderInfo.bind(this);
+    this.renderItems = this.renderItems.bind(this);
     this.renderStages = this.renderStages.bind(this);
-    this.state = { libraryStage: this.props.library.library_stage, registryStage: this.props.library.registry_stage };
+    this.state = {
+      libraryStage: this.props.library.stages.library_stage,
+      registryStage: this.props.library.stages.registry_stage
+    };
   }
 
-  renderInfo() {
-    let library = this.props.fullLibrary || this.props.library;
+  renderItems(category: {[key: string]: string}): JSX.Element {
+
     // Only create LibraryDetailItems for fields which actually have a value.
-    let fields = Object.keys(library).filter(label => library[label]).map(label =>
-      <LibraryDetailItem key={label} label={label} value={library[label]} />
+    let fields = Object.keys(category).filter(label => category[label]).map(label =>
+      <LibraryDetailItem key={label} label={label} value={category[label]} />
     );
-    return fields;
+
+    return (
+      <ul className={`list-group`}>
+        {fields}
+      </ul>
+    );
   }
 
-  renderStages() {
-
+  renderStages(): JSX.Element {
     return (
       <Form
         hiddenName="uuid"
-        hiddenValue={this.props.uuid}
+        hiddenValue={this.props.library.uuid}
         onSubmit={this.submit}
         content={[
           <LibraryStageItem key="lib" label={"Library Stage"} value={this.state.libraryStage} />,
@@ -65,14 +72,13 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     );
   }
 
-  async submit(data): Promise<void> {
+  async submit(data: FormData): Promise<void> {
     await this.props.editStages(data);
-    await this.props.fetchLibrary(this.props.uuid);
+    await this.props.fetchLibrary(this.props.library.uuid);
 
-    let libraryStage = this.props.fullLibrary.library_stage;
-    let registryStage = this.props.fullLibrary.registry_stage;
-
-    this.props.updateColor(libraryStage, registryStage);
+    let libraryStage = this.props.fullLibrary.stages.library_stage;
+    let registryStage = this.props.fullLibrary.stages.registry_stage;
+    this.props.updateColor([libraryStage, registryStage]);
     this.setState({ libraryStage, registryStage });
   }
 
@@ -80,12 +86,25 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
+    let library = this.props.fullLibrary || this.props.library;
+    let tabItems = {};
+
+    const categories = {
+      "Basic Information": "basic_info",
+      "Contact & URLs": "urls_and_contact"
+    };
+
+    Object.keys(categories).forEach(tabName => {
+      tabItems[tabName] = this.renderItems(library[categories[tabName]]);
+    });
+
     return(
       <div>
         { this.renderStages() }
-        <ul id="info" className="list-group">
-          { this.renderInfo() }
-        </ul>
+        <hr></hr>
+        <div className="detail-content">
+          <Tabs items={tabItems}/>
+        </div>
       </div>
     );
   }
