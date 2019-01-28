@@ -6,9 +6,12 @@ form {
   width: 55vw;
 
   .form-title {
-    margin: 1em .5em;
+    display: block;
+    text-align: center;
+    width: 80%;
+    margin: 1em auto 2em auto;
     padding-bottom: .5em;
-    width: 100%;
+    border-bottom: 1px solid $blue-dark;
   }
 
   fieldset.well {
