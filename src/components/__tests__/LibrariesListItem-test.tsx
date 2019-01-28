@@ -16,7 +16,7 @@ describe("LibrariesListItem", () => {
       "registry_stage": "testing",
       "library_stage": "production"
   };
-  let wrapper;
+  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
   describe("rendering", () => {
     beforeEach(() => {

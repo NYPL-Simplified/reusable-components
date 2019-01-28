@@ -5,7 +5,7 @@ import * as React from "react";
 import LibraryStageItem from "../LibraryStageItem";
 
 describe("LibraryStageItem", () => {
-  let wrapper;
+  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let label;
   let value;
   beforeEach(() => {

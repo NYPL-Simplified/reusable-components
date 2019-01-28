@@ -4,7 +4,7 @@ import * as React from "react";
 import Fieldset from "../Fieldset";
 
 describe("Fieldset", () => {
-  let wrapper;
+  let wrapper: Enzyme.ShallowWrapper<any, {}>;
   let legend = "TEST_LEGEND";
   let input1 = <input value="A" />;
   let input2 = <input value="B" />;
@@ -21,8 +21,8 @@ describe("Fieldset", () => {
   it("displays elements", () => {
     let inputs = wrapper.find("input");
     expect(inputs.length).to.equal(2);
-    expect(inputs.at(0).props().value).to.equal("A");
-    expect(inputs.at(1).props().value).to.equal("B");
+    expect(inputs.at(0).prop("value")).to.equal("A");
+    expect(inputs.at(1).prop("value")).to.equal("B");
   });
   it("optionally displays a label", () => {
     wrapper.setProps({ labelText: "here's a label!" });

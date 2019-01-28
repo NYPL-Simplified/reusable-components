@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import Form from "../Form";
@@ -12,7 +12,7 @@ describe("Form", () => {
   let element2: JSX.Element;
   let hiddenName = "hidden name";
   let hiddenValue = "hidden value";
-  let onSubmit = stub();
+  let onSubmit = Sinon.stub();
 
   beforeEach(() => {
     element1 = <input type="text" name="Element1" defaultValue="element1"/>;
@@ -55,8 +55,11 @@ describe("Form", () => {
   });
 
   it("should optionally render a title", () => {
-    wrapper.setProps({ title: "Test" });
     let title = wrapper.find(".form-title");
+    expect(title.length).to.equal(0);
+
+    wrapper.setProps({ title: "Test" });
+    title = wrapper.find(".form-title");
     expect(title.length).to.equal(1);
     expect(title.text()).to.equal("Test");
   });

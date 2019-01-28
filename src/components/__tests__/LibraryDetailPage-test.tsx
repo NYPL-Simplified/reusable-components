@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import buildStore from "../../store";
@@ -8,7 +8,7 @@ import LibraryDetailItem from "../LibraryDetailItem";
 
 describe("LibraryDetailPage", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let fetchData = stub();
+  let fetchData = Sinon.stub();
   let uuid = "123";
   let store;
 
@@ -22,15 +22,15 @@ describe("LibraryDetailPage", () => {
       "description": undefined
   };
 
-  let updateColor;
-  let editStages;
-  let fetchLibrary;
+  let updateColor: Sinon.SinonStub;
+  let editStages: Sinon.SinonStub;
+  let fetchLibrary: Sinon.SinonStub;
 
   beforeEach(() => {
     store = buildStore();
-    updateColor = stub();
-    editStages = stub();
-    fetchLibrary = stub();
+    updateColor = Sinon.stub();
+    editStages = Sinon.stub();
+    fetchLibrary = Sinon.stub();
     wrapper = Enzyme.mount(
       <LibraryDetailPage
         uuid={uuid}
@@ -48,7 +48,7 @@ describe("LibraryDetailPage", () => {
     expect(infoList.length).to.equal(1);
     let infoItems = infoList.find("li");
     expect(infoItems.length).to.equal(6);
-    infoItems.map((item) => {
+    infoItems.map((item: Enzyme.CommonWrapper<any, any, {}>) => {
       let key = item.find(".control-label").text();
       let value = item.find(".form-control-static").text();
       expect(`${library[key]}`).to.equal(value);

@@ -9,7 +9,7 @@ describe("LogInForm", () => {
   let wrapper;
   let store;
   let context;
-  let logIn;
+  let logIn: Sinon.SinonStub;
   beforeEach(() => {
     store = buildStore();
     context = { store };
@@ -45,30 +45,36 @@ describe("LogInForm", () => {
     expect(usernameLabel.text()).to.equal("Username");
     let username = wrapper.find("[name='username']");
     expect(username.length).to.equal(1);
+    expect(username.props().type).to.equal("text");
   });
   it("should display a password field with a label", () => {
     let passwordLabel = wrapper.find("fieldset").find("label").at(1);
     expect(passwordLabel.text()).to.equal("Password");
     let password = wrapper.find("[name='password']");
     expect(password.length).to.equal(1);
+    expect(password.props().type).to.equal("password");
   });
-  it("should optionally display an extra field", () => {
-    let extra = <input type="text" key="extra" name="extra"/>;
-    wrapper.setProps({ extraFields: [extra] });
+  it("should optionally display extra fields", () => {
+    let extraText = <input type="text" key="extraText" name="extraText"/>;
+    let extraCheckbox = <input type="checkbox" key="extraCheckbox" name="extraCheckbox"/>;
+    wrapper.setProps({ extraFields: [extraText, extraCheckbox] });
     let inputs = wrapper.find("input");
-    expect(inputs.length).to.equal(3);
-    expect(inputs.at(2).props().name).to.equal("extra");
+    expect(inputs.length).to.equal(4);
+    expect(inputs.at(2).props().type).to.equal("text");
+    expect(inputs.at(2).props().name).to.equal("extraText");
+    expect(inputs.at(3).props().type).to.equal("checkbox");
+    expect(inputs.at(3).props().name).to.equal("extraCheckbox");
   });
   it("should display a button", () => {
     let button = wrapper.find("button");
     expect(button.text()).to.equal("Log In");
   });
   it("should submit on click", () => {
-    let spySubmit = Sinon.spy(wrapper.instance(), "submit");
-    wrapper.setProps({ submit: spySubmit });
+    let submit = Sinon.stub(wrapper.instance(), "submit");
+    wrapper.setProps({ submit });
     wrapper.find("button").simulate("click");
-    expect(spySubmit.callCount).to.equal(1);
-    spySubmit.restore();
+    expect(submit.callCount).to.equal(1);
+    submit.restore();
   });
   it("should call logIn when the form is submitted", () => {
     const formData = new (window as any).FormData();

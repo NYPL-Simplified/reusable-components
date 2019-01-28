@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { stub, spy } from "sinon";
+import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import buildStore from "../../store";
@@ -26,11 +26,11 @@ describe("LibrariesList", () => {
         "library_stage": "testing"
       }]
   };
-  let fetchData;
+  let fetchData: Sinon.SinonStub;
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
   describe("rendering", () => {
-    fetchData = stub();
+    fetchData = Sinon.stub();
     beforeEach(() => {
       store = buildStore();
       wrapper = Enzyme.mount(
