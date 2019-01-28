@@ -10,7 +10,7 @@ describe("LibraryStageItem", () => {
   beforeEach(() => {
     label = "Registry Stage";
     value = "cancelled";
-    wrapper = Enzyme.shallow(
+    wrapper = Enzyme.mount(
       <LibraryStageItem
         label={label}
         value={value}
