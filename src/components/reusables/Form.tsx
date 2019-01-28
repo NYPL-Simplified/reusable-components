@@ -27,7 +27,7 @@ export default class Form extends React.Component<FormProps, void> {
 
   render(): JSX.Element {
     return(
-      <form ref="form">
+      <form ref="form" className="clearfix">
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
         }
@@ -39,6 +39,7 @@ export default class Form extends React.Component<FormProps, void> {
           />
         }
         { this.props.content }
+        <br />
         <SubmitButton
           callback={this.submit}
           text={this.props.buttonText && this.props.buttonText}
