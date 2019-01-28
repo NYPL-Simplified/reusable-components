@@ -25,7 +25,7 @@ export class LibrariesList extends React.Component<LibrariesListProps, void> {
   render(): JSX.Element {
     let hasLibraries = (this.props.libraries && this.props.libraries.libraries && this.props.libraries.libraries.length > 0);
     return(
-      <ul className="list panel-group">
+      <ul className="list">
         { hasLibraries ?
           this.props.libraries.libraries.map(library =>
             <LibrariesListItem

@@ -5,6 +5,7 @@
 - Rendered list of libraries
 - Rendered details about each library
 - Implemented functionality for editing library stage and registry stage
+- Made library details more readable by implementing an accessible Tabs component
 
 ###v0.0.1
 #### Added

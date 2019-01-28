@@ -8,15 +8,17 @@ $red-dark: #97272C;
 $light-gray: #D7D4D0;
 $dark-gray: #080807;
 $gray-tint: tint($light-gray, 75);
+$gray: #776E64;
+$gray-brown: #54514A;
 $black: #111;
 $blue: #1B7FA7;
-$light-blue: lighten($blue, 30%);
-$blue-tint: tint($blue, 80%);
+$blue-dark: #135772;
+$light-blue: #73C7E8;
+$blue-tint: #D1E5ED;
 $green: #799A05;
 $green-dark: #497629;
-$green-bright: #008918;
 $yellow: #FEE24A;
-$yellow-tint: tint($yellow, 50%);
+$yellow-tint: #FFF1A5;
 $orange: #FFB81D;
 $orange-desaturated: desaturate($orange, 40%);
 $teal: #07818D;
@@ -25,4 +27,4 @@ $teal-tint: tint($teal, 50%);
 
 // field error bg
 $red-error: tint($red, 80%);
-$red-tint: tint($red, 30%);
+$red-tint: #DE7175;

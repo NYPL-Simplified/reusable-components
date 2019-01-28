@@ -35,7 +35,7 @@ describe("fetch-edit reducer", () => {
     successMessage: null
   };
 
-  const manipulateData = (state, action) => {
+  const manipulateData = (state: FetchEditState<TestData>, action: {}) => {
     let data = 10;
     return Object.assign({}, state, {
       data: data,

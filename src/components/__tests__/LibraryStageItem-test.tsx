@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import LibraryStageItem from "../LibraryStageItem";
@@ -11,7 +10,7 @@ describe("LibraryStageItem", () => {
   beforeEach(() => {
     label = "Registry Stage";
     value = "cancelled";
-    wrapper = Enzyme.mount(
+    wrapper = Enzyme.shallow(
       <LibraryStageItem
         label={label}
         value={value}

@@ -18,7 +18,8 @@ export interface LibrariesListItemState {
 export default class LibrariesListItem extends React.Component<LibrariesListItemProps, LibrariesListItemState> {
   constructor(props: LibrariesListItemProps) {
     super(props);
-    this.state = { color: this.colorCode(this.props.library.library_stage, this.props.library.registry_stage) };
+    const color = this.colorCode(Object.values(this.props.library.stages));
+    this.state = { color };
     this.colorCode = this.colorCode.bind(this);
     this.updateColor = this.updateColor.bind(this);
     this.body = this.body.bind(this);
@@ -27,7 +28,6 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
   body() {
     return (
         <LibraryDetailPage
-          uuid={this.props.library.uuid}
           library={this.props.library}
           updateColor={this.updateColor}
           store={this.props.store}
@@ -35,17 +35,15 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
     );
   }
 
-  updateColor(library_stage: string, registry_stage: string): void {
-      let color = this.colorCode(library_stage, registry_stage);
+  updateColor(stages: Array<string>): void {
+      let color = this.colorCode(stages);
       this.setState({ color });
   }
 
-  colorCode(library_stage: string, registry_stage: string): string {
+  colorCode(stages: Array<string>): string {
     // If both library_stage and registry_stage are in production, background is green;
     // if at least one of them is cancelled, background is red;
     // otherwise, background is yellow.
-
-    let stages = [library_stage, registry_stage];
     if (stages.every((stage) => stage === "production")) {
       return "success";
     } else if (stages.some((stage) => stage === "cancelled")) {
@@ -56,8 +54,8 @@ export default class LibrariesListItem extends React.Component<LibrariesListItem
 
   render(): JSX.Element {
     let style = this.state.color;
-    let headerText = `${this.props.library.name} (${this.props.library.short_name})`;
-
+    let { name, short_name } = this.props.library.basic_info;
+    let headerText = `${name} (${short_name})`;
     return(
       <Panel style={style} headerText={headerText} body={this.body()} />
     );

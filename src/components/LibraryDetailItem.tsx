@@ -9,7 +9,7 @@ export default class LibraryDetailItem extends React.Component<LibraryDetailItem
     return(
       <li className="list-group-item">
         <label className="control-label">{this.props.label}</label>
-        <p className="form-control-static">{this.props.value}</p>
+        <span>{this.props.value}</span>
       </li>
     );
   }

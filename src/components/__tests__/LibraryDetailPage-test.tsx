@@ -13,13 +13,22 @@ describe("LibraryDetailPage", () => {
   let store;
 
   let library = {
-      "uuid": "123",
-      "name": "Test Library",
-      "short_name": "test_lib",
-      "id": 1,
-      "registry_stage": "testing",
-      "library_stage": "production",
+    uuid: "UUID1",
+    basic_info: {
+      "name": "Test Library 1",
+      "short_name": "lib1",
       "description": undefined
+    },
+    urls_and_contact: {
+      "authentication_url": "auth1",
+      "contact_email": "email1",
+      "opds_url": "opds1",
+      "web_url": "web1"
+    },
+    stages: {
+      "library_stage": "production",
+      "registry_stage": "testing"
+    }
   };
 
   let updateColor: Sinon.SinonStub;
@@ -31,9 +40,9 @@ describe("LibraryDetailPage", () => {
     updateColor = Sinon.stub();
     editStages = Sinon.stub();
     fetchLibrary = Sinon.stub();
+
     wrapper = Enzyme.mount(
       <LibraryDetailPage
-        uuid={uuid}
         library={library}
         store={store}
         updateColor={updateColor}
@@ -43,20 +52,59 @@ describe("LibraryDetailPage", () => {
     );
   });
 
+  it("should call renderItems for each category", () => {
+    let spyRenderItems = Sinon.spy(wrapper.instance(), "renderItems");
+    wrapper.instance().render();
+
+    expect(spyRenderItems.callCount).to.equal(2);
+    let [basicInfoCall, urlsContactCall] = [spyRenderItems.firstCall, spyRenderItems.secondCall];
+
+    expect(basicInfoCall.args[0]).to.equal(library.basic_info);
+    expect(basicInfoCall.returnValue.type).to.equal("ul");
+    expect(basicInfoCall.returnValue.props.children.length).to.equal(2);
+    let [name, short_name] = basicInfoCall.returnValue.props.children;
+    expect(name.props.label).to.equal("name");
+    expect(name.props.value).to.equal("Test Library 1");
+    expect(short_name.props.label).to.equal("short_name");
+    expect(short_name.props.value).to.equal("lib1");
+
+    expect(urlsContactCall.args[0]).to.equal(library.urls_and_contact);
+    expect(urlsContactCall.returnValue.type).to.equal("ul");
+    expect(urlsContactCall.returnValue.props.children.length).to.equal(4);
+    let [authentication_url, contact_email, opds_url, web_url] = urlsContactCall.returnValue.props.children;
+    expect(authentication_url.props.label).to.equal("authentication_url");
+    expect(authentication_url.props.value).to.equal("auth1");
+    expect(contact_email.props.label).to.equal("contact_email");
+    expect(contact_email.props.value).to.equal("email1");
+    expect(opds_url.props.label).to.equal("opds_url");
+    expect(opds_url.props.value).to.equal("opds1");
+    expect(web_url.props.label).to.equal("web_url");
+    expect(web_url.props.value).to.equal("web1");
+
+    spyRenderItems.restore();
+  });
+
   it("should show the library information", () => {
-    let infoList = wrapper.find(".list-group");
-    expect(infoList.length).to.equal(1);
-    let infoItems = infoList.find("li");
-    expect(infoItems.length).to.equal(6);
-    infoItems.map((item: Enzyme.CommonWrapper<any, any, {}>) => {
+    let list = wrapper.find(".list-group");
+    expect(list.length).to.equal(2);
+
+    let basicInfoItems = list.at(0).find("li");
+    expect(basicInfoItems.length).to.equal(2);
+
+    let contactUrlItems = list.at(1).find("li");
+    expect(contactUrlItems.length).to.equal(4);
+
+    let allItems = Object.assign(basicInfoItems, contactUrlItems);
+    let libraryData = Object.assign(library.basic_info, library.urls_and_contact);
+    allItems.map((item: Enzyme.CommonWrapper<any, any, {}>) => {
       let key = item.find(".control-label").text();
-      let value = item.find(".form-control-static").text();
-      expect(`${library[key]}`).to.equal(value);
+      let value = item.find("span").text();
+      expect(libraryData[key]).to.equal(value);
     });
   });
 
   it("should not display blank values", () => {
-    let infoLabels = wrapper.find(".list-group-item .control-label").map(label => label.text());
+    let infoLabels = wrapper.find(".list-group-item .control-label").map((label: Enzyme.CommonWrapper<any, any, {}>) => label.text());
     expect(infoLabels.indexOf("description")).to.equal(-1);
   });
 
@@ -95,8 +143,8 @@ describe("LibraryDetailPage", () => {
     let submitButton = form.find("button");
     submitButton.simulate("click");
 
-    let newStages = { library_stage: "cancelled", registry_stage: "production" };
-    let fullLibrary = Object.assign({}, wrapper.props()["library"], newStages);
+    let newStages = { stages: { library_stage: "cancelled", registry_stage: "production" } };
+    let fullLibrary = Object.assign({}, (wrapper.props() as any)["library"], newStages);
     wrapper.setProps({ fullLibrary });
 
     expect(editStages.callCount).to.equal(1);
@@ -107,11 +155,11 @@ describe("LibraryDetailPage", () => {
     await pause();
 
     expect(fetchLibrary.callCount).to.equal(1);
-    expect(fetchLibrary.args[0][0]).to.equal(wrapper.props()["uuid"]);
+    expect(fetchLibrary.args[0][0]).to.equal((wrapper.props() as any)["library"].uuid);
 
     expect(updateColor.callCount).to.equal(1);
-    expect(updateColor.args[0][0]).to.equal("cancelled");
-    expect(updateColor.args[0][1]).to.equal("production");
+    expect(updateColor.args[0][0][0]).to.equal("cancelled");
+    expect(updateColor.args[0][0][1]).to.equal("production");
   });
 
   it("should re-render to reflect changes", async() => {
@@ -122,18 +170,10 @@ describe("LibraryDetailPage", () => {
     expect(form.find("label").at(0).props().className).to.contain("success");
     expect(form.find("label").at(1).props().className).to.contain("warning");
 
-    let items = wrapper.find("LibraryDetailItem");
-    let libStage = items.findWhere(item => item.props().label === "library_stage");
-    let regStage = items.findWhere(item => item.props().label === "registry_stage");
-    expect(libStage.props().value).to.equal("production");
-    expect(libStage.find("p").text()).to.equal("production");
-    expect(regStage.props().value).to.equal("testing");
-    expect(regStage.find("p").text()).to.equal("testing");
-
     let saveButton = form.find("button");
     saveButton.simulate("click");
-    let newStages = { library_stage: "testing", registry_stage: "cancelled" };
-    let fullLibrary = Object.assign({}, wrapper.props()["library"], newStages);
+    let newStages = { stages: { library_stage: "testing", registry_stage: "cancelled" } };
+    let fullLibrary = Object.assign({}, (wrapper.props() as any)["library"], newStages);
     wrapper.setProps({ fullLibrary });
 
     const pause = (): Promise<void> => {
@@ -145,10 +185,5 @@ describe("LibraryDetailPage", () => {
     expect(wrapper.state()["registryStage"]).to.equal("cancelled");
     expect(form.find("label").at(0).props().className).to.contain("warning");
     expect(form.find("label").at(1).props().className).to.contain("danger");
-    expect(libStage.props().value).to.equal("testing");
-    expect(libStage.find("p").text()).to.equal("testing");
-    expect(regStage.props().value).to.equal("cancelled");
-    expect(regStage.find("p").text()).to.equal("cancelled");
   });
-
 });

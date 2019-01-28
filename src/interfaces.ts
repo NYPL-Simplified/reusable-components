@@ -1,10 +1,23 @@
 export interface LibraryData {
   uuid: string;
-  name: string;
-  short_name: string;
-  id: number;
-  registry_stage: string;
-  library_stage: string;
+  basic_info: {
+    description?: string,
+    internal_urn?: string,
+    online_registration?: string,
+    name: string,
+    short_name: string,
+    timestamp?: string,
+  };
+  urls_and_contact?: {
+    authentication_url: string,
+    contact_email: string,
+    opds_url: string,
+    web_url: string
+  };
+  stages: {
+    library_stage: string,
+    registry_stage: string
+  };
 }
 
 export interface LibrariesData {
