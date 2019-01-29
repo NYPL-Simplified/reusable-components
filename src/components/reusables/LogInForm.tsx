@@ -54,7 +54,7 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
     let elements = this.props.extraFields ? [username, password].concat(this.props.extraFields) : [username, password];
     let fieldset = <Fieldset key="credentials" legend={legend} elements={elements} />;
     return(
-      <Form title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
+      <Form className="log-in" title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
     );
   };
 }

@@ -9,6 +9,7 @@ export interface FormProps {
   hiddenName?: string;
   hiddenValue?: string;
   buttonText?: string;
+  className?: string;
 }
 
 export default class Form extends React.Component<FormProps, void> {
@@ -26,8 +27,9 @@ export default class Form extends React.Component<FormProps, void> {
   };
 
   render(): JSX.Element {
+    let className = this.props.className ? `clearfix ${this.props.className}` : "clearfix";
     return(
-      <form ref="form" className="clearfix">
+      <form ref="form" className={className}>
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
         }

@@ -31,6 +31,12 @@ describe("Form", () => {
     );
   });
 
+  it("should optionally set a className", () => {
+    expect(wrapper.find("form").prop("className")).to.equal("clearfix");
+    wrapper.setProps({ className: "custom-class" });
+    expect(wrapper.find("form").prop("className")).to.equal("clearfix custom-class");
+  });
+
   it("should optionally render a hidden input field", () => {
     let hidden = wrapper.find("[type='hidden']");
     expect(hidden.length).to.equal(1);

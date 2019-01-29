@@ -18,6 +18,9 @@ describe("LogInForm", () => {
       <LogInForm logIn={logIn} />, { context }
     );
   });
+  it("should have the right className", () => {
+    expect(wrapper.find("form").hasClass("log-in")).to.be.true;
+  });
   it("should display a default title", () => {
     let title = wrapper.find(".form-title");
     expect(title.length).to.equal(1);

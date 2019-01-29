@@ -5,6 +5,10 @@ form {
   margin: 20px;
   width: 55vw;
 
+  &.log-in {
+    margin: auto;
+  }
+
   .form-title {
     display: block;
     text-align: center;
