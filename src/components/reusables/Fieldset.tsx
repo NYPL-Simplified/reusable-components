@@ -3,22 +3,20 @@ import * as React from "react";
 export interface FieldsetProps {
   legend: string;
   elements: Array<JSX.Element>;
-  labelClass?: string;
-  labelText?: string;
+  badgeClass?: string;
+  badgeText?: string;
 }
 
 export default class Fieldset extends React.Component<FieldsetProps, void> {
   render(): JSX.Element {
     return(
       <fieldset className="form-group well">
-        <legend>
-          <span>{this.props.legend}</span>
-          {
-            this.props.labelText &&
-            <label className={`label label-${this.props.labelClass || "default"}`}>{this.props.labelText}</label>
-          }
-        </legend>
+        <legend>{this.props.legend}</legend>
         {this.props.elements}
+        {
+          this.props.badgeText &&
+          <span className={`badge badge-${this.props.badgeClass || "default"}`}>{this.props.badgeText}</span>
+        }
       </fieldset>
     );
   }

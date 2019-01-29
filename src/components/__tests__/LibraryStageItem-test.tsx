@@ -20,13 +20,13 @@ describe("LibraryStageItem", () => {
   it("should display a legend", () => {
     let legend = wrapper.find("legend");
     expect(legend.length).to.equal(1);
-    expect(legend.find("span").text()).to.equal("Current Registry Stage:");
+    expect(legend.text()).to.equal("Registry Stage");
   });
-  it("should display a label", () => {
-    let label = wrapper.find(".label");
-    expect(label.length).to.equal(1);
-    expect(label.text()).to.equal("cancelled");
-    expect(label.hasClass("label-danger")).to.be.true;
+  it("should display a badge", () => {
+    let badge = wrapper.find(".badge");
+    expect(badge.length).to.equal(1);
+    expect(badge.text()).to.equal("cancelled");
+    expect(badge.hasClass("badge-danger")).to.be.true;
   });
   it("should display a dropdown", () => {
     let dropdown = wrapper.find("select") as any;
@@ -43,9 +43,9 @@ describe("LibraryStageItem", () => {
   it("should update when the value prop changes", () => {
     wrapper.setProps({ value: "production" });
 
-    let label = wrapper.find(".label");
-    expect(label.text()).to.equal("production");
-    expect(label.hasClass("label-success")).to.be.true;
+    let badge = wrapper.find(".badge");
+    expect(badge.text()).to.equal("production");
+    expect(badge.hasClass("badge-success")).to.be.true;
 
     let dropdown = wrapper.find("select") as any;
     expect(dropdown.props().defaultValue).to.equal("production");

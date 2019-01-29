@@ -115,14 +115,14 @@ describe("LibraryDetailPage", () => {
     let libraryStage = form.find("fieldset").at(0);
     let libraryLegend = libraryStage.find("legend");
     let librarySelect = libraryStage.find("select");
-    expect(libraryLegend.find("span").text()).to.equal("Current Library Stage:");
+    expect(libraryLegend.text()).to.equal("Library Stage");
     expect(librarySelect.props().name).to.equal("Library Stage");
     expect(librarySelect.props().defaultValue).to.equal("production");
 
     let registryStage = form.find("fieldset").at(1);
     let registryLegend = registryStage.find("legend");
     let registrySelect = registryStage.find("select");
-    expect(registryLegend.find("span").text()).to.equal("Current Registry Stage:");
+    expect(registryLegend.text()).to.equal("Registry Stage");
     expect(registrySelect.props().name).to.equal("Registry Stage");
     expect(registrySelect.props().defaultValue).to.equal("testing");
 
@@ -167,8 +167,8 @@ describe("LibraryDetailPage", () => {
 
     expect(wrapper.state()["libraryStage"]).to.equal("production");
     expect(wrapper.state()["registryStage"]).to.equal("testing");
-    expect(form.find("label").at(0).props().className).to.contain("success");
-    expect(form.find("label").at(1).props().className).to.contain("warning");
+    expect(form.find(".badge").at(0).props().className).to.contain("success");
+    expect(form.find(".badge").at(1).props().className).to.contain("warning");
 
     let saveButton = form.find("button");
     saveButton.simulate("click");
@@ -183,7 +183,7 @@ describe("LibraryDetailPage", () => {
 
     expect(wrapper.state()["libraryStage"]).to.equal("testing");
     expect(wrapper.state()["registryStage"]).to.equal("cancelled");
-    expect(form.find("label").at(0).props().className).to.contain("warning");
-    expect(form.find("label").at(1).props().className).to.contain("danger");
+    expect(form.find(".badge").at(0).props().className).to.contain("warning");
+    expect(form.find(".badge").at(1).props().className).to.contain("danger");
   });
 });

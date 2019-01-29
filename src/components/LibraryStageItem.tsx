@@ -23,10 +23,10 @@ export default class LibraryStageItem extends React.Component<LibraryStageItemPr
 
     return(
       <Fieldset
-        legend={`Current ${this.props.label}:`}
+        legend={this.props.label}
         elements={[select]}
-        labelClass={colors[this.props.value]}
-        labelText={this.props.value}
+        badgeClass={colors[this.props.value]}
+        badgeText={this.props.value}
       />
     );
   }

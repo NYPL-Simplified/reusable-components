@@ -24,18 +24,18 @@ describe("Fieldset", () => {
     expect(inputs.at(0).prop("value")).to.equal("A");
     expect(inputs.at(1).prop("value")).to.equal("B");
   });
-  it("optionally displays a label", () => {
-    wrapper.setProps({ labelText: "here's a label!" });
-    let label = wrapper.find("legend").find("label");
-    expect(label.length).to.equal(1);
-    expect(label.text()).to.equal("here's a label!");
-    expect(label.hasClass("label-default")).to.be.true;
+  it("optionally displays a badge", () => {
+    wrapper.setProps({ badgeText: "here's a badge!" });
+    let badge = wrapper.find(".badge");
+    expect(badge.length).to.equal(1);
+    expect(badge.text()).to.equal("here's a badge!");
+    expect(badge.hasClass("badge-default")).to.be.true;
   });
-  it("optionally specifies a class for the label", () => {
-    wrapper.setProps({ labelText: "Success!", labelClass: "success" });
-    let label = wrapper.find("legend").find("label");
-    expect(label.length).to.equal(1);
-    expect(label.text()).to.equal("Success!");
-    expect(label.hasClass("label-success")).to.be.true;
+  it("optionally specifies a class for the badge", () => {
+    wrapper.setProps({ badgeText: "Success!", badgeClass: "success" });
+    let badge = wrapper.find(".badge");
+    expect(badge.length).to.equal(1);
+    expect(badge.text()).to.equal("Success!");
+    expect(badge.hasClass("badge-success")).to.be.true;
   });
 });
