@@ -7,7 +7,7 @@ import * as Sinon from "sinon";
 
 const RegistryAdmin = require("../index");
 import ContextProvider from "../components/ContextProvider";
-import { Router, Route } from "react-router";
+import { Router } from "react-router";
 
 describe("RegistryAdmin", () => {
   it("renders ContextProvider", () => {

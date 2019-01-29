@@ -26,7 +26,9 @@ describe("Input", () => {
     expect(input.prop("type")).to.equal("text");
   });
   it("optionally accepts a type prop", () => {
-    wrapper.setProps({ type: "radio" });
+    wrapper = Enzyme.shallow(
+      <Input label="Radio" name="radioInputName" type="radio" />
+    );
     let input = wrapper.find("input");
     expect(input.prop("type")).to.equal("radio");
   })

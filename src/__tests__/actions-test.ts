@@ -21,7 +21,7 @@ class MockDataFetcher {
 };
 
 const fetcher = new MockDataFetcher() as any;
-const actions = new ActionCreator(fetcher, "token");
+const actions = new ActionCreator(fetcher);
 
 describe("actions", () => {
   describe("postForm", () => {
@@ -50,7 +50,6 @@ describe("actions", () => {
       expect(fetchMock.args[0][0]).to.equal(url);
       expect(fetchMock.args[0][1].method).to.equal("POST");
       const expectedHeaders = new Headers();
-      expectedHeaders.append("X-CSRF-Token", "token");
       expect(fetchMock.args[0][1].headers).to.deep.equal(expectedHeaders);
       expect(fetchMock.args[0][1].body).to.equal(formData);
     });
@@ -76,7 +75,6 @@ describe("actions", () => {
       expect(fetchMock.args[0][0]).to.equal(url);
       expect(fetchMock.args[0][1].method).to.equal("POST");
       const expectedHeaders = new Headers();
-      expectedHeaders.append("X-CSRF-Token", "token");
       expect(fetchMock.args[0][1].headers).to.deep.equal(expectedHeaders);
       expect(fetchMock.args[0][1].body).to.equal(formData);
     });
@@ -97,7 +95,6 @@ describe("actions", () => {
       expect(fetchMock.args[0][0]).to.equal(url);
       expect(fetchMock.args[0][1].method).to.equal("DELETE");
       const expectedHeaders = new Headers();
-      expectedHeaders.append("X-CSRF-Token", "token");
       expect(fetchMock.args[0][1].headers).to.deep.equal(expectedHeaders);
       expect(fetchMock.args[0][1].body).to.equal(formData);
     });
@@ -199,7 +196,6 @@ describe("actions", () => {
       const expectedHeaders = new Headers();
       expectedHeaders.append("Accept", "application/json");
       expectedHeaders.append("Content-Type", "application/json");
-      expectedHeaders.append("X-CSRF-Token", "token");
       expect(fetchMock.args[0][1].headers).to.deep.equal(expectedHeaders);
       expect(fetchMock.args[0][1].body).to.equal(JSON.stringify(jsonData));
     });

@@ -17,13 +17,9 @@ export default class ActionCreator extends BaseActionCreator {
 
   static readonly LOG_IN = "LOG_IN";
 
-  csrfToken: string;
-
-  constructor(fetcher?: DataFetcher, csrfToken?: string) {
+  constructor(fetcher?: DataFetcher) {
     fetcher = fetcher || new DataFetcher();
     super(fetcher);
-    csrfToken = csrfToken || null;
-    this.csrfToken = csrfToken;
   }
 
   postForm(
@@ -39,9 +35,6 @@ export default class ActionCreator extends BaseActionCreator {
       return new Promise((resolve, reject: RequestRejector) => {
         dispatch(this.request(type));
         let headers = new Headers();
-        if (this.csrfToken) {
-          headers.append("X-CSRF-Token", this.csrfToken);
-        }
         fetch(url, {
           method: method || "POST",
           headers: headers,
@@ -101,9 +94,6 @@ export default class ActionCreator extends BaseActionCreator {
       return new Promise((resolve, reject: RequestRejector) => {
         dispatch(this.request(type, url));
         let headers = new Headers();
-        if (this.csrfToken) {
-          headers.append("X-CSRF-Token", this.csrfToken);
-        }
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
         fetch(url, {

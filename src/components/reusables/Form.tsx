@@ -27,9 +27,8 @@ export default class Form extends React.Component<FormProps, void> {
   };
 
   render(): JSX.Element {
-    let className = this.props.className ? `clearfix ${this.props.className}` : "clearfix";
     return(
-      <form ref="form" className={className}>
+      <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
         }

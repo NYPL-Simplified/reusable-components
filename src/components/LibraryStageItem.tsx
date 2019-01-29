@@ -14,7 +14,7 @@ export default class LibraryStageItem extends React.Component<LibraryStageItemPr
     };
 
     let select = (
-      <select name={this.props.label} defaultValue={this.props.value}>
+      <select key={this.props.label} name={this.props.label} defaultValue={this.props.value}>
         <option value="testing">Testing</option>
         <option value="production">Production</option>
         <option value="cancelled">Cancelled</option>

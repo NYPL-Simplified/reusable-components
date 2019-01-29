@@ -17,7 +17,7 @@ export default class Header extends React.Component<HeaderProps, void> {
           <span>{this.props.text}</span>
           {
             this.props.imgSrc &&
-            <img className="navbar-brand img-rounded" alt={this.props.alt || ""} src={require(`${this.props.imgSrc}`)} />
+            <img className="navbar-brand img-rounded" alt={this.props.alt || ""} src={src} />
           }
         </div>
         <a href={this.props.logOut} className="btn navbar-btn">

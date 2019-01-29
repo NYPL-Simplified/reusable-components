@@ -1,16 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Store } from "redux";
-import { AdminData } from "../../interfaces";
 import Form from "./Form";
 import Fieldset from "./Fieldset";
 import Input from "./Input";
 import ActionCreator from "../../actions";
 import { State } from "../../reducers/index";
-
-export interface LogInFormStateProps {
-  admin?: AdminData;
-}
 
 export interface LogInFormOwnProps {
   extraFields?: Array<JSX.Element>;
@@ -26,7 +21,7 @@ export interface LogInFormContext {
   store: Store<State>;
 }
 
-export interface LogInFormProps extends LogInFormStateProps, LogInFormOwnProps, LogInFormDispatchProps {};
+export interface LogInFormProps extends LogInFormOwnProps, LogInFormDispatchProps {};
 
 export class LogInForm extends React.Component<LogInFormProps, void> {
 
@@ -59,21 +54,15 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
   };
 }
 
-function mapStateToProps(state: State, ownProps: LogInFormProps) {
-  return {
-    admin: state.admin && state.admin.data
-  };
-}
-
 function mapDispatchToProps(dispatch: Function, ownProps: LogInFormOwnProps) {
-  let actions = new ActionCreator(null, null);
+  let actions = new ActionCreator(null);
   return {
     logIn: (data: FormData) => dispatch(actions.logIn(data))
   };
 }
 
-const ConnectedLogInForm = connect<LogInFormStateProps, LogInFormDispatchProps, LogInFormOwnProps>(
-  mapStateToProps,
+const ConnectedLogInForm = connect<{}, LogInFormDispatchProps, LogInFormOwnProps>(
+  null,
   mapDispatchToProps
 )(LogInForm);
 
