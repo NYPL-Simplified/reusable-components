@@ -1,6 +1,7 @@
 import * as React from "react";
 import SubmitButton from "./SubmitButton";
 import Fieldset from "./Fieldset";
+import { FetchErrorData } from "opds-web-client/lib/interfaces";
 
 export interface FormProps {
   content: Array<JSX.Element>;
@@ -10,6 +11,7 @@ export interface FormProps {
   hiddenValue?: string;
   buttonText?: string;
   className?: string;
+  error?: FetchErrorData;
 }
 
 export default class Form extends React.Component<FormProps, void> {
@@ -29,6 +31,10 @@ export default class Form extends React.Component<FormProps, void> {
   render(): JSX.Element {
     return(
       <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
+        {
+          this.props.error &&
+          <p>Error: {this.props.error.response}</p>
+        }
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
         }

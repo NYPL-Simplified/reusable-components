@@ -6,6 +6,11 @@ import Fieldset from "./Fieldset";
 import Input from "./Input";
 import ActionCreator from "../../actions";
 import { State } from "../../reducers/index";
+import { FetchErrorData } from "opds-web-client/lib/interfaces";
+
+export interface LogInFormStateProps {
+  error?: FetchErrorData;
+}
 
 export interface LogInFormOwnProps {
   extraFields?: Array<JSX.Element>;
@@ -21,7 +26,7 @@ export interface LogInFormContext {
   store: Store<State>;
 }
 
-export interface LogInFormProps extends LogInFormOwnProps, LogInFormDispatchProps {};
+export interface LogInFormProps extends LogInFormStateProps, LogInFormOwnProps, LogInFormDispatchProps {};
 
 export class LogInForm extends React.Component<LogInFormProps, void> {
 
@@ -49,9 +54,15 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
     let elements = this.props.extraFields ? [username, password].concat(this.props.extraFields) : [username, password];
     let fieldset = <Fieldset key="credentials" legend={legend} elements={elements} />;
     return(
-      <Form className="log-in" title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit}/>
+      <Form className="log-in" title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit} error={this.props.error}/>
     );
   };
+}
+
+function mapStateToProps(state: State, ownProps: LogInFormOwnProps) {
+  return {
+    error: state.admin.fetchError
+  }
 }
 
 function mapDispatchToProps(dispatch: Function, ownProps: LogInFormOwnProps) {
@@ -62,7 +73,7 @@ function mapDispatchToProps(dispatch: Function, ownProps: LogInFormOwnProps) {
 }
 
 const ConnectedLogInForm = connect<{}, LogInFormDispatchProps, LogInFormOwnProps>(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LogInForm);
 
