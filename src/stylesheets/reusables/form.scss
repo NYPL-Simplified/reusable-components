@@ -22,6 +22,12 @@ form {
     }
   }
 
+  .alert.alert-danger {
+    background-color: $red-error;
+    color: $dark-gray;
+    font-weight: bold;
+  }
+
   .form-title {
     display: block;
     text-align: center;

@@ -1,7 +1,6 @@
 import * as React from "react";
 import SubmitButton from "./SubmitButton";
 import Fieldset from "./Fieldset";
-import { FetchErrorData } from "opds-web-client/lib/interfaces";
 
 export interface FormProps {
   content: Array<JSX.Element>;
@@ -11,7 +10,7 @@ export interface FormProps {
   hiddenValue?: string;
   buttonText?: string;
   className?: string;
-  error?: FetchErrorData;
+  errorText?: string;
 }
 
 export default class Form extends React.Component<FormProps, void> {
@@ -19,6 +18,7 @@ export default class Form extends React.Component<FormProps, void> {
   constructor(props: FormProps) {
     super(props);
     this.submit = this.submit.bind(this);
+    this.errorMessage = this.errorMessage.bind(this);
   }
 
   submit(event: __React.MouseEvent): void {
@@ -28,12 +28,19 @@ export default class Form extends React.Component<FormProps, void> {
     this.props.onSubmit(data);
   };
 
+  errorMessage(errorText: string): JSX.Element {
+    return(
+      <p className="alert alert-danger" role="alert">
+        Error: {errorText}
+      </p>
+    );
+  }
+
   render(): JSX.Element {
     return(
       <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
         {
-          this.props.error &&
-          <p>Error: {this.props.error.response}</p>
+          this.props.errorText && this.errorMessage(this.props.errorText)
         }
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>

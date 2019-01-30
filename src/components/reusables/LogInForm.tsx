@@ -54,7 +54,14 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
     let elements = this.props.extraFields ? [username, password].concat(this.props.extraFields) : [username, password];
     let fieldset = <Fieldset key="credentials" legend={legend} elements={elements} />;
     return(
-      <Form className="log-in" title={title} content={[fieldset]} buttonText="Log In" onSubmit={this.submit} error={this.props.error}/>
+      <Form
+        className="log-in"
+        title={title}
+        content={[fieldset]}
+        buttonText="Log In"
+        onSubmit={this.submit}
+        errorText={this.props.error && this.props.error.response}
+      />
     );
   };
 }
@@ -62,7 +69,7 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
 function mapStateToProps(state: State, ownProps: LogInFormOwnProps) {
   return {
     error: state.admin.fetchError
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch: Function, ownProps: LogInFormOwnProps) {

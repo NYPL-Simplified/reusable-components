@@ -70,6 +70,23 @@ describe("Form", () => {
     expect(title.text()).to.equal("Test");
   });
 
+  it("should optionally render an error message", () => {
+    let spyErrorMessage = Sinon.spy(wrapper.instance(), "errorMessage");
+    let error = wrapper.find(".alert-danger");
+    expect(spyErrorMessage.callCount).to.equal(0);
+    expect(error.length).to.equal(0);
+
+    wrapper.setProps({ errorText: "ERROR!" });
+
+    expect(spyErrorMessage.callCount).to.equal(1);
+    expect(spyErrorMessage.args[0][0]).to.equal("ERROR!");
+    error = wrapper.find(".alert-danger");
+    expect(error.length).to.equal(1);
+    expect(error.text()).to.equal("Error: ERROR!");
+
+    spyErrorMessage.restore();
+  });
+
   it("should render a SubmitButton", () => {
     let button = wrapper.find("SubmitButton");
     expect(button.length).to.equal(1);
