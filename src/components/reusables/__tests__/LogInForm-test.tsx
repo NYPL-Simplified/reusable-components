@@ -92,18 +92,34 @@ describe("LogInForm", () => {
     expect(logIn.args[0][0].get("username")).to.equal("Admin");
     expect(logIn.args[0][0].get("password")).to.equal("12345");
   });
-  it("should render an error message if there is an error", () => {
-    let form = wrapper.find("form");
-    let error = wrapper.find(".alert-danger");
-    expect(form.prop("errorText")).to.be.undefined;
-    expect(error.length).to.equal(0);
+  describe("error handling", () => {
+    it("should render a default error message if necessary", () => {
+      let form = wrapper.find("form");
+      let error = wrapper.find(".alert-danger");
+      expect(form.prop("errorText")).to.be.undefined;
+      expect(error.length).to.equal(0);
 
-    wrapper.setProps({ error: { status: 401, url: "url", response: "Invalid credentials" } });
+      wrapper.setProps({ error: { status: 401, url: "url" } });
 
-    form = wrapper.find("Form");
-    error = wrapper.find(".alert-danger");
-    expect(form.prop("errorText")).to.equal("Invalid credentials");
-    expect(error.length).to.equal(1);
-    expect(error.text()).to.equal("Error: Invalid credentials");
+      form = wrapper.find("Form");
+      error = wrapper.find(".alert-danger");
+      expect(form.prop("errorText")).to.equal("Invalid credentials");
+      expect(error.length).to.equal(1);
+      expect(error.text()).to.equal("Error: Invalid credentials");
+    });
+    it("should render a specific error message", () => {
+      let form = wrapper.find("form");
+      let error = wrapper.find(".alert-danger");
+      expect(form.prop("errorText")).to.be.undefined;
+      expect(error.length).to.equal(0);
+
+      wrapper.setProps({ error: { status: 401, url: "url", response: "Custom error text!" } });
+
+      form = wrapper.find("Form");
+      error = wrapper.find(".alert-danger");
+      expect(form.prop("errorText")).to.equal("Custom error text!");
+      expect(error.length).to.equal(1);
+      expect(error.text()).to.equal("Error: Custom error text!");
+    })
   });
 });

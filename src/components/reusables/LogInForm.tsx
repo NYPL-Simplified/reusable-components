@@ -60,7 +60,7 @@ export class LogInForm extends React.Component<LogInFormProps, void> {
         content={[fieldset]}
         buttonText="Log In"
         onSubmit={this.submit}
-        errorText={this.props.error && this.props.error.response}
+        errorText={this.props.error && (this.props.error.response || "Invalid credentials")}
       />
     );
   };
