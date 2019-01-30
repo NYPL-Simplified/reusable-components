@@ -4,6 +4,7 @@ import buildStore from "../../../store";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import { LogInForm } from "../LogInForm";
+import Form from "../Form";
 
 describe("LogInForm", () => {
   let wrapper;
@@ -90,5 +91,19 @@ describe("LogInForm", () => {
     expect(logIn.args[0][0]).to.equal(formData);
     expect(logIn.args[0][0].get("username")).to.equal("Admin");
     expect(logIn.args[0][0].get("password")).to.equal("12345");
+  });
+  it("should render an error message if there is an error", () => {
+    let form = wrapper.find("form");
+    let error = wrapper.find(".alert-danger");
+    expect(form.prop("errorText")).to.be.undefined;
+    expect(error.length).to.equal(0);
+
+    wrapper.setProps({ error: { status: 401, url: "url", response: "Invalid credentials" } });
+
+    form = wrapper.find("Form");
+    error = wrapper.find(".alert-danger");
+    expect(form.prop("errorText")).to.equal("Invalid credentials");
+    expect(error.length).to.equal(1);
+    expect(error.text()).to.equal("Error: Invalid credentials");
   });
 });
