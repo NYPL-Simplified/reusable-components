@@ -1,4 +1,5 @@
 import * as React from "react";
+import Fieldset from "./reusables/Fieldset";
 
 export interface LibraryStageItemProps {
   label: string;
@@ -12,18 +13,21 @@ export default class LibraryStageItem extends React.Component<LibraryStageItemPr
       "cancelled": "danger"
     };
 
+    let select = (
+      <select key={this.props.label} name={this.props.label} defaultValue={this.props.value}>
+        <option value="testing">Testing</option>
+        <option value="production">Production</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    );
+
     return(
-      <fieldset className="form-group well">
-        <legend>
-          <span>Current {this.props.label}:</span>
-          <label className={`label label-${colors[this.props.value]}`}>{this.props.value}</label>
-        </legend>
-        <select name={this.props.label} defaultValue={this.props.value}>
-          <option value="testing">Testing</option>
-          <option value="production">Production</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
-      </fieldset>
+      <Fieldset
+        legend={this.props.label}
+        elements={[select]}
+        badgeClass={colors[this.props.value]}
+        badgeText={this.props.value}
+      />
     );
   }
 }

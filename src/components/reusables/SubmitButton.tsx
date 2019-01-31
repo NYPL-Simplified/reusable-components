@@ -1,18 +1,18 @@
 import * as React from "react";
 
-export interface SaveButtonProps {
+export interface SubmitButtonProps {
   callback: (event: __React.MouseEvent) => void;
   text?: string;
 }
 
-export default class SaveButton extends React.Component<SaveButtonProps, void> {
+export default class SubmitButton extends React.Component<SubmitButtonProps, void> {
 
-  constructor(props: SaveButtonProps) {
+  constructor(props: SubmitButtonProps) {
     super(props);
   }
 
   render(): JSX.Element {
-   let text = this.props.text || "Save";
+   let text = this.props.text || "Submit";
    return (
      <button
        type="submit"

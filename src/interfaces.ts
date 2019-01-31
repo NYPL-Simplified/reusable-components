@@ -23,3 +23,7 @@ export interface LibraryData {
 export interface LibrariesData {
   libraries: LibraryData[];
 }
+
+export interface AdminData {
+  username: string;
+}

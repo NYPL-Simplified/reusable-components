@@ -13,9 +13,12 @@ describe("App", () => {
       <App />
     );
   });
-  it("should render the header", () => {
+  it("should render the header and pass it the correct props", () => {
     let header = wrapper.find(Header);
     expect(header.length).to.equal(1);
+    expect(header.prop("text")).to.equal("Library Registry Interface");
+    expect(header.prop("imgSrc")).to.equal("./logo.png");
+    expect(header.prop("logOut")).to.equal("/admin/log_out");
   });
   it("should render the libraries list container", () => {
     let container = wrapper.find(LibrariesListContainer);

@@ -1,5 +1,9 @@
 ## Changelog
 
+####v1.0.0
+#### Added
+- Log in functionality
+
 ###v0.0.2
 #### Added
 - Rendered list of libraries

@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { stub } from "sinon";
+import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Form from "../../reusables/Form";
-import SaveButton from "../../reusables/SaveButton";
+import Form from "../Form";
+import SubmitButton from "../SubmitButton";
 
 describe("Form", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
@@ -12,7 +12,7 @@ describe("Form", () => {
   let element2: JSX.Element;
   let hiddenName = "hidden name";
   let hiddenValue = "hidden value";
-  let onSubmit = stub();
+  let onSubmit = Sinon.stub();
 
   beforeEach(() => {
     element1 = <input type="text" name="Element1" defaultValue="element1"/>;
@@ -29,6 +29,12 @@ describe("Form", () => {
         onSubmit={onSubmit}
       />
     );
+  });
+
+  it("should optionally set a className", () => {
+    expect(wrapper.find("form").prop("className")).to.equal("clearfix");
+    wrapper.setProps({ className: "custom-class" });
+    expect(wrapper.find("form").prop("className")).to.equal("clearfix custom-class");
   });
 
   it("should optionally render a hidden input field", () => {
@@ -54,14 +60,41 @@ describe("Form", () => {
     expect(select.find("option").length).to.equal(2);
   });
 
-  it("should render a SaveButton", () => {
-    let button = wrapper.find("SaveButton");
+  it("should optionally render a title", () => {
+    let title = wrapper.find(".form-title");
+    expect(title.length).to.equal(0);
+
+    wrapper.setProps({ title: "Test" });
+    title = wrapper.find(".form-title");
+    expect(title.length).to.equal(1);
+    expect(title.text()).to.equal("Test");
+  });
+
+  it("should optionally render an error message", () => {
+    let spyErrorMessage = Sinon.spy(wrapper.instance(), "errorMessage");
+    let error = wrapper.find(".alert-danger");
+    expect(spyErrorMessage.callCount).to.equal(0);
+    expect(error.length).to.equal(0);
+
+    wrapper.setProps({ errorText: "ERROR!" });
+
+    expect(spyErrorMessage.callCount).to.equal(1);
+    expect(spyErrorMessage.args[0][0]).to.equal("ERROR!");
+    error = wrapper.find(".alert-danger");
+    expect(error.length).to.equal(1);
+    expect(error.text()).to.equal("Error: ERROR!");
+
+    spyErrorMessage.restore();
+  });
+
+  it("should render a SubmitButton", () => {
+    let button = wrapper.find("SubmitButton");
     expect(button.length).to.equal(1);
     expect(button.props()["submit"]).to.equal((wrapper.instance() as any)["save"]);
   });
 
   it("should call the onSave prop", () => {
-    let button = wrapper.find("SaveButton");
+    let button = wrapper.find("SubmitButton");
     button.simulate("click");
     expect(onSubmit.callCount).to.equal(1);
 

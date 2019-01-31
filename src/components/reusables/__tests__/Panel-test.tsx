@@ -2,7 +2,8 @@ import { expect } from "chai";
 
 import * as React from "react";
 import * as Enzyme from "enzyme";
-import Panel from "../../reusables/Panel";
+import * as Sinon from "sinon";
+import Panel from "../Panel";
 
 describe("Panel", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
@@ -48,15 +49,27 @@ describe("Panel", () => {
   });
 
   it("should toggle the display and the icon on click", () => {
+    let spyToggle = Sinon.spy(wrapper.instance(), "toggle");
+    wrapper.setProps({ toggle: spyToggle });
     expect(wrapper.state().display).to.equal("collapse");
     expect(wrapper.find("section").hasClass("collapse")).to.be.true;
     expect(wrapper.find("svg").hasClass("down-icon")).to.be.true;
 
     wrapper.find("button").simulate("click");
+    expect(spyToggle.callCount).to.equal(1);
 
     expect(wrapper.state().display).to.equal("");
     expect(wrapper.find("section").hasClass("collapse")).to.be.false;
     expect(wrapper.find("svg").hasClass("up-icon")).to.be.true;
+
+    wrapper.find("button").simulate("click");
+    expect(spyToggle.callCount).to.equal(2);
+
+    expect(wrapper.state().display).to.equal("collapse");
+    expect(wrapper.find("section").hasClass("collapse")).to.be.true;
+    expect(wrapper.find("svg").hasClass("down-icon")).to.be.true;
+
+    spyToggle.restore();
   });
 
 });

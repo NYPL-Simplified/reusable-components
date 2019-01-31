@@ -20,7 +20,10 @@ $green-dark: #497629;
 $yellow: #FEE24A;
 $yellow-tint: #FFF1A5;
 $orange: #FFB81D;
-$orange-desaturated: #D2A74A;
+$orange-desaturated: desaturate($orange, 40%);
+$teal: #07818D;
+$teal-dark: #047074;
+$teal-tint: tint($teal, 50%);
 
 // field error bg
 $red-error: tint($red, 80%);

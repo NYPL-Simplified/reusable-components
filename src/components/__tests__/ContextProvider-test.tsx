@@ -10,7 +10,7 @@ describe("ContextProvider", () => {
 
   beforeEach(() => {
     wrapper = Enzyme.shallow(
-      <ContextProvider csrfToken="token">
+      <ContextProvider>
         <FakeChild />
       </ContextProvider>
     );

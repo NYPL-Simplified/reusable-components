@@ -15,14 +15,11 @@ export default class ActionCreator extends BaseActionCreator {
 
   static readonly EDIT_STAGES = "EDIT_STAGES";
 
+  static readonly LOG_IN = "LOG_IN";
 
-  csrfToken: string;
-
-  constructor(fetcher?: DataFetcher, csrfToken?: string) {
+  constructor(fetcher?: DataFetcher) {
     fetcher = fetcher || new DataFetcher();
     super(fetcher);
-    csrfToken = csrfToken || null;
-    this.csrfToken = csrfToken;
   }
 
   postForm(
@@ -38,9 +35,6 @@ export default class ActionCreator extends BaseActionCreator {
       return new Promise((resolve, reject: RequestRejector) => {
         dispatch(this.request(type));
         let headers = new Headers();
-        if (this.csrfToken) {
-          headers.append("X-CSRF-Token", this.csrfToken);
-        }
         fetch(url, {
           method: method || "POST",
           headers: headers,
@@ -66,7 +60,7 @@ export default class ActionCreator extends BaseActionCreator {
             response.json().then(data => {
               err = {
                 status: response.status,
-                response: data.detail,
+                response: data.detail || data.title,
                 url: url
               };
               dispatch(this.failure(type, err));
@@ -100,9 +94,6 @@ export default class ActionCreator extends BaseActionCreator {
       return new Promise((resolve, reject: RequestRejector) => {
         dispatch(this.request(type, url));
         let headers = new Headers();
-        if (this.csrfToken) {
-          headers.append("X-CSRF-Token", this.csrfToken);
-        }
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
         fetch(url, {
@@ -159,6 +150,11 @@ export default class ActionCreator extends BaseActionCreator {
   editStages(data: FormData) {
     let url = "/admin/libraries/registration";
     return this.postForm(ActionCreator.EDIT_STAGES, url, data).bind(this);
+  }
+
+  logIn(data: FormData) {
+    let url = "/admin/log_in";
+    return this.postForm(ActionCreator.LOG_IN, url, data).bind(this);
   }
 
 }

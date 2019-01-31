@@ -117,7 +117,7 @@ function mapStateToProps(state: State, ownProps: LibraryDetailPageOwnProps) {
 }
 
 function mapDispatchToProps(dispatch: Function, ownProps: LibraryDetailPageOwnProps) {
-  let actions = new ActionCreator(null, null);
+  let actions = new ActionCreator(null);
   return {
     editStages: (data: FormData) => dispatch(actions.editStages(data)),
     fetchLibrary: (uuid: string) => dispatch(actions.fetchLibrary(uuid))

@@ -1,40 +1,89 @@
 form {
-  padding: 0;
-  margin: 0;
-  width: 40%;
+  padding: 1em;
   border-radius: 0;
+  border: 1px solid $blue;
+  margin: 20px;
+  width: 55vw;
 
-  fieldset {
+  &.log-in {
+    margin: auto;
+    fieldset.well {
+      display: block;
+      margin: auto;
+    }
+    button.btn {
+      display: block;
+      margin: auto;
+      width: 25vw;
+      border: 1px solid $blue;
+      &:hover {
+        border-color: $gray-brown;
+      }
+    }
+  }
 
+  .alert-danger {
+    background-color: $red-error;
+    color: $dark-gray;
+    font-weight: bold;
+  }
+
+  .form-title {
+    display: block;
+    text-align: center;
+    width: 80%;
+    margin: 1em auto 2em auto;
+    padding-bottom: .5em;
+    border-bottom: 1px solid $blue-dark;
+  }
+
+  fieldset.well {
+    display: inline-block;
+    width: 25vw;
+    margin: .5em;
+    position: relative;
     legend {
       font-size: 1em;
-      border-bottom: none;
-      margin-bottom: 10px;
+      width: auto;
+      margin: auto;
+      font-weight: bold;
+      padding: 5px 10px;
+      line-height: 1em;
+      border-radius: 4px;
+      background: $blue;
+      color: $white;
+    }
+    .badge {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 4px;
+      line-height: normal;
+      padding: 1em;
 
-      span {
-        background: $blue;
-        padding: .25em .5em;
+      &.badge-success {
+        background: $green-bright;
+      }
+      &.badge-warning {
+        background: darken($orange-desaturated, 20);
+      }
+      &.badge-danger {
+        background: $red;
+      }
+    }
+    .form-group {
+      margin: 15px 0;
+      input.form-control {
         border-radius: .25em;
-        color: $white;
+        padding: 5px;
       }
-
-      .label {
-        float: right;
-        margin: 0;
-        line-height: normal;
-        padding-top: .25em;
-        padding-bottom: .25em;
-
-        &.label-success {
-          background: $green-bright;
-        }
-        &.label-warning {
-          background: darken($orange-desaturated, 20);
-        }
-        &.label-danger {
-          background: $red;
-        }
-      }
+    }
+    select {
+      width: 50%;
+      background: $white;
     }
   }
 
@@ -43,6 +92,7 @@ form {
     border-radius: .25em;
     font-weight: bold;
     transition: background 1s, color 1s;
+    margin: .5em;
     &:hover {
       background: $gray-brown;
       color: $white;
