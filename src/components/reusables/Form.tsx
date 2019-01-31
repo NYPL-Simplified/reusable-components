@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import SubmitButton from "./SubmitButton";
 import Fieldset from "./Fieldset";
 
@@ -21,6 +22,12 @@ export default class Form extends React.Component<FormProps, void> {
     this.errorMessage = this.errorMessage.bind(this);
   }
 
+  componentDidUpdate() {
+    if (this.refs["errorMessage"]) {
+      (this.refs["errorMessage"] as HTMLElement).focus();
+    }
+  }
+
   submit(event: __React.MouseEvent): void {
     event.preventDefault();
     let form = (this.refs["form"] as any);
@@ -29,11 +36,13 @@ export default class Form extends React.Component<FormProps, void> {
   };
 
   errorMessage(errorText: string): JSX.Element {
-    return(
-      <p className="alert alert-danger" role="alert">
+    let error = (
+      <p className="alert alert-danger" role="alert" ref="errorMessage" tabIndex={-1}>
         Error: {errorText}
       </p>
     );
+
+    return error;
   }
 
   render(): JSX.Element {
