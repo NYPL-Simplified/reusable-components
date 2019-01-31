@@ -60,7 +60,7 @@ export default class ActionCreator extends BaseActionCreator {
             response.json().then(data => {
               err = {
                 status: response.status,
-                response: data.detail,
+                response: data.detail || data.title,
                 url: url
               };
               dispatch(this.failure(type, err));
