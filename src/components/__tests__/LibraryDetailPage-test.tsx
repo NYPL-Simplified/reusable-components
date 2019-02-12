@@ -108,18 +108,18 @@ describe("LibraryDetailPage", () => {
     expect(infoLabels.indexOf("description")).to.equal(-1);
   });
 
-  it("should display a form", () => {
-    let form = wrapper.find("form");
-    expect(form.length).to.equal(1);
+  it("should display the edit form", () => {
+    let editForm = wrapper.find("form").at(0);
+    expect(editForm.length).to.equal(1);
 
-    let libraryStage = form.find("fieldset").at(0);
+    let libraryStage = editForm.find("fieldset").at(0);
     let libraryLegend = libraryStage.find("legend");
     let librarySelect = libraryStage.find("select");
     expect(libraryLegend.text()).to.equal("Library Stage");
     expect(librarySelect.props().name).to.equal("Library Stage");
     expect(librarySelect.props().defaultValue).to.equal("production");
 
-    let registryStage = form.find("fieldset").at(1);
+    let registryStage = editForm.find("fieldset").at(1);
     let registryLegend = registryStage.find("legend");
     let registrySelect = registryStage.find("select");
     expect(registryLegend.text()).to.equal("Registry Stage");
@@ -134,12 +134,12 @@ describe("LibraryDetailPage", () => {
       expect(options.at(2).props().value).to.equal("cancelled");
     });
 
-    let submitButton = form.find("button");
+    let submitButton = editForm.find("button");
     expect(submitButton.length).to.equal(1);
   });
 
-  it("should submit a form and fetch new data", async () => {
-    let form = wrapper.find("form");
+  it("should submit the edit form and fetch new data", async () => {
+    let form = wrapper.find("form").at(0);
     let submitButton = form.find("button");
     submitButton.simulate("click");
 
@@ -162,15 +162,20 @@ describe("LibraryDetailPage", () => {
     expect(updateColor.args[0][0][1]).to.equal("production");
   });
 
+  it("should display the validation form", () => {
+    let validationForm = wrapper.find("form").at(1);
+    expect(validationForm.length).to.equal(1);
+  });
+
   it("should re-render to reflect changes", async() => {
-    let form = wrapper.find("form");
+    let editForm = wrapper.find("form").at(0);
 
     expect(wrapper.state()["libraryStage"]).to.equal("production");
     expect(wrapper.state()["registryStage"]).to.equal("testing");
-    expect(form.find(".badge").at(0).props().className).to.contain("success");
-    expect(form.find(".badge").at(1).props().className).to.contain("warning");
+    expect(editForm.find(".badge").at(0).props().className).to.contain("success");
+    expect(editForm.find(".badge").at(1).props().className).to.contain("warning");
 
-    let saveButton = form.find("button");
+    let saveButton = editForm.find("button");
     saveButton.simulate("click");
     let newStages = { stages: { library_stage: "testing", registry_stage: "cancelled" } };
     let fullLibrary = Object.assign({}, (wrapper.props() as any)["library"], newStages);
@@ -183,7 +188,7 @@ describe("LibraryDetailPage", () => {
 
     expect(wrapper.state()["libraryStage"]).to.equal("testing");
     expect(wrapper.state()["registryStage"]).to.equal("cancelled");
-    expect(form.find(".badge").at(0).props().className).to.contain("warning");
-    expect(form.find(".badge").at(1).props().className).to.contain("danger");
+    expect(editForm.find(".badge").at(0).props().className).to.contain("warning");
+    expect(editForm.find(".badge").at(1).props().className).to.contain("danger");
   });
 });

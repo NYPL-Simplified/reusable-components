@@ -1,3 +1,5 @@
+import { FetchErrorData } from "opds-web-client/lib/interfaces";
+
 export interface LibraryData {
   uuid: string;
   basic_info: {
@@ -12,7 +14,8 @@ export interface LibraryData {
     authentication_url: string,
     contact_email: string,
     opds_url: string,
-    web_url: string
+    web_url: string,
+    validated?: string
   };
   stages: {
     library_stage: string,
@@ -26,4 +29,8 @@ export interface LibrariesData {
 
 export interface AdminData {
   username: string;
+}
+
+export interface EmailData {
+  error?: FetchErrorData;
 }

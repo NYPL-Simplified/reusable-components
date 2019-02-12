@@ -1,6 +1,10 @@
 ## Changelog
 
-####v1.0.0
+###v1.0.1
+#### Added
+- Implemented form for re-sending validation emails 
+
+###v1.0.0
 #### Added
 - Log in functionality
 

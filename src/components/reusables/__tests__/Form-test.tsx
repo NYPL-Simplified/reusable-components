@@ -71,26 +71,71 @@ describe("Form", () => {
   });
 
   it("should optionally render an error message", () => {
-    let spyErrorMessage = Sinon.spy(wrapper.instance(), "errorMessage");
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
     let error = wrapper.find(".alert-danger");
-    expect(spyErrorMessage.callCount).to.equal(0);
+    expect(spyMessage.callCount).to.equal(0);
     expect(error.length).to.equal(0);
 
     wrapper.setProps({ errorText: "ERROR!" });
 
-    expect(spyErrorMessage.callCount).to.equal(1);
-    expect(spyErrorMessage.args[0][0]).to.equal("ERROR!");
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][0]).to.equal("ERROR!");
+    expect(spyMessage.args[0][1]).to.equal("danger");
     error = wrapper.find(".alert-danger");
     expect(error.length).to.equal(1);
-    expect(error.text()).to.equal("Error: ERROR!");
+    expect(error.text()).to.equal("ERROR!");
 
-    spyErrorMessage.restore();
+    spyMessage.restore();
+  });
+
+  it("should optionally render a success message", () => {
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
+    let success = wrapper.find(".alert-success");
+    expect(spyMessage.callCount).to.equal(0);
+    expect(success.length).to.equal(0);
+
+    wrapper.setProps({ successText: "SUCCESS!" });
+
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][0]).to.equal("SUCCESS!");
+    expect(spyMessage.args[0][1]).to.equal("success");
+    success = wrapper.find(".alert-success");
+    expect(success.length).to.equal(1);
+    expect(success.text()).to.equal("SUCCESS!");
+
+    spyMessage.restore();
+  });
+
+  it("should optionally render an info message", () => {
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
+    let info = wrapper.find(".alert-info");
+    expect(spyMessage.callCount).to.equal(0);
+    expect(info.length).to.equal(0);
+
+    wrapper.setProps({ infoText: "An info string" });
+
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][0]).to.equal("An info string");
+    expect(spyMessage.args[0][1]).to.equal("info");
+    info = wrapper.find(".alert-info");
+    expect(info.length).to.equal(1);
+    expect(info.text()).to.equal("An info string");
+
+    spyMessage.restore();
   });
 
   it("should render a SubmitButton", () => {
     let button = wrapper.find("SubmitButton");
     expect(button.length).to.equal(1);
     expect(button.props()["submit"]).to.equal((wrapper.instance() as any)["save"]);
+  });
+
+  it("should optionally props to the SubmitButton", () => {
+    wrapper.setProps({ buttonClass: "success", buttonContent: "testing...", disableButton: true });
+    let button = wrapper.find("SubmitButton");
+    expect(button.prop("className")).to.equal("success");
+    expect(button.text()).to.equal("testing...");
+    expect(button.prop("disabled")).to.be.true;
   });
 
   it("should call the onSave prop", () => {
