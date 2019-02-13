@@ -28,7 +28,11 @@ form {
   &.validation {
     .form-title {
       text-align: left;
-      margin-left: .5em;
+      margin: 0;
+      width: 100%;
+    }
+    button.btn {
+      margin: 0;
     }
   }
 
