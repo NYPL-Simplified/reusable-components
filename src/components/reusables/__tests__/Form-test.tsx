@@ -106,6 +106,27 @@ describe("Form", () => {
     spyMessage.restore();
   });
 
+  it("should not render a success message if it has an errorText prop", () => {
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
+    let success = wrapper.find(".alert-success");
+    let error = wrapper.find(".alert-danger");
+    expect(spyMessage.callCount).to.equal(0);
+    expect(success.length).to.equal(0);
+    expect(error.length).to.equal(0);
+
+    wrapper.setProps({ successText: "SUCCESS!", errorText: "blocking the successText!"});
+
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][1]).to.equal("danger");
+    expect(spyMessage.args[0][1]).not.to.equal("success");
+    success = wrapper.find(".alert-success");
+    error = wrapper.find(".alert-danger");
+    expect(success.length).to.equal(0);
+    expect(error.length).to.equal(1);
+
+    spyMessage.restore()
+  });
+
   it("should optionally render an info message", () => {
     let spyMessage = Sinon.spy(wrapper.instance(), "message");
     let info = wrapper.find(".alert-info");
@@ -130,7 +151,7 @@ describe("Form", () => {
     expect(button.props()["submit"]).to.equal((wrapper.instance() as any)["save"]);
   });
 
-  it("should optionally props to the SubmitButton", () => {
+  it("should optionally send props to the SubmitButton", () => {
     wrapper.setProps({ buttonClass: "success", buttonContent: "testing...", disableButton: true });
     let button = wrapper.find("SubmitButton");
     expect(button.prop("className")).to.equal("success");

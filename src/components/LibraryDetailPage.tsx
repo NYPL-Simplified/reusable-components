@@ -80,7 +80,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     let libraryStage = this.props.fullLibrary.stages.library_stage;
     let registryStage = this.props.fullLibrary.stages.registry_stage;
     this.props.updateColor([libraryStage, registryStage]);
-    this.setState(Object.assign(this.state, { libraryStage, registryStage }));
+    this.setState({ libraryStage, registryStage });
   }
 
   render(): JSX.Element {

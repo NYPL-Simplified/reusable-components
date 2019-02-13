@@ -54,7 +54,7 @@ export default class Form extends React.Component<FormProps, void> {
           this.props.errorText && this.message(this.props.errorText, "danger")
         }
         {
-          this.props.successText && this.message(this.props.successText, "success")
+          this.props.successText && !this.props.errorText && this.message(this.props.successText, "success")
         }
         {
           this.props.infoText && this.message(this.props.infoText, "info")

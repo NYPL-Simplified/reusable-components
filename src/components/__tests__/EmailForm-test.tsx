@@ -119,6 +119,21 @@ describe("EmailForm", () => {
     expect(wrapper.state()["sent"]).to.be.true;
   });
 
+  it("does not set 'sent' to true if there is an error", async () => {
+    expect(wrapper.state()["sent"]).to.be.false;
+    wrapper.find("button").simulate("click");
+
+
+    const pause = (): Promise<void> => {
+      return new Promise<any>((resolve, reject) => {
+        reject({ message: "email failure" });
+      });
+    };
+
+    expect(wrapper.state()["sent"]).to.be.false;
+    expect(wrapper.find("button").find("svg").length).to.equal(0);
+  });
+
   it("displays a success message", () => {
     let successMessage = wrapper.find(".alert-success");
     expect(successMessage.length).to.equal(0);

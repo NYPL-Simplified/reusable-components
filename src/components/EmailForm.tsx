@@ -37,18 +37,17 @@ export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
 
   async sendEmail(data: FormData): Promise<void> {
     await this.props.email(data);
-    this.setState({ sent: true });
+    this.setState({ sent: !this.props.error });
   }
 
   render(): JSX.Element {
-    let disabled = false;
-    let icon = this.state.sent ? <CheckSoloIcon iconId="1" /> : null;
+    let icon = this.state.sent ? <CheckSoloIcon /> : null;
     let hasEmail = !!this.props.library.urls_and_contact.contact_email;
     let alreadyValidated = this.props.library.urls_and_contact.validated !== "Not validated";
 
     let buttonText = hasEmail ? "Send Validation Email" : "No email address configured";
     let buttonContent = <span>{buttonText}{icon}</span>;
-    let infoText = alreadyValidated && !this.state.sent && !this.props.error && "Already validated";
+    let infoText = (alreadyValidated && !this.state.sent && !this.props.error) ? "Already validated" : null;
     let successText = `Validation email successfully sent to ${this.props.library.urls_and_contact.contact_email}`;
 
     return (
@@ -60,7 +59,7 @@ export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
           onSubmit={this.sendEmail}
           buttonContent={buttonContent}
           disableButton={!hasEmail}
-          infoText={alreadyValidated ? infoText : null}
+          infoText={infoText}
           errorText={this.props.error ? this.props.error.response : null}
           successText={this.state.sent ? successText : null}
         />
