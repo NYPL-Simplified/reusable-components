@@ -7,6 +7,7 @@ import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import Form from "./reusables/Form";
+import EmailForm from "./EmailForm";
 import Tabs from "./reusables/Tabs";
 
 export interface LibraryDetailPageDispatchProps {
@@ -40,7 +41,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     this.renderStages = this.renderStages.bind(this);
     this.state = {
       libraryStage: this.props.library.stages.library_stage,
-      registryStage: this.props.library.stages.registry_stage
+      registryStage: this.props.library.stages.registry_stage,
     };
   }
 
@@ -48,7 +49,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
 
     // Only create LibraryDetailItems for fields which actually have a value.
     let fields = Object.keys(category).filter(label => category[label]).map(label =>
-      <LibraryDetailItem key={label} label={label} value={category[label]} />
+      <LibraryDetailItem key={label} label={label} value={`${category[label]}`} />
     );
 
     return (
@@ -101,6 +102,8 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     return(
       <div>
         { this.renderStages() }
+        <hr></hr>
+        <EmailForm store={this.props.store} library={library} />
         <hr></hr>
         <div className="detail-content">
           <Tabs items={tabItems}/>

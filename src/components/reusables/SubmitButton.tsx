@@ -2,7 +2,9 @@ import * as React from "react";
 
 export interface SubmitButtonProps {
   callback: (event: __React.MouseEvent) => void;
-  text?: string;
+  content?: string | JSX.Element;
+  className?: string;
+  disabled?: boolean;
 }
 
 export default class SubmitButton extends React.Component<SubmitButtonProps, void> {
@@ -12,13 +14,15 @@ export default class SubmitButton extends React.Component<SubmitButtonProps, voi
   }
 
   render(): JSX.Element {
-   let text = this.props.text || "Submit";
+   let content = this.props.content || "Submit";
+   let className = this.props.className || "btn-default";
    return (
      <button
        type="submit"
-       className="btn btn-default"
+       className={`btn ${className}`}
        onClick={this.props.callback}
-    >{text}</button>
+       disabled={this.props.disabled || null}
+    >{content}</button>
    );
  }
 

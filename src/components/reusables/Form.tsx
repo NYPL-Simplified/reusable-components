@@ -4,14 +4,18 @@ import SubmitButton from "./SubmitButton";
 import Fieldset from "./Fieldset";
 
 export interface FormProps {
-  content: Array<JSX.Element>;
+  content?: Array<JSX.Element>;
   onSubmit: any;
   title?: string;
   hiddenName?: string;
   hiddenValue?: string;
-  buttonText?: string;
+  buttonContent?: string | JSX.Element;
+  buttonClass?: string;
   className?: string;
   errorText?: string;
+  successText?: string;
+  infoText?: string;
+  disableButton?: boolean;
 }
 
 export default class Form extends React.Component<FormProps, void> {
@@ -19,7 +23,7 @@ export default class Form extends React.Component<FormProps, void> {
   constructor(props: FormProps) {
     super(props);
     this.submit = this.submit.bind(this);
-    this.errorMessage = this.errorMessage.bind(this);
+    this.message = this.message.bind(this);
   }
 
   componentDidUpdate() {
@@ -35,21 +39,25 @@ export default class Form extends React.Component<FormProps, void> {
     this.props.onSubmit(data);
   };
 
-  errorMessage(errorText: string): JSX.Element {
-    let error = (
-      <p className="alert alert-danger" role="alert" ref="errorMessage" tabIndex={-1}>
-        Error: {errorText}
+  message(text: string, type: string): JSX.Element {
+    return (
+      <p className={`alert alert-${type}`} role="alert" ref={`${type}Message`} tabIndex={-1}>
+        {text}
       </p>
     );
-
-    return error;
   }
 
   render(): JSX.Element {
     return(
       <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
         {
-          this.props.errorText && this.errorMessage(this.props.errorText)
+          this.props.errorText && this.message(this.props.errorText, "danger")
+        }
+        {
+          this.props.successText && !this.props.errorText && this.message(this.props.successText, "success")
+        }
+        {
+          this.props.infoText && this.message(this.props.infoText, "info")
         }
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>
@@ -65,7 +73,9 @@ export default class Form extends React.Component<FormProps, void> {
         <br />
         <SubmitButton
           callback={this.submit}
-          text={this.props.buttonText && this.props.buttonText}
+          content={this.props.buttonContent && this.props.buttonContent}
+          className={this.props.buttonClass && this.props.buttonClass}
+          disabled={this.props.disableButton}
         />
       </form>
     );

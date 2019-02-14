@@ -22,7 +22,23 @@ describe("SubmitButton", () => {
   });
   it("optionally renders custom text", () => {
     expect(wrapper.text()).to.equal("Submit");
-    wrapper.setProps({ text: "Some other string" });
+    wrapper.setProps({ content: "Some other string" });
     expect(wrapper.text()).to.equal("Some other string");
+  });
+  it("optionally renders a component", () => {
+    let content = <span>Element!</span>;
+    wrapper.setProps({ content });
+    expect(wrapper.find("span").length).to.equal(1);
+    expect(wrapper.text()).to.equal("Element!");
+  });
+  it("optionally sets a className", () => {
+    expect(wrapper.prop("className")).to.equal("btn btn-default");
+    wrapper.setProps({ className: "custom-class" });
+    expect(wrapper.prop("className")).to.equal("btn custom-class");
+  });
+  it("optionally disables", () => {
+    expect(wrapper.find("[disabled=true]").length).to.equal(0);
+    wrapper.setProps({ disabled: true });
+    expect(wrapper.find("[disabled=true]").length).to.equal(1);
   });
 });
