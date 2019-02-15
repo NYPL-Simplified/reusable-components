@@ -7,7 +7,7 @@ import { State } from "../reducers/index";
 import LibraryDetailItem from "./LibraryDetailItem";
 import LibraryStageItem from "./LibraryStageItem";
 import Form from "./reusables/Form";
-import EmailForm from "./EmailForm";
+import EmailValidationForm from "./EmailValidationForm";
 import Tabs from "./reusables/Tabs";
 
 export interface LibraryDetailPageDispatchProps {
@@ -103,7 +103,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
       <div>
         { this.renderStages() }
         <hr></hr>
-        <EmailForm store={this.props.store} library={library} />
+        <EmailValidationForm store={this.props.store} library={library} />
         <hr></hr>
         <div className="detail-content">
           <Tabs items={tabItems}/>

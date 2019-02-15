@@ -13,7 +13,7 @@ export default class ActionCreator extends BaseActionCreator {
   static readonly GET_ALL_LIBRARIES = "GET_ALL_LIBRARIES";
   static readonly GET_ONE_LIBRARY = "GET_ONE_LIBRARY";
 
-  static readonly EMAIL = "EMAIL";
+  static readonly VALIDATE_EMAIL = "VALIDATE_EMAIL";
   static readonly EDIT_STAGES = "EDIT_STAGES";
 
   static readonly LOG_IN = "LOG_IN";
@@ -148,9 +148,9 @@ export default class ActionCreator extends BaseActionCreator {
     return this.fetchJSON<LibraryData>(ActionCreator.GET_ONE_LIBRARY, url).bind(this);
   }
 
-  email(data: FormData) {
+  validate_email(data: FormData) {
     let url = "/admin/libraries/email";
-    return this.postForm(ActionCreator.EMAIL, url, data).bind(this);
+    return this.postForm(ActionCreator.VALIDATE_EMAIL, url, data).bind(this);
   }
 
   editStages(data: FormData) {
