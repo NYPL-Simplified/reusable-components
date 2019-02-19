@@ -103,7 +103,11 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
       <div>
         { this.renderStages() }
         <hr></hr>
-        <EmailValidationForm store={this.props.store} library={library} />
+        <EmailValidationForm
+          store={this.props.store}
+          library={library}
+          fetchLibrary={this.props.fetchLibrary}
+        />
         <hr></hr>
         <div className="detail-content">
           <Tabs items={tabItems}/>

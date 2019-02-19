@@ -15,10 +15,11 @@ export interface EmailValidationFormState {
 export interface EmailValidationFormOwnProps {
   library: LibraryData;
   store: Store<State>;
+  fetchLibrary: (uuid: string) => LibraryData;
 }
 
 export interface EmailValidationFormDispatchProps {
-  validate_email: (data: FormData) => Promise<void>;
+  validateEmail: (data: FormData) => Promise<void>;
 }
 
 export interface EmailValidationFormStateProps {
@@ -36,7 +37,8 @@ export class EmailValidationForm extends React.Component<EmailValidationFormProp
   }
 
   async sendEmail(data: FormData): Promise<void> {
-    await this.props.validate_email(data);
+    await this.props.validateEmail(data);
+    await this.props.fetchLibrary(this.props.library.uuid);
     this.setState({ sent: !this.props.error });
   }
 
@@ -76,7 +78,7 @@ function mapStateToProps(state: State, ownProps: EmailValidationFormOwnProps) {
 function mapDispatchToProps(dispatch: Function, ownProps: EmailValidationFormOwnProps) {
   let actions = new ActionCreator(null);
   return {
-    validate_email: (data: FormData) => dispatch(actions.validate_email(data)),
+    validateEmail: (data: FormData) => dispatch(actions.validateEmail(data)),
   };
 }
 

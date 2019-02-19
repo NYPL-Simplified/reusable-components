@@ -327,7 +327,7 @@ describe("actions", () => {
     });
   });
 
-  describe("validate_email", () => {
+  describe("validateEmail", () => {
     it("validates an email address", async () => {
       const dispatch = stub();
       const formData = new (window as any).FormData();
@@ -338,7 +338,7 @@ describe("actions", () => {
       }));
       fetch = fetchMock;
 
-      await actions.validate_email(formData)(dispatch);
+      await actions.validateEmail(formData)(dispatch);
       expect(dispatch.callCount).to.equal(2);
 
       expect(dispatch.args[0][0].type).to.equal("VALIDATE_EMAIL_REQUEST");

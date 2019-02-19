@@ -8,7 +8,8 @@ import { EmailValidationForm } from "../EmailValidationForm";
 describe("EmailValidationForm", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
-  let validate_email: Sinon.SinonSpy;
+  let validateEmail: Sinon.SinonStub;
+  let fetchLibrary: Sinon.SinonStub;
 
   beforeEach(() => {
     let library = {
@@ -31,9 +32,15 @@ describe("EmailValidationForm", () => {
       }
     };
     store = buildStore();
-    validate_email = Sinon.stub();
+    validateEmail = Sinon.stub();
+    fetchLibrary = Sinon.stub();
     wrapper = Enzyme.mount(
-      <EmailValidationForm store={store} library={library} validate_email={validate_email}/>
+      <EmailValidationForm
+        store={store}
+        library={library}
+        validateEmail={validateEmail}
+        fetchLibrary={fetchLibrary}
+      />
     );
   });
 
@@ -108,14 +115,16 @@ describe("EmailValidationForm", () => {
   it("submits on click", async () => {
     expect(wrapper.state()["sent"]).to.be.false;
     wrapper.find("button").simulate("click");
-    expect(validate_email.callCount).to.equal(1);
-    expect(validate_email.args[0][0].get("uuid")).to.equal("UUID1");
+    expect(validateEmail.callCount).to.equal(1);
+    expect(validateEmail.args[0][0].get("uuid")).to.equal("UUID1");
 
     const pause = (): Promise<void> => {
       return new Promise<void>(resolve => setTimeout(resolve, 0));
     };
     await pause();
 
+    expect(fetchLibrary.callCount).to.equal(1);
+    expect(fetchLibrary.args[0][0]).to.equal("UUID1");
     expect(wrapper.state()["sent"]).to.be.true;
   });
 
