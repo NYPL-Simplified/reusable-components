@@ -3,12 +3,12 @@ import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import buildStore from "../../store";
-import { EmailForm } from "../EmailForm";
+import { EmailValidationForm } from "../EmailValidationForm";
 
-describe("EmailForm", () => {
+describe("EmailValidationForm", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let store;
-  let email: Sinon.SinonSpy;
+  let validate_email: Sinon.SinonSpy;
 
   beforeEach(() => {
     let library = {
@@ -31,9 +31,9 @@ describe("EmailForm", () => {
       }
     };
     store = buildStore();
-    email = Sinon.stub();
+    validate_email = Sinon.stub();
     wrapper = Enzyme.mount(
-      <EmailForm store={store} library={library} email={email}/>
+      <EmailValidationForm store={store} library={library} validate_email={validate_email}/>
     );
   });
 
@@ -55,14 +55,14 @@ describe("EmailForm", () => {
 
   it("displays the correct button content", () => {
     let button = wrapper.find("button");
-    expect(button.text()).to.contain("Send Validation Email");
+    expect(button.text()).to.contain("Validate email address");
     expect(button.prop("disabled")).not.to.be.true;
 
     let library = wrapper.prop("library");
     let validated = Object.assign(library.urls_and_contact, { "validated": "validation time" });
     wrapper.setProps({ library: Object.assign(library, { urls_and_contact: validated })});
     button = wrapper.find("button");
-    expect(button.text()).to.contain("Send Validation Email");
+    expect(button.text()).to.contain("Validate email address");
     expect(button.prop("disabled")).not.to.be.true;
 
     let noEmail = Object.assign(library.urls_and_contact, { contact_email: null });
@@ -100,7 +100,7 @@ describe("EmailForm", () => {
     info = wrapper.find(".alert-info");
     expect(info.length).to.equal(0);
 
-    wrapper.setProps({ error: { response: "Failed to send email" } });
+    wrapper.setProps({ error: { response: "Failed to validate email address" } });
     info = wrapper.find(".alert-info");
     expect(info.length).to.equal(0);
   });
@@ -108,8 +108,8 @@ describe("EmailForm", () => {
   it("submits on click", async () => {
     expect(wrapper.state()["sent"]).to.be.false;
     wrapper.find("button").simulate("click");
-    expect(email.callCount).to.equal(1);
-    expect(email.args[0][0].get("uuid")).to.equal("UUID1");
+    expect(validate_email.callCount).to.equal(1);
+    expect(validate_email.args[0][0].get("uuid")).to.equal("UUID1");
 
     const pause = (): Promise<void> => {
       return new Promise<void>(resolve => setTimeout(resolve, 0));
@@ -142,18 +142,18 @@ describe("EmailForm", () => {
 
     successMessage = wrapper.find(".alert-success");
     expect(successMessage.length).to.equal(1);
-    expect(successMessage.text()).to.equal("Validation email successfully sent to email1");
+    expect(successMessage.text()).to.equal("Successfully validated email1");
   });
 
   it("displays an error message", () => {
     let errorMessage = wrapper.find(".alert-danger");
     expect(errorMessage.length).to.equal(0);
 
-    wrapper.setProps({ error: { response: "Failed to send email" } });
+    wrapper.setProps({ error: { response: "Failed to validate email address" } });
 
     errorMessage = wrapper.find(".alert-danger");
     expect(errorMessage.length).to.equal(1);
-    expect(errorMessage.text()).to.equal("Failed to send email");
+    expect(errorMessage.text()).to.equal("Failed to validate email address");
   });
 
 });

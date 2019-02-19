@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.2
+#### Updated
+- Implemented functionality for manually validating an email address
+
 ### v1.0.1
 #### Added
 - Implemented form for re-sending validation emails

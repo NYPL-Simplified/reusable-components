@@ -31,6 +31,6 @@ export interface AdminData {
   username: string;
 }
 
-export interface EmailData {
+export interface ValidationData {
   error?: FetchErrorData;
 }

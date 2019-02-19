@@ -8,26 +8,26 @@ import { State } from "../reducers/index";
 import { LibraryData } from "../interfaces";
 import { CheckSoloIcon } from "@nypl/dgx-svg-icons";
 
-export interface EmailFormState {
+export interface EmailValidationFormState {
   sent: boolean;
 }
 
-export interface EmailFormOwnProps {
+export interface EmailValidationFormOwnProps {
   library: LibraryData;
   store: Store<State>;
 }
 
-export interface EmailFormDispatchProps {
-  email: (data: FormData) => Promise<void>;
+export interface EmailValidationFormDispatchProps {
+  validate_email: (data: FormData) => Promise<void>;
 }
 
-export interface EmailFormStateProps {
+export interface EmailValidationFormStateProps {
   error?: FetchErrorData;
 }
 
-export interface EmailFormProps extends EmailFormOwnProps, EmailFormDispatchProps, EmailFormStateProps {}
+export interface EmailValidationFormProps extends EmailValidationFormOwnProps, EmailValidationFormDispatchProps, EmailValidationFormStateProps {}
 
-export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
+export class EmailValidationForm extends React.Component<EmailValidationFormProps, EmailValidationFormState> {
 
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
   }
 
   async sendEmail(data: FormData): Promise<void> {
-    await this.props.email(data);
+    await this.props.validate_email(data);
     this.setState({ sent: !this.props.error });
   }
 
@@ -45,10 +45,10 @@ export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
     let hasEmail = !!this.props.library.urls_and_contact.contact_email;
     let alreadyValidated = this.props.library.urls_and_contact.validated !== "Not validated";
 
-    let buttonText = hasEmail ? "Send Validation Email" : "No email address configured";
+    let buttonText = hasEmail ? "Validate email address" : "No email address configured";
     let buttonContent = <span>{buttonText}{icon}</span>;
     let infoText = (alreadyValidated && !this.state.sent && !this.props.error) ? "Already validated" : null;
-    let successText = `Validation email successfully sent to ${this.props.library.urls_and_contact.contact_email}`;
+    let successText = `Successfully validated ${this.props.library.urls_and_contact.contact_email}`;
 
     return (
         <Form
@@ -67,22 +67,22 @@ export class EmailForm extends React.Component<EmailFormProps, EmailFormState> {
   }
 }
 
-function mapStateToProps(state: State, ownProps: EmailFormOwnProps) {
+function mapStateToProps(state: State, ownProps: EmailValidationFormOwnProps) {
   return {
-    error: state.email && (state.email.formError || state.email.fetchError)
+    error: state.validation && (state.validation.formError || state.validation.fetchError)
   };
 }
 
-function mapDispatchToProps(dispatch: Function, ownProps: EmailFormOwnProps) {
+function mapDispatchToProps(dispatch: Function, ownProps: EmailValidationFormOwnProps) {
   let actions = new ActionCreator(null);
   return {
-    email: (data: FormData) => dispatch(actions.email(data)),
+    validate_email: (data: FormData) => dispatch(actions.validate_email(data)),
   };
 }
 
-const ConnectedEmailForm = connect<EmailFormStateProps, EmailFormDispatchProps, EmailFormOwnProps>(
+const ConnectedEmailValidationForm = connect<EmailValidationFormStateProps, EmailValidationFormDispatchProps, EmailValidationFormOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(EmailForm);
+)(EmailValidationForm);
 
-export default ConnectedEmailForm;
+export default ConnectedEmailValidationForm;

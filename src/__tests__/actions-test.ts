@@ -327,8 +327,8 @@ describe("actions", () => {
     });
   });
 
-  describe("email", () => {
-    it("sends an email", async () => {
+  describe("validate_email", () => {
+    it("validates an email address", async () => {
       const dispatch = stub();
       const formData = new (window as any).FormData();
       formData.append("uuid", "abc");
@@ -338,11 +338,11 @@ describe("actions", () => {
       }));
       fetch = fetchMock;
 
-      await actions.email(formData)(dispatch);
+      await actions.validate_email(formData)(dispatch);
       expect(dispatch.callCount).to.equal(2);
 
-      expect(dispatch.args[0][0].type).to.equal("EMAIL_REQUEST");
-      expect(dispatch.args[1][0].type).to.equal("EMAIL_SUCCESS");
+      expect(dispatch.args[0][0].type).to.equal("VALIDATE_EMAIL_REQUEST");
+      expect(dispatch.args[1][0].type).to.equal("VALIDATE_EMAIL_SUCCESS");
 
       expect(fetchMock.callCount).to.equal(1);
       expect(fetchMock.args[0][0]).to.equal("/admin/libraries/email");
