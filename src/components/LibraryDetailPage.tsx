@@ -87,7 +87,7 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
     if (!this.props.library) {
       return null;
     }
-    let library = this.props.fullLibrary || this.props.library;
+    let library = (this.props.fullLibrary && this.props.fullLibrary.uuid === this.props.library.uuid) ? this.props.fullLibrary : this.props.library;
     let tabItems = {};
 
     const categories = {
@@ -103,7 +103,11 @@ export class LibraryDetailPage extends React.Component<LibraryDetailPageProps, L
       <div>
         { this.renderStages() }
         <hr></hr>
-        <EmailValidationForm store={this.props.store} library={library} />
+        <EmailValidationForm
+          store={this.props.store}
+          library={library}
+          fetchLibrary={this.props.fetchLibrary}
+        />
         <hr></hr>
         <div className="detail-content">
           <Tabs items={tabItems}/>

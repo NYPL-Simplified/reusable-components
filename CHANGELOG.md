@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.3
+#### Updated
+- Made the validation timestamp automatically update as soon as a user validates an email address 
+
 ### v1.0.2
 #### Updated
 - Implemented functionality for manually validating an email address

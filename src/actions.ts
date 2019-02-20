@@ -148,7 +148,7 @@ export default class ActionCreator extends BaseActionCreator {
     return this.fetchJSON<LibraryData>(ActionCreator.GET_ONE_LIBRARY, url).bind(this);
   }
 
-  validate_email(data: FormData) {
+  validateEmail(data: FormData) {
     let url = "/admin/libraries/email";
     return this.postForm(ActionCreator.VALIDATE_EMAIL, url, data).bind(this);
   }
