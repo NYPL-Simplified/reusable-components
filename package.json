@@ -4,7 +4,7 @@
   "description": "Reusable React components for Library Simplified interfaces",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NYPL-Simplified/reusables.git"
+    "url": "https://github.com/NYPL-Simplified/reusable-components.git"
   },
   "main": "dist/reusable-components.js",
   "author": "NYPL",
