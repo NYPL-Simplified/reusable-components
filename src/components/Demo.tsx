@@ -17,7 +17,7 @@ export interface DemoState {
 export default class Demo extends React.Component<void, DemoState> {
   constructor(props) {
     super(props);
-    this.state = { lights: true, errorText: null, successText: null, infoText: null }
+    this.state = { lights: true, errorText: null, successText: null, infoText: null };
     this.toggleLights = this.toggleLights.bind(this);
     this.makeTabItems = this.makeTabItems.bind(this);
     this.setError = this.setError.bind(this);
@@ -81,7 +81,7 @@ export default class Demo extends React.Component<void, DemoState> {
       <ul className="clearfix" style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}>
         { Object.entries(colors).map(color => this.makeColorSwatch(color)) }
       </ul>
-    )
+    );
   }
 
   makeColorSwatch(info: string[]): JSX.Element {
@@ -108,7 +108,7 @@ export default class Demo extends React.Component<void, DemoState> {
       color: "#000",
       background: "rgba(255, 255, 255, 0.7)",
       clipPath: "polygon(100% 50%, 0% 0%, 0% 50%, 100% 100%)"
-    }
+    };
     let style = {...swatch, ...{background: info[0]}};
     return (<li className="clearfix" style={liStyle}>
               <label>{info[1]}</label>
@@ -168,6 +168,6 @@ export default class Demo extends React.Component<void, DemoState> {
           <Tabs items={this.makeTabItems()}/>
         </div>
       </div>
-    )
+    );
   }
 }
