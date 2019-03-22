@@ -1,12 +1,12 @@
 {
-  "name": "simplified-registry-admin",
-  "version": "1.0.3",
-  "description": "Web Front-end for Library Simplified Circulation Manager Admin Interface",
+  "name": "reusable-components",
+  "version": "0.0.1",
+  "description": "Reusable React components for Library Simplified interfaces",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NYPL-Simplified/registry_admin.git"
+    "url": "https://github.com/NYPL-Simplified/reusables.git"
   },
-  "main": "dist/registry-admin.js",
+  "main": "dist/reusable-components.js",
   "author": "NYPL",
   "license": "Apache-2.0",
   "scripts": {

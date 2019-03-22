@@ -11,8 +11,8 @@ var config = {
   output: {
     path: "./dist",
     publicPath: "/",
-    filename: "registry-admin.js",
-    library: "RegistryAdmin",
+    filename: "reusable-components.js",
+    library: "ReusableComponents",
     libraryTarget: "umd"
   },
   plugins: [
@@ -22,7 +22,7 @@ var config = {
     new webpack.IgnorePlugin(/jsdom$/),
 
     // Extract separate css file.
-    new ExtractTextPlugin("registry-admin.css")
+    new ExtractTextPlugin("reusable-components.css")
   ],
   module: {
     loaders: [
