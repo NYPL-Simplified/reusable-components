@@ -66,7 +66,7 @@ export default class Demo extends React.Component<void, DemoState> {
     };
 
     let items = {};
-    Object.keys(COLORS).map((colorCategory) => {
+    Object.keys(COLORS).forEach((colorCategory: string) => {
       items[colorCategory] = this.makeColorList(COLORS[colorCategory]);
     });
     return items;
@@ -76,7 +76,7 @@ export default class Demo extends React.Component<void, DemoState> {
     this.setState({...this.state, ...{ lights: !this.state.lights }});
   }
 
-  makeColorList(colors): JSX.Element {
+  makeColorList(colors: {}): JSX.Element {
     return (
       <ul className="clearfix" style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}>
         { Object.entries(colors).map(color => this.makeColorSwatch(color)) }
