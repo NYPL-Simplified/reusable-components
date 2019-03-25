@@ -128,16 +128,26 @@ export default class Demo extends React.Component<void, DemoState> {
   }
 
   render(): JSX.Element {
+    let panelBody = <span>Your panel content goes here!</span>;
 
+    let fieldset = (
+      <Fieldset
+        key="fieldset"
+        legend="This is a fieldset"
+        elements={[
+          <Input key="input" label="An input field" name="name"/>
+        ]}
+      />
+    );
 
     return(
       <div id="demo">
         <Header text="Welcome to the demo page!" imgSrc="./logo.png" logOut="#" />
         <div className="list">
-          <Panel headerText="The default panel" body={<span>Your panel content goes here!</span>} />
-          <Panel headerText="Success panel" style="success" body={<span>Your panel content goes here!</span>} />
-          <Panel headerText="Warning panel" style="warning" body={<span>Your panel content goes here!</span>} />
-          <Panel headerText="Danger panel" style="danger" body={<span>Your panel content goes here!</span>} />
+          <Panel headerText="The default panel" body={panelBody} />
+          <Panel headerText="Success panel" style="success" body={panelBody} />
+          <Panel headerText="Warning panel" style="warning" body={panelBody} />
+          <Panel headerText="Danger panel" style="danger" body={panelBody} />
           <hr></hr>
           <section style={{display: "flex", justifyContent: "space-between", width: "42%", margin: "20px"}}>
             <SubmitButton callback={this.setError} content="Error message" />
@@ -147,7 +157,7 @@ export default class Demo extends React.Component<void, DemoState> {
           <Form
             title="This is a form"
             onSubmit={() => alert("You have submitted the form!")}
-            content={[<Fieldset key="fieldset" legend="This is a fieldset" elements={[<Input key="input" label="An input field" name="name"/>]}/>]}
+            content={[fieldset]}
             buttonContent="This is a submit button"
             errorText={this.state.errorText}
             successText={this.state.successText}
