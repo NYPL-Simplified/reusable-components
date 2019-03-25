@@ -1,6 +1,6 @@
 {
-  "name": "reusable-components",
-  "version": "0.0.1",
+  "name": "library-simplified-reusable-components",
+  "version": "1.0.0",
   "description": "Reusable React components for Library Simplified interfaces",
   "repository": {
     "type": "git",
