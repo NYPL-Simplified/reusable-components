@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/NYPL-Simplified/reusable-components.git"
   },
-  "main": "dist/reusable-components.js",
+  "main": "lib/index.js",
   "author": "NYPL",
   "license": "Apache-2.0",
   "scripts": {
