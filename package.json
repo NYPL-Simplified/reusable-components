@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/NYPL-Simplified/reusable-components.git"
   },
-  "main": "lib/index.js",
+  "main": "dist/reusable-components.js",
   "author": "NYPL",
   "license": "Apache-2.0",
   "scripts": {
@@ -14,8 +14,8 @@
     "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/**/*.ts src/**/*.tsx src/**/**/*.ts src/**/**/*.tsx && sass-lint -c .sass-lint.yml -v -q",
     "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js lib/__tests__/*.js lib/**/__tests__/*.js lib/**/**/__tests__/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
-    "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --config webpack.prod.config",
-    "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --config webpack.prod.config"
+    "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --mode development ---config webpack.config",
+    "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --mode production --config webpack.config"
   },
   "dependencies": {
     "@nypl/dgx-svg-icons": "^0.3.9",
@@ -31,24 +31,26 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "css-loader": "^0.24.0",
+    "css-loader": "^2.1.1",
     "enzyme": "^2.3.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
+    "file-loader": "^3.0.1",
     "jsdom": "^9.5.0",
     "json-loader": "^0.5.4",
+    "mini-css-extract-plugin": "^0.5.0",
     "mocha": "^5.2.0",
-    "node-sass": "^3.8.0",
-    "react-addons-test-utils": "^15.3.0",
+    "node-sass": "^4.11.0",
+    "react-addons-test-utils": "^15.6.2",
     "sass-lint": "^1.9.1",
-    "sass-loader": "^4.0.0",
-    "sinon": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "sinon": "^7.3.0",
+    "source-map-loader": "^0.2.4",
     "style-loader": "^0.13.1",
-    "ts-loader": "^0.8.2",
+    "ts-loader": "^5.3.3",
     "tslint": "^3.10.2",
-    "typescript": "2.1.6",
+    "typescript": "2.4.1",
     "typings": "^2.1.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }

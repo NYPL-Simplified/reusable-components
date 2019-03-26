@@ -14,7 +14,7 @@ export interface DemoState {
   infoText: string;
 }
 
-export default class Demo extends React.Component<void, DemoState> {
+export default class Demo extends React.Component<any, DemoState> {
   constructor(props) {
     super(props);
     this.state = { lights: true, errorText: null, successText: null, infoText: null };
@@ -110,11 +110,12 @@ export default class Demo extends React.Component<void, DemoState> {
       clipPath: "polygon(100% 50%, 0% 0%, 0% 50%, 100% 100%)"
     };
     let style = {...swatch, ...{background: info[0]}};
-    return (<li className="clearfix" style={liStyle}>
-              <label>{info[1]}</label>
-              <div style={style}><span style={hexCodeStyle}>{info[0]}</span></div>
-            </li>
-          );
+    return (
+      <li className="clearfix" style={liStyle} key={`${info}`}>
+        <label>{info[1]}</label>
+        <div style={style}><span style={hexCodeStyle}>{info[0]}</span></div>
+      </li>
+    );
   }
 
   setError() {
