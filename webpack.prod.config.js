@@ -13,7 +13,8 @@ var config = {
     publicPath: "/",
     filename: "reusable-components.js",
     library: "ReusableComponents",
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    globalObject: 'typeof self !== \'undefined\' ? self : this'
   },
   plugins: [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
@@ -52,12 +53,6 @@ var config = {
   resolve: {
     extensions: ["", ".js", ".ts", ".tsx", ".scss"],
     root: path.resolve(__dirname, "node_modules")
-  },
-  externals: {
-    'jsdom': 'window',
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': 'window'
   },
   devServer: {
     historyApiFallback: true
