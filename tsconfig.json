@@ -2,15 +2,16 @@
   "version": "1.8.2",
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "lib": ["es2015", "es2017", "dom"],
     "outDir": "lib",
     "rootDir": "src",
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["node", "react", "mocha"]
   },
   "exclude": [
     "lib",
     "node_modules",
-    "typings/main.d.ts",
-    "typings/main"
+    "src/Demo.tsx",
+    "src/index.tsx"
   ]
 }

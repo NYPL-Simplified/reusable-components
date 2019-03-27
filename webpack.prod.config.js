@@ -53,12 +53,12 @@ var config = {
     extensions: ["", ".js", ".ts", ".tsx", ".scss"],
     root: path.resolve(__dirname, "node_modules")
   },
-  externals: {
-    'jsdom': 'window',
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': 'window'
-  },
+  // externals: {
+  //   'jsdom': 'window',
+  //   'cheerio': 'window',
+  //   'react/lib/ExecutionEnvironment': true,
+  //   'react/lib/ReactContext': 'window'
+  // },
   devServer: {
     historyApiFallback: true
   }
