@@ -18,9 +18,10 @@ var config = {
   },
   plugins: [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
-    // jsdom is required by opds-web-client for server rendering, but causes
-    // errors in the browser even if it is never used, so we ignore it:
-    new webpack.IgnorePlugin(/jsdom$/),
+    // TODO:
+    // Make sure we still need jsdom.
+    // Possibly figure out a better way to ignore the rest of the plugins.
+    new webpack.IgnorePlugin(/jsdom$|ReactContext|react\/addons|react\/lib\/ExecutionEnvironment/),
 
     // Extract separate css file.
     new ExtractTextPlugin("reusable-components.css")
@@ -51,11 +52,7 @@ var config = {
     ],
   },
   resolve: {
-    extensions: ["", ".js", ".ts", ".tsx", ".scss"],
-    root: path.resolve(__dirname, "node_modules")
-  },
-  devServer: {
-    historyApiFallback: true
+    extensions: ["", ".js", ".json", ".ts", ".tsx", ".scss"]
   }
 };
 
