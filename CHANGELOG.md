@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.1
+#### Updated
+- Webpack configuration
+
 ### v1.1.0
 - Working version to use as a package on npm
 #### Added
