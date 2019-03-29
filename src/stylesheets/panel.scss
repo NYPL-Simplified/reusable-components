@@ -1,6 +1,10 @@
 .panel {
   display: block;
-  margin: .5em 0;
+  width: 100%;
+  margin: 0 0 .5em 0;
+  &.panel-instruction {
+    border-color: $blue;
+  }
 }
 
 .panel-heading {
@@ -47,6 +51,12 @@
     background: darken($red, 10);
   }
 }
+.panel-instruction .panel-heading {
+  background: darken($blue-tint, 10);
+  &:hover {
+    background: $blue;
+  }
+}
 
 .panel-default .panel-heading {
   &:hover {
@@ -54,7 +64,10 @@
   }
 }
 
+.static-panel {
+  pointer-events: none;
+}
+
 .panel-body {
   padding: 1.5em;
-  min-height: 600px;
 }
