@@ -1,19 +1,20 @@
 import * as React from "react";
 
 export interface SubmitButtonProps {
-  callback: (event: __React.MouseEvent) => void;
-  content?: string | JSX.Element;
+  callback: (event: React.MouseEvent) => void;
+  content?: string | Element;
   className?: string;
   disabled?: boolean;
 }
 
 export default class SubmitButton extends React.Component<SubmitButtonProps, void> {
+  props: SubmitButtonProps;
 
   constructor(props: SubmitButtonProps) {
     super(props);
   }
 
-  render(): JSX.Element {
+  render(): Element {
    let content = this.props.content || "Submit";
    let className = this.props.className || "btn-default";
    return (

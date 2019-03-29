@@ -12,7 +12,7 @@
   "scripts": {
     "prepublish": "typings install && npm run prod",
     "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/**/*.ts src/**/*.tsx src/**/**/*.ts src/**/**/*.tsx && sass-lint -c .sass-lint.yml -v -q",
-    "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js lib/__tests__/*.js lib/**/__tests__/*.js lib/**/**/__tests__/*.js",
+    "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js lib/**/__tests__/*.js lib/**/**/__tests__/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
     "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --mode development ---config webpack.config",
     "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --mode production --config webpack.config"
@@ -20,14 +20,8 @@
   "dependencies": {
     "@nypl/dgx-svg-icons": "^0.3.9",
     "bootstrap": "^3.3.6",
-    "opds-web-client": "0.1.27",
     "react": "^15.4.0",
-    "react-bootstrap": "0.29.4",
-    "react-dom": "^15.4.0",
-    "react-redux": "^5.0.6",
-    "react-router": "^3.2.0",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.1.0"
+    "react-dom": "^15.4.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -45,7 +39,8 @@
     "sinon": "^7.3.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.13.1",
-    "ts-loader": "^5.3.3",
+    "terser-webpack-plugin": "^1.2.3",
+    "ts-loader": "4.3.1",
     "tslint": "^3.10.2",
     "typescript": "2.4.1",
     "typings": "^2.1.1",

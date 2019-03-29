@@ -2,14 +2,14 @@ import { expect } from "chai";
 import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Form from "../Form";
-import SubmitButton from "../SubmitButton";
+import Form from "../src/components/Form";
+import SubmitButton from "../src/components/SubmitButton";
 
 describe("Form", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let content: Array<JSX.Element>;
-  let element1: JSX.Element;
-  let element2: JSX.Element;
+  let content: Array<Element>;
+  let element1: Element;
+  let element2: Element;
   let hiddenName = "hidden name";
   let hiddenValue = "hidden value";
   let onSubmit = Sinon.stub();

@@ -6,7 +6,9 @@ module.exports = {
   entry: {
     app: [
       "./src/stylesheets/app.scss",
-      "./src/index.tsx"
+      "./src/components.tsx"
+      // for dev
+      // "./src/index.tsx"
     ]
   },
 
@@ -19,7 +21,7 @@ module.exports = {
   },
 
   // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
+  // devtool: "source-map",
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
@@ -29,7 +31,7 @@ module.exports = {
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
     // jsdom is required by opds-web-client for server rendering, but causes
     // errors in the browser even if it is never used, so we ignore it:
-    new webpack.IgnorePlugin(/jsdom$/),
+    new webpack.IgnorePlugin(/jsdom$|ReactContext|react\/addons|react\/lib\/ExecutionEnvironment|reactDOM/),
     new MiniCssExtractPlugin({ filename: "reusable-components.css" })
   ],
 
@@ -38,11 +40,8 @@ module.exports = {
       // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
       {
         test: /\.tsx?$/,
-        loader: "ts-loader"
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        loader: "ts-loader",
+        exclude: ["/__tests__", path.resolve(__dirname, "__tests__/__tests__")]
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
@@ -70,14 +69,9 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
-    'jsdom': 'window',
-    'cheerio': 'window',
-    'react/addons': true,
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': 'window'
-  },
-
-  devServer: {
-    historyApiFallback: true
+    'react-addons-test-utils': true,
+    // Not needed for dev
+    'react': 'react',
+    'react-dom': 'reactDOM'
   }
 };

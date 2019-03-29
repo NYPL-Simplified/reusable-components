@@ -4,12 +4,12 @@ import SubmitButton from "./SubmitButton";
 import Fieldset from "./Fieldset";
 
 export interface FormProps {
-  content?: Array<JSX.Element>;
+  content?: Array<Element>;
   onSubmit: any;
   title?: string;
   hiddenName?: string;
   hiddenValue?: string;
-  buttonContent?: string | JSX.Element;
+  buttonContent?: string | Element;
   buttonClass?: string;
   className?: string;
   errorText?: string;
@@ -19,6 +19,9 @@ export interface FormProps {
 }
 
 export default class Form extends React.Component<FormProps, void> {
+  refs: any;
+  props: FormProps;
+
 
   constructor(props: FormProps) {
     super(props);
@@ -32,14 +35,14 @@ export default class Form extends React.Component<FormProps, void> {
     }
   }
 
-  submit(event: __React.MouseEvent): void {
+  submit(event: React.MouseEvent): void {
     event.preventDefault();
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
     this.props.onSubmit(data);
   };
 
-  message(text: string, type: string): JSX.Element {
+  message(text: string, type: string): Element {
     return (
       <p className={`alert alert-${type}`} role="alert" ref={`${type}Message`} tabIndex={-1}>
         {text}
@@ -47,7 +50,7 @@ export default class Form extends React.Component<FormProps, void> {
     );
   }
 
-  render(): JSX.Element {
+  render(): Element {
     return(
       <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
         {

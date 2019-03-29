@@ -7,7 +7,9 @@ export interface InputProps {
 }
 
 export default class Input extends React.Component<InputProps, void> {
-  render(): JSX.Element {
+  props: InputProps;
+
+  render(): Element {
     return(
       <div className="form-group">
         <label htmlFor={this.props.name}>{this.props.label}</label>

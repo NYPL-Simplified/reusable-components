@@ -15,6 +15,9 @@ export interface DemoState {
 }
 
 export default class Demo extends React.Component<any, DemoState> {
+  state: DemoState;
+  setState: any;
+
   constructor(props) {
     super(props);
     this.state = { lights: true, errorText: null, successText: null, infoText: null };
@@ -76,7 +79,7 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({...this.state, ...{ lights: !this.state.lights }});
   }
 
-  makeColorList(colors: {}): JSX.Element {
+  makeColorList(colors: {}): Element {
     return (
       <ul className="clearfix" style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}>
         { Object.entries(colors).map(color => this.makeColorSwatch(color)) }
@@ -84,7 +87,7 @@ export default class Demo extends React.Component<any, DemoState> {
     );
   }
 
-  makeColorSwatch(info: string[]): JSX.Element {
+  makeColorSwatch(info: string[] | {}): Element {
     const liStyle = {
       display: "flex",
       float: "left",
@@ -128,7 +131,7 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({lights: this.state.lights, errorText: null, successText: null, infoText: "INFO"});
   }
 
-  render(): JSX.Element {
+  render(): Element {
     let panelBody = <span>Your panel content goes here!</span>;
 
     let fieldset = (

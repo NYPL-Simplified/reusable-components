@@ -2,7 +2,7 @@ import * as React from "react";
 
 export interface TabsProps {
   items: {
-    [key: string]: JSX.Element;
+    [key: string]: Element;
   };
 }
 
@@ -11,6 +11,11 @@ export interface TabsState {
 }
 
 export default class Tabs extends React.Component<TabsProps, TabsState> {
+  props: TabsProps;
+  state: TabsState;
+  refs: any;
+  setState: any;
+
   constructor(props: TabsProps) {
     super(props);
     this.select = this.select.bind(this);
@@ -18,7 +23,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     this.state = { tab: 0 };
   }
 
-  select(e:  __React.KeyboardEvent & __React.MouseEvent) {
+  select(e:  React.KeyboardEvent & React.MouseEvent) {
     let idx = parseInt((e.currentTarget as HTMLElement).id);
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
@@ -50,9 +55,9 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     }
   }
 
-  makeTabs(): Array<Array<JSX.Element>> {
-    let navs = [] as Array<JSX.Element>;
-    let content = [] as Array<JSX.Element>;
+  makeTabs(): Array<Array<Element>> {
+    let navs = [] as Array<Element>;
+    let content = [] as Array<Element>;
     let items = Object.entries(this.props.items);
 
     items.map((item, idx) => {
@@ -96,7 +101,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     return [navs, content];
   }
 
-  render(): JSX.Element {
+  render(): Element {
     let [navs, content] = this.makeTabs();
     return (
       <section className="tabs">
