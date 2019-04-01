@@ -1,6 +1,6 @@
 {
   "name": "library-simplified-reusable-components",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Reusable React components for Library Simplified interfaces",
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
     "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/components/*.ts src/components/*.tsx && sass-lint -c .sass-lint.yml -v -q",
     "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
-    "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --mode development ---config webpack.config",
-    "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --mode production --config webpack.config"
+    "dev": "webpack --progress --display-modules --config webpack.dev.js",
+    "prod": "webpack --progress --display-modules --config webpack.prod.js"
   },
   "dependencies": {
     "@nypl/dgx-svg-icons": "^0.3.9",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "clean-webpack-plugin": "^2.0.1",
     "css-loader": "^2.1.1",
     "enzyme": "^2.3.0",
     "file-loader": "^3.0.1",
@@ -46,6 +47,7 @@
     "typings": "^2.1.1",
     "url-loader": "^0.5.7",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-merge": "^4.2.1"
   }
 }

@@ -4,14 +4,10 @@
     "module": "commonjs",
     "target": "es5",
     "lib": ["es2017", "dom"],
-    // "lib": ["es6", "es2017", "dom"],
     "outDir": "lib",
     "rootDir": ".",
     "jsx": "react"
   },
-  // "include": [
-  //   "src/**/*"
-  // ],
   "exclude": [
     "lib",
     "node_modules",
