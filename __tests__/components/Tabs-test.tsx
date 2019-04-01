@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Tabs from "../src/components/Tabs";
+import Tabs from "../../src/components/Tabs";
 
 describe("Tabs", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;

@@ -4,7 +4,7 @@ import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
 
-import SubmitButton from "../src/components/SubmitButton";
+import SubmitButton from "../../src/components/SubmitButton";
 
 describe("SubmitButton", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;

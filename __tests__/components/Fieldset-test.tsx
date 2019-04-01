@@ -1,9 +1,9 @@
-/// <reference path="../typings/globals/mocha/index.d.ts" />
+/// <reference path="../../typings/globals/mocha/index.d.ts" />
 
 import { expect } from "chai";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Fieldset from "../src/components/Fieldset";
+import Fieldset from "../../src/components/Fieldset";
 
 describe("Fieldset", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;

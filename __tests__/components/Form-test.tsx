@@ -2,8 +2,7 @@ import { expect } from "chai";
 import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Form from "../src/components/Form";
-import SubmitButton from "../src/components/SubmitButton";
+import Form from "../../src/components/Form";
 
 describe("Form", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
