@@ -18,8 +18,11 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    // jsdom is required by opds-web-client for server rendering, but causes
-    // errors in the browser even if it is never used, so we ignore it:
+    // TODO: we need to figure out if jsdom is still being used since
+    // the opds-web-client package is no longer being imported. It is
+    // currently used for unit tests.
+    // Also need to investigate if this is the best practice for ignoring plugins
+    // or if externals works is good enough.
     new webpack.IgnorePlugin(
       /jsdom$|ReactContext|react\/addons|react\/lib\/ExecutionEnvironment|reactDOM/
     ),
