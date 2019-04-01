@@ -1,5 +1,5 @@
-var webpack = require("webpack");
-var path = require("path");
+const webpack = require("webpack");
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -28,11 +28,17 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+    }),
     // jsdom is required by opds-web-client for server rendering, but causes
     // errors in the browser even if it is never used, so we ignore it:
-    new webpack.IgnorePlugin(/jsdom$|ReactContext|react\/addons|react\/lib\/ExecutionEnvironment|reactDOM/),
-    new MiniCssExtractPlugin({ filename: "reusable-components.css" })
+    new webpack.IgnorePlugin(
+      /jsdom$|ReactContext|react\/addons|react\/lib\/ExecutionEnvironment|reactDOM/
+    ),
+    new MiniCssExtractPlugin({
+      filename: "reusable-components.css"
+    })
   ],
 
   module: {
@@ -41,7 +47,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
-        exclude: ["/__tests__", path.resolve(__dirname, "__tests__/__tests__")]
+        // exclude: ["/__tests__", path.resolve(__dirname, "__tests__/__tests__")]
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {

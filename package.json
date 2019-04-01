@@ -11,8 +11,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "prepublish": "typings install && npm run prod",
-    "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/**/*.ts src/**/*.tsx src/**/**/*.ts src/**/**/*.tsx && sass-lint -c .sass-lint.yml -v -q",
-    "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js lib/**/__tests__/*.js lib/**/**/__tests__/*.js",
+    "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/components/*.ts src/components/*.tsx && sass-lint -c .sass-lint.yml -v -q",
+    "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
     "dev": "rm -rf dist && NODE_ENV=development webpack --watch --progress --display-modules --mode development ---config webpack.config",
     "prod": "rm -rf dist && NODE_ENV=production webpack -p --progress --display-modules --mode production --config webpack.config"
