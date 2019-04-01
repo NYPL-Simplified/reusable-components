@@ -10,7 +10,7 @@ module.exports = merge(common, {
   
   entry: {
     app: [
-      "./src/stylesheets/app.scss",
+      "./src/stylesheets/demo.scss",
       "./src/index.tsx"
     ]
   },
