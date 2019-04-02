@@ -15,7 +15,10 @@
     "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js lib/__tests__/**/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
     "dev": "webpack --progress --display-modules --config webpack.dev.js",
-    "prod": "webpack --progress --display-modules --config webpack.prod.js"
+    "prod": "webpack --progress --display-modules --config webpack.prod.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
     "@nypl/dgx-svg-icons": "^0.3.9",
@@ -23,6 +26,13 @@
     "react-dom": "^15.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-links": "^5.0.6",
+    "@storybook/addons": "^5.0.6",
+    "@storybook/react": "^5.0.6",
+    "@storybook/storybook-deployer": "^2.8.1",
+    "babel-loader": "^8.0.5",
     "bootstrap": "^3.3.6",
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^2.0.1",

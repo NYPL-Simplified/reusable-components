@@ -5,7 +5,7 @@
     "target": "es5",
     "lib": ["es2017", "dom"],
     "outDir": "lib",
-    "rootDir": ".",
+    "rootDirs": [".", "stories"],
     "jsx": "react"
   },
   "exclude": [
