@@ -6,8 +6,7 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 // You can also define your own styles.  If you do not pass in a value for the style prop,
 // the style will be set to "default".
 
-// There are two ways to populate the panel with content: you can use either the body prop,
-// which accepts a JSX element, or the text prop, which accepts an HTML string.
+// Populate the panel via the content prop. It accepts either a JSX element or an HTML string.
 
 // To make a static (as opposed to a collapsible) Panel, set the collapsible prop to false.
 // This will: remove the open/close icon; prevent the panel from opening/closing when the header
@@ -17,8 +16,7 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 export interface PanelOwnProps {
   style?: string;
   headerText: string;
-  body?: JSX.Element;
-  text?: string;
+  content: JSX.Element | string;
   openByDefault?: boolean;
   collapsible?: boolean;
 }
@@ -65,9 +63,9 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     return (
       <div className={`panel panel-${this.props.style} ${staticPanel}`}>
         { this.renderHeader() }
-        { this.props.text ?
-          <section className={`panel-body ${this.state.display}`} dangerouslySetInnerHTML={{ __html: this.props.text }} /> :
-          <section className={`panel-body ${this.state.display}`}>{this.props.body}</section>
+        { typeof(this.props.content) === "string" ?
+          <section className={`panel-body ${this.state.display}`} dangerouslySetInnerHTML={{ __html: this.props.content }} /> :
+          <section className={`panel-body ${this.state.display}`}>{this.props.content}</section>
         }
       </div>
     );

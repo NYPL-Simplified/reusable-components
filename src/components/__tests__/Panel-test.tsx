@@ -9,13 +9,13 @@ describe("Panel", () => {
   let wrapper: Enzyme.CommonWrapper<any, any, {}>;
   let style;
   let headerText;
-  let body;
+  let content;
 
   beforeEach(() => {
     headerText = "test panel header!";
-    body = <div>Test panel body</div>;
+    content = <div>Test panel content</div>;
     wrapper = Enzyme.mount(
-      <Panel headerText={headerText} body={body} />
+      <Panel headerText={headerText} content={content} />
     );
   });
 
@@ -42,16 +42,16 @@ describe("Panel", () => {
     expect(svg.find("title").text()).to.equal("NYPL Wedge Down Icon");
   });
 
-  it("should optionally render a body component", () => {
+  it("should optionally render a JSX component passed to it as a 'content' prop", () => {
     let panelBody = wrapper.find("section");
     expect(panelBody.length).to.equal(1);
     let bodyContent = panelBody.children().at(0).html();
-    expect(bodyContent).to.contain("Test panel body");
+    expect(bodyContent).to.contain("Test panel content");
   });
 
   it("should optionally render an HTML string", () => {
     let text = "<form><label>Here is a label!</label><input type='text' /></form>";
-    wrapper.setProps({ text });
+    wrapper.setProps({ content: text });
     let panelBody = wrapper.find(".panel-body");
     expect(panelBody.prop("dangerouslySetInnerHTML")["__html"]).to.equal(text);
     expect(panelBody.text()).to.equal("Here is a label!");
@@ -59,7 +59,7 @@ describe("Panel", () => {
 
   it("should optionally be open by default", () => {
     wrapper = Enzyme.mount(
-      <Panel headerText={"OPEN"} openByDefault={true} />
+      <Panel headerText={"OPEN"} openByDefault={true} content={<div></div>} />
     );
     expect(wrapper.state()["display"]).not.to.equal("collapse");
     let panelBody = wrapper.find(".panel-body");
@@ -94,7 +94,7 @@ describe("Panel", () => {
 
   it("should optionally render a static panel", () => {
     wrapper = Enzyme.mount(
-      <Panel headerText={"STATIC"} collapsible={false} />
+      <Panel headerText={"STATIC"} collapsible={false} content={<div></div>} />
     );
 
     expect(wrapper.state()["display"]).not.to.equal("collapse");

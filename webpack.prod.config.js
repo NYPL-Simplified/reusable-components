@@ -13,8 +13,7 @@ var config = {
     publicPath: "/",
     filename: "reusable-components.js",
     library: "ReusableComponents",
-    libraryTarget: "umd",
-    globalObject: 'typeof self !== \'undefined\' ? self : this'
+    libraryTarget: "umd"
   },
   plugins: [
     new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
