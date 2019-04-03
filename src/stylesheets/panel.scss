@@ -1,25 +1,27 @@
 .panel {
   display: block;
-  margin: .5em 0;
-}
-
-.panel-heading {
-  display: flex;
   width: 100%;
-  height: 100%;
-  padding: 1em 1.5em;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  justify-content: space-between;
-  align-items: center;
-  transition: background .5s;
-  span {
-    color: $black;
-    transition: color .5s;
-    font-weight: bold;
+  margin: 0 0 .5em 0;
+  &.panel-instruction {
+    border-color: $blue;
   }
-  &:hover {
+  .panel-heading {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 1em 1.5em;
+    border: 0;
+    justify-content: space-between;
+    align-items: center;
+    transition: background .5s;
+    span {
+      color: $black;
+      transition: color .5s;
+      font-weight: bold;
+    }
+  }
+  &:not(.static-panel) > .panel-heading:hover {
+    cursor: pointer;
     svg {
       fill: $white;
     }
@@ -29,26 +31,41 @@
   }
 }
 
-.panel-success .panel-heading {
-  background: tint($green-dark, 30%);
-  &:hover {
+
+.panel-success {
+  .panel-heading {
+    background: tint($green-dark, 30%);
+  }
+  &:not(.static-panel) > .panel-heading:hover {
     background: $green-dark;
   }
 }
-.panel-warning .panel-heading {
-  background: tint($orange, 30%);
-  &:hover {
+.panel-warning {
+  .panel-heading {
+    background: tint($orange, 30%);
+  }
+  &:not(.static-panel) > .panel-heading:hover {
     background: darken($orange, 25);
   }
 }
-.panel-danger .panel-heading {
-  background: lighten($red, 10);
-  &:hover {
+.panel-danger {
+  .panel-heading {
+    background: lighten($red, 10);
+  }
+  &:not(.static-panel) > .panel-heading:hover {
     background: darken($red, 10);
   }
 }
+.panel-instruction {
+  .panel-heading {
+    background: darken($blue-tint, 10);
+    &:not(.static-panel) > .panel-heading:hover {
+      background: $blue;
+    }
+  }
+}
 
-.panel-default .panel-heading {
+.panel-default:not(.static-panel) > .panel-heading {
   &:hover {
     background: lighten($gray, 10);
   }
@@ -56,5 +73,4 @@
 
 .panel-body {
   padding: 1.5em;
-  min-height: 600px;
 }

@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.2
+#### Updated
+- Added additional configuration options to the Panel component
+
 ### v1.1.1
 #### Updated
 - Webpack configuration
