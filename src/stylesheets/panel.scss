@@ -43,9 +43,9 @@
 .panel-warning {
   .panel-heading {
     background: tint($orange, 30%);
-    &:not(.static-panel) > .panel-heading:hover {
-      background: darken($orange, 25);
-    }
+  }
+  &:not(.static-panel) > .panel-heading:hover {
+    background: darken($orange, 25);
   }
 }
 .panel-danger {
