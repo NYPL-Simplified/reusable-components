@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.2.0
+#### Added
+- Storybook for documentation of the components. A static build can be seen on the [Github repo](https://nypl-simplified.github.io/reusable-components/).
+
 ### v1.1.2
 #### Updated
 - Updated to Webpack 4! This update also includes updates to many other npm packages.

@@ -1,13 +1,36 @@
 module.exports = async ({ config }) => {
-    config.module.rules.push({
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader'
-    });
-    config.module.rules.push({
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-    });
-    config.resolve.extensions.push('.ts', '.tsx');
+  config.module.rules = config.module.rules.concat([
+    {
+      test: /\.(ts|tsx)$/,
+      loader: 'ts-loader'
+    },
+    {
+      test: /\.stories\.tsx?$/,
+      loaders: [
+        {
+          loader: require.resolve('@storybook/addon-storysource/loader'),
+          options: {
+            parser: 'typescript',
+            prettierConfig: {
+              printWidth: 80,
+              trailingComma: 'es5',
+              tabWidth: 2,
+            },
+          },
+        },
+      ],
+      enforce: 'pre',
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
+    },
+    {
+      test: /\.(ttf|woff|eot|svg|png|woff2|gif|jpg)(\?[\s\S]+)?$/,
+      loader: 'url-loader?limit=100000'
+    }
+  ]);
+  config.resolve.extensions.push('.ts', '.tsx');
 
-    return config;
+  return config;
 };
