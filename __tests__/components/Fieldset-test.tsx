@@ -1,5 +1,3 @@
-/// <reference path="../../typings/globals/mocha/index.d.ts" />
-
 import { expect } from "chai";
 import * as Enzyme from "enzyme";
 import * as React from "react";

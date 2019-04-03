@@ -8,11 +8,13 @@
     "rootDir": ".",
     "jsx": "react"
   },
+  "include": [
+    "src/**/*",
+    "typings/index.d.ts"
+  ],
   "exclude": [
     "lib",
     "node_modules",
-    "typings",
-    "typings/main.d.ts",
-    "typings/main"
+    "typings"
   ]
 }
