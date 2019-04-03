@@ -6,7 +6,8 @@
     "lib": ["es2017", "dom"],
     "outDir": "lib",
     "rootDirs": [".", "stories"],
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["node"]
   },
   "exclude": [
     "lib",
