@@ -14,9 +14,8 @@ export interface DemoState {
   infoText: string;
 }
 
-export default class Demo extends React.Component<any, DemoState> {
+export default class Demo extends React.Component<{}, DemoState> {
   state: DemoState;
-  setState: any;
 
   constructor(props) {
     super(props);
@@ -79,15 +78,18 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({...this.state, ...{ lights: !this.state.lights }});
   }
 
-  makeColorList(colors: {}): Element {
+  makeColorList(colors: {}): JSX.Element {
     return (
-      <ul className="clearfix" style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}>
+      <ul
+        className="clearfix"
+        style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}
+      >
         { Object.entries(colors).map(color => this.makeColorSwatch(color)) }
       </ul>
     );
   }
 
-  makeColorSwatch(info: string[] | {}): Element {
+  makeColorSwatch(info: string[] | {}): JSX.Element {
     const liStyle = {
       display: "flex",
       float: "left",
@@ -95,7 +97,7 @@ export default class Demo extends React.Component<any, DemoState> {
       alignItems: "center",
       margin: "20px",
       color: `${this.state.lights ? "#000" : "#fff"}`
-    };
+    } as React.CSSProperties;
     const swatch = {
       height: "140px",
       width: "140px",
@@ -111,7 +113,7 @@ export default class Demo extends React.Component<any, DemoState> {
       color: "#000",
       background: "rgba(255, 255, 255, 0.7)",
       clipPath: "polygon(100% 50%, 0% 0%, 0% 50%, 100% 100%)"
-    };
+    } as React.CSSProperties;
     let style = {...swatch, ...{background: info[0]}};
     return (
       <li className="clearfix" style={liStyle} key={`${info}`}>
@@ -131,7 +133,7 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({lights: this.state.lights, errorText: null, successText: null, infoText: "INFO"});
   }
 
-  render(): Element {
+  render(): JSX.Element {
     let panelBody = <span>Your panel content goes here!</span>;
 
     let fieldset = (

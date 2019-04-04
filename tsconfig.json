@@ -7,7 +7,7 @@
     "outDir": "lib",
     "rootDir": ".",
     "jsx": "react",
-    "types": ["mocha"]
+    "types": ["mocha", "node"]
   },
   "include": [
     "src",

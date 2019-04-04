@@ -6,7 +6,7 @@ import * as Sinon from "sinon";
 import Panel from "../../src/components/Panel";
 
 describe("Panel", () => {
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
+  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
   let style;
   let headerText;
   let body;

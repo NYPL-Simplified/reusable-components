@@ -4,7 +4,7 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 export interface PanelOwnProps {
   style?: string;
   headerText: string;
-  body: Element;
+  body: JSX.Element;
 }
 
 export interface PanelState {
@@ -12,12 +12,8 @@ export interface PanelState {
 }
 
 export default class Panel extends React.Component<PanelOwnProps, PanelState> {
-  state: PanelState;
-  props: PanelOwnProps;
-  setState: any;
-
-  constructor() {
-    super();
+  constructor(props: PanelOwnProps) {
+    super(props);
     this.renderHeader = this.renderHeader.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = { display: "collapse" };
@@ -28,7 +24,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     this.setState({ display });
   }
 
-  renderHeader(): Element {
+  renderHeader(): JSX.Element {
     let icon = this.state.display === "collapse" ? "down-icon" : "up-icon";
     return (
       <button className="panel-heading" onClick={this.toggle}>
@@ -38,11 +34,13 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     );
   }
 
-  render(): Element {
+  render(): JSX.Element {
     return (
       <li className={`panel panel-${this.props.style ? this.props.style : "default"}`}>
         { this.renderHeader() }
-        <section className={`panel-body ${this.state.display}`}>{this.props.body}</section>
+        <section className={`panel-body ${this.state.display}`}>
+          {this.props.body}
+        </section>
       </li>
     );
   }
