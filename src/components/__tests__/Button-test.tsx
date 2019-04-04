@@ -4,14 +4,14 @@ import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
 
-import SubmitButton from "../SubmitButton";
+import Button from "../Button";
 
-describe("SubmitButton", () => {
+describe("Button", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
   let callback = stub();
   beforeEach(() => {
     wrapper = shallow(
-      <SubmitButton
+      <Button
         callback={callback}
       />
     );
