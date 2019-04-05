@@ -9,30 +9,35 @@ const panel = storiesOf('Components/Panel', module)
   .add('default', () =>
     <Panel
       headerText={text('headerText', 'Default Panel Title')}
-      body={panelContent}
+      content={panelContent}
     />
   )
   .add('all panels with styles', () => {
     return [
       <Panel
         headerText="Default Panel"
-        style={text('style', '')}
-        body={panelContent}
+        style={text('style', 'default')}
+        content={panelContent}
       />,
       <Panel
         headerText="Success Panel"
         style="success"
-        body={panelContent}
+        content={panelContent}
       />,
       <Panel
         headerText="Warning Panel"
         style="warning"
-        body={panelContent}
+        content={panelContent}
       />,
       <Panel
         headerText="Danger Panel"
         style="danger"
-        body={panelContent}
+        content={panelContent}
+      />,
+      <Panel
+        headerText="Instruction Panel"
+        style="instruction"
+        content={panelContent}
       />
     ]
   });

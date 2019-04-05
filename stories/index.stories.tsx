@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { storiesOf, addDecorator, addParameters } from '@storybook/react';
+import { storiesOf, addDecorator } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { withKnobs, text } from '@storybook/addon-knobs';
@@ -10,7 +10,7 @@ import header from './header.stories';
 import panel from './panel.stories';
 import tabs from './tabs.stories';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../src/stylesheets/app.scss';
 
 const styles = {
@@ -28,7 +28,3 @@ storiesOf('Home', module)
       <h2>NYPL Simplified Reusable Components</h2>
     </div>
   );
-
-header;
-panel;
-tabs;

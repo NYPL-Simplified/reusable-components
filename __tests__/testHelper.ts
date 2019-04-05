@@ -4,9 +4,6 @@ import { jsdom } from "jsdom";
 const doc = jsdom("<!doctype html><html><body></body></html>");
 const win = doc.defaultView;
 
-declare const global: any;
-declare const require: any;
-
 global["document"] = doc;
 global["window"] = win;
 

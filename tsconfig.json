@@ -7,13 +7,14 @@
     "outDir": "lib",
     "rootDirs": [".", "stories"],
     "jsx": "react",
-    "types": ["node"]
+    "types": ["mocha", "node"]
   },
+  "include": [
+    "src",
+    "__tests__"
+  ],
   "exclude": [
     "lib",
-    "node_modules",
-    "typings",
-    "typings/main.d.ts",
-    "typings/main"
+    "node_modules"
   ]
 }

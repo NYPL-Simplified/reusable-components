@@ -1,4 +1,4 @@
 src/*
 lib/*
-typings/*
 *~
+__tests__/*

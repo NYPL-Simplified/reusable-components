@@ -8,12 +8,8 @@ export interface HeaderProps {
   logOut?: string;
 }
 
-declare const require: any;
-
-export default class Header extends React.Component<HeaderProps, void> {
-  props: HeaderProps;
-
-  render(): Element {
+export default class Header extends React.Component<HeaderProps, {}> {
+  render(): JSX.Element {
     let src = this.props.imgSrc ? require(`${this.props.imgSrc}`) : "";
     return(
       <nav className="navbar navbar-default">

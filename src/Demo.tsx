@@ -14,10 +14,7 @@ export interface DemoState {
   infoText: string;
 }
 
-export default class Demo extends React.Component<any, DemoState> {
-  state: DemoState;
-  setState: any;
-
+export default class Demo extends React.Component<{}, DemoState> {
   constructor(props) {
     super(props);
     this.state = { lights: true, errorText: null, successText: null, infoText: null };
@@ -79,15 +76,18 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({...this.state, ...{ lights: !this.state.lights }});
   }
 
-  makeColorList(colors: {}): Element {
+  makeColorList(colors: {}): JSX.Element {
     return (
-      <ul className="clearfix" style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}>
+      <ul
+        className="clearfix"
+        style={{margin: "0", backgroundColor: `${this.state.lights ? "#fff" : "#000"}`}}
+      >
         { Object.entries(colors).map(color => this.makeColorSwatch(color)) }
       </ul>
     );
   }
 
-  makeColorSwatch(info: string[] | {}): Element {
+  makeColorSwatch(info: string[] | {}): JSX.Element {
     const liStyle = {
       display: "flex",
       float: "left",
@@ -95,7 +95,7 @@ export default class Demo extends React.Component<any, DemoState> {
       alignItems: "center",
       margin: "20px",
       color: `${this.state.lights ? "#000" : "#fff"}`
-    };
+    } as React.CSSProperties;
     const swatch = {
       height: "140px",
       width: "140px",
@@ -111,7 +111,7 @@ export default class Demo extends React.Component<any, DemoState> {
       color: "#000",
       background: "rgba(255, 255, 255, 0.7)",
       clipPath: "polygon(100% 50%, 0% 0%, 0% 50%, 100% 100%)"
-    };
+    } as React.CSSProperties;
     let style = {...swatch, ...{background: info[0]}};
     return (
       <li className="clearfix" style={liStyle} key={`${info}`}>
@@ -131,10 +131,10 @@ export default class Demo extends React.Component<any, DemoState> {
     this.setState({lights: this.state.lights, errorText: null, successText: null, infoText: "INFO"});
   }
 
-  render(): Element {
+  render(): JSX.Element {
     let panelBody = <span>Your panel content goes here!</span>;
 
-    let fieldset = (
+    let fieldset: JSX.Element = (
       <Fieldset
         key="fieldset"
         legend="This is a fieldset"
@@ -144,14 +144,14 @@ export default class Demo extends React.Component<any, DemoState> {
       />
     );
 
-    return(
+    return (
       <div id="demo">
         <Header text="Welcome to the demo page!" imgSrc="./logo.png" logOut="#" />
         <div className="list">
-          <Panel headerText="The default panel" body={panelBody} />
-          <Panel headerText="Success panel" style="success" body={panelBody} />
-          <Panel headerText="Warning panel" style="warning" body={panelBody} />
-          <Panel headerText="Danger panel" style="danger" body={panelBody} />
+          <Panel headerText="The default panel" content={panelBody} />
+          <Panel headerText="Success panel" style="success" content={panelBody} />
+          <Panel headerText="Warning panel" style="warning" content={panelBody} />
+          <Panel headerText="Danger panel" style="danger" content={panelBody} />
           <hr></hr>
           <section style={{display: "flex", justifyContent: "space-between", width: "42%", margin: "20px"}}>
             <SubmitButton callback={this.setError} content="Error message" />

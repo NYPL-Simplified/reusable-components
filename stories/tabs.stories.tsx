@@ -66,14 +66,14 @@ const tabs = storiesOf('Components/Tabs', module)
         alignItems: "center",
         margin: "20px",
         color: "#000"
-      };
+      } as React.CSSProperties;
       const swatch = {
         height: "140px",
         width: "140px",
         clipPath: "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
         display: "flex",
         alignItems: "center"
-      };
+      } as React.CSSProperties;
       const hexCodeStyle = {
         display: "block",
         width: "100%",
@@ -82,7 +82,7 @@ const tabs = storiesOf('Components/Tabs', module)
         color: "#000",
         background: "rgba(255, 255, 255, 0.7)",
         clipPath: "polygon(100% 50%, 0% 0%, 0% 50%, 100% 100%)"
-      };
+      } as React.CSSProperties;
       let style = {...swatch, ...{background: info[0]}};
       return (
         <li className="clearfix" style={liStyle} key={`${info}`}>
