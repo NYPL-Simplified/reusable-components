@@ -15,8 +15,6 @@ export interface DemoState {
 }
 
 export default class Demo extends React.Component<{}, DemoState> {
-  state: DemoState;
-
   constructor(props) {
     super(props);
     this.state = { lights: true, errorText: null, successText: null, infoText: null };
