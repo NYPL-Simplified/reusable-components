@@ -59,9 +59,9 @@
 .panel-instruction {
   .panel-heading {
     background: darken($blue-tint, 10);
-    &:not(.static-panel) > .panel-heading:hover {
-      background: $blue;
-    }
+  }
+  &:not(.static-panel) > .panel-heading:hover {
+    background: $blue;
   }
 }
 

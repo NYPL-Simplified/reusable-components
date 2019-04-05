@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.1.3
+#### Fixed
+- Fixed a minor styling bug involving the Panel component's behavior on hover
+
 ### v1.1.2
 #### Updated
 - Added additional configuration options to the Panel component
