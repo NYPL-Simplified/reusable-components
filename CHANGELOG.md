@@ -1,12 +1,15 @@
 ## Changelog
 
-### v1.1.2
+### v1.2.0
 #### Updated
 - Updated to Webpack 4! This update also includes updates to many other npm packages.
 - Tests were moved from inside the `src` folder to outside of it, that way Webpack will not include it in the build, as it is not needed in the final distribution.
 #### Removed
 - Cleaned up package.json. Many existing npm packages which are not used in this repo have not been removed as dependencies.
 - The `opds-web-client` was removed from this repo as it is not needed and was only used to import scss files. The app breaks without it so one scss variable and one scss mixin were manually moved into this repo.
+
+### v1.1.2
+- Added additional configuration options to the Panel component
 
 ### v1.1.1
 #### Updated
