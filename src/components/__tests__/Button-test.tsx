@@ -41,4 +41,9 @@ describe("Button", () => {
     wrapper.setProps({ disabled: true });
     expect(wrapper.find("[disabled=true]").length).to.equal(1);
   });
+  it("optionally sets a type", () => {
+    expect(wrapper.prop("type")).to.equal("submit");
+    wrapper.setProps({ type: "button" });
+    expect(wrapper.prop("type")).to.equal("button");
+  });
 });
