@@ -7,14 +7,10 @@ import { shallow, mount } from "enzyme";
 import SubmitButton from "../../src/components/SubmitButton";
 
 describe("SubmitButton", () => {
-  let wrapper: Enzyme.ShallowWrapper<any, {}>;
+  let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   let callback = stub();
   beforeEach(() => {
-    wrapper = shallow(
-      <SubmitButton
-        callback={callback}
-      />
-    );
+    wrapper = shallow(<SubmitButton callback={callback} />);
   });
   it("calls the callback", () => {
     wrapper.simulate("click");

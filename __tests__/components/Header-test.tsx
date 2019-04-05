@@ -5,7 +5,7 @@ import * as Enzyme from "enzyme";
 import Header from "../../src/components/Header";
 
 describe("Header", () => {
-  let wrapper: Enzyme.ShallowWrapper<any, {}>;
+  let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   beforeEach(() => {
     wrapper = Enzyme.shallow(
       <Header text="Test Header!" logOut="logout_url"/>

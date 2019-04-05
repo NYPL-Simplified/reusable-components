@@ -16,7 +16,7 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 export interface PanelOwnProps {
   style?: string;
   headerText: string;
-  content: Element | string;
+  content: JSX.Element | string;
   openByDefault?: boolean;
   collapsible?: boolean;
 }
@@ -26,10 +26,6 @@ export interface PanelState {
 }
 
 export default class Panel extends React.Component<PanelOwnProps, PanelState> {
-  props: PanelOwnProps;
-  state: PanelState;
-  setState: any;
-
   static defaultProps = {
     style: "default",
     collapsible: true,
@@ -50,7 +46,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     this.setState({ display });
   }
 
-  renderHeader(): Element {
+  renderHeader(): JSX.Element {
     let title = <span className="panel-title">{this.props.headerText}</span>;
     let iconName = this.state.display === "collapse" ? "down-icon" : "up-icon";
     let icon = this.props.collapsible ? <GenericWedgeIcon className={`${iconName} icon`} /> : null;
@@ -62,7 +58,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     );
   }
 
-  render(): Element {
+  render(): JSX.Element {
     const staticPanel = !this.props.collapsible ? "static-panel" : "";
     return (
       <div className={`panel panel-${this.props.style} ${staticPanel}`}>

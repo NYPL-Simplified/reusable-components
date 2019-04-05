@@ -5,12 +5,11 @@ import * as React from "react";
 import Form from "../../src/components/Form";
 
 describe("Form", () => {
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let content: Array<Element>;
-  let element1: Element;
-  let element2: Element;
-  let hiddenName = "hidden name";
-  let hiddenValue = "hidden value";
+  const hiddenName = "hidden name";
+  const hiddenValue = "hidden value";
+  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
+  let element1: JSX.Element;
+  let element2: JSX.Element;
   let onSubmit = Sinon.stub();
 
   beforeEach(() => {
@@ -151,7 +150,11 @@ describe("Form", () => {
   });
 
   it("should optionally send props to the SubmitButton", () => {
-    wrapper.setProps({ buttonClass: "success", buttonContent: "testing...", disableButton: true });
+    wrapper.setProps({
+      buttonClass: "success",
+      buttonContent: "testing...",
+      disableButton: true
+    });
     let button = wrapper.find("SubmitButton");
     expect(button.prop("className")).to.equal("success");
     expect(button.text()).to.equal("testing...");

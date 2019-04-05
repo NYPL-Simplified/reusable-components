@@ -6,16 +6,15 @@
     "lib": ["es2017", "dom"],
     "outDir": "lib",
     "rootDir": ".",
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["mocha", "node"]
   },
   "include": [
-    "src/**/*",
-    "__tests__/",
-    "typings/index.d.ts"
+    "src",
+    "__tests__"
   ],
   "exclude": [
     "lib",
-    "node_modules",
-    "typings"
+    "node_modules"
   ]
 }
