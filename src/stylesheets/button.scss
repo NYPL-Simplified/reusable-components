@@ -1,6 +1,8 @@
-button.btn {
+button.btn, a.btn {
   display: block;
-  background: $blue;
+  &:not(.btn-danger) {
+    background: $blue;
+  }
   padding: 6px 12px;
   font-weight: bold;
   transition: background 1s, color 1s;

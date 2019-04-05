@@ -46,4 +46,11 @@ describe("Button", () => {
     wrapper.setProps({ type: "button" });
     expect(wrapper.prop("type")).to.equal("button");
   });
+  it("optionally renders a link instead of a button", () => {
+    expect(wrapper.type()).to.equal("button");
+    expect(wrapper.prop("href")).to.be.undefined;
+    wrapper.setProps({ href: "https://" });
+    expect(wrapper.type()).to.equal("a");
+    expect(wrapper.prop("href")).to.equal("https://");
+  });
 });
