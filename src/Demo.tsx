@@ -134,7 +134,7 @@ export default class Demo extends React.Component<{}, DemoState> {
   render(): JSX.Element {
     let panelBody = <span>Your panel content goes here!</span>;
 
-    let fieldset = (
+    let fieldset: JSX.Element = (
       <Fieldset
         key="fieldset"
         legend="This is a fieldset"
@@ -144,14 +144,14 @@ export default class Demo extends React.Component<{}, DemoState> {
       />
     );
 
-    return(
+    return (
       <div id="demo">
         <Header text="Welcome to the demo page!" imgSrc="./logo.png" logOut="#" />
         <div className="list">
-          <Panel headerText="The default panel" body={panelBody} />
-          <Panel headerText="Success panel" style="success" body={panelBody} />
-          <Panel headerText="Warning panel" style="warning" body={panelBody} />
-          <Panel headerText="Danger panel" style="danger" body={panelBody} />
+          <Panel headerText="The default panel" content={panelBody} />
+          <Panel headerText="Success panel" style="success" content={panelBody} />
+          <Panel headerText="Warning panel" style="warning" content={panelBody} />
+          <Panel headerText="Danger panel" style="danger" content={panelBody} />
           <hr></hr>
           <section style={{display: "flex", justifyContent: "space-between", width: "42%", margin: "20px"}}>
             <SubmitButton callback={this.setError} content="Error message" />
