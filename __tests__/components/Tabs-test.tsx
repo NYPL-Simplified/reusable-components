@@ -1,13 +1,14 @@
 import { expect } from "chai";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Tabs from "../Tabs";
+import Tabs from "../../src/components/Tabs";
 
 describe("Tabs", () => {
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let content1 = <p>Content item #1</p>;
-  let content2 = <p>Another content item</p>;
-  let content3 = <p>More content!</p>;
+  const content1 = <p>Content item #1</p>;
+  const content2 = <p>Another content item</p>;
+  const content3 = <p>More content!</p>;
+  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
+
   beforeEach(() => {
     wrapper = Enzyme.mount(
       <Tabs items={{
@@ -57,7 +58,8 @@ describe("Tabs", () => {
       let button2 = wrapper.find(".tab-nav button").at(1);
       let button3 = wrapper.find(".tab-nav button").at(2);
 
-      // Start out on the leftmost tab, then press the right arrow key to go to the middle tab
+      // Start out on the leftmost tab,
+      // then press the right arrow key to go to the middle tab
       button1.simulate("keydown", {keyCode: 39, currentTarget: {id: "0"}});
       expect(wrapper.state()["tab"]).to.equal(1);
       expect(button2.parent().hasClass("current")).to.be.true;
@@ -81,7 +83,8 @@ describe("Tabs", () => {
       let button2 = wrapper.find(".tab-nav button").at(1);
       let button3 = wrapper.find(".tab-nav button").at(2);
 
-      // Start out on the rightmost tab, then press the left arrow key to go to the middle tab
+      // Start out on the rightmost tab,
+      // then press the left arrow key to go to the middle tab
       button3.simulate("keydown", {keyCode: 37, currentTarget: {id: "2"}});
       expect(wrapper.state()["tab"]).to.equal(1);
       expect(button2.parent().hasClass("current")).to.be.true;
