@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router";
 
 export interface ButtonProps {
   callback?: (event: __React.MouseEvent) => void;
@@ -17,22 +18,36 @@ export default class Button extends React.Component<ButtonProps, void> {
 
   render(): JSX.Element {
    let content = this.props.content || "Submit";
-   let type = this.props.callback ? (this.props.type || "submit") : null;
-   let className = this.props.className || "btn-default";
-   let elementType = this.props.href ? "a" : "button";
+   let className = `btn ${this.props.className || "btn-default"}`;
 
-   let props = {
-     type: type,
-     onClick: this.props.callback,
-     disabled: (this.props.disabled || null),
-     className: `btn ${className}`
-   };
-   this.props.href && (props["href"] = this.props.href);
+   let element = this.props.callback ?
+    this.renderButton(content, className) :
+    this.renderLink(content, className);
 
-   return React.createElement(
-     elementType,
-     props,
-     content
+   return element;
+ }
+
+ renderButton(content: string | JSX.Element, className: string): JSX.Element {
+   return (
+     <button
+      type={this.props.type || "submit"}
+      className={className}
+      disabled={this.props.disabled || null}
+      onClick={this.props.callback}
+     >
+      {content}
+     </button>
+   );
+ }
+
+ renderLink(content: string | JSX.Element, className: string): JSX.Element {
+   return (
+     <Link
+      to={this.props.href}
+      className={`${className} ${this.props.disabled ? "disabled" : ""}`}
+     >
+      {content}
+     </Link>
    );
  }
 

@@ -5,6 +5,7 @@ import * as React from "react";
 import { shallow, mount } from "enzyme";
 
 import Button from "../Button";
+import { Link } from "react-router";
 
 describe("Button", () => {
   let wrapper: Enzyme.ShallowWrapper<any, {}>;
@@ -47,10 +48,16 @@ describe("Button", () => {
     expect(wrapper.prop("type")).to.equal("button");
   });
   it("optionally renders a link instead of a button", () => {
-    expect(wrapper.type()).to.equal("button");
-    expect(wrapper.prop("href")).to.be.undefined;
-    wrapper.setProps({ href: "https://" });
-    expect(wrapper.type()).to.equal("a");
-    expect(wrapper.prop("href")).to.equal("https://");
+    let linkWrapper = Enzyme.mount(
+      <Button href="https://" />
+    );
+    expect(linkWrapper.type()).not.to.equal("button");
+    expect(linkWrapper.find(Link).prop("to")).to.equal("https://");
+  });
+  it("optionally disables a link", () => {
+    let linkWrapper = Enzyme.shallow(
+      <Button href="https://" disabled={true}/>
+    );
+    expect(linkWrapper.find(Link).hasClass("disabled")).to.be.true;
   });
 });
