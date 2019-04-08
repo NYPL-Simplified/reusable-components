@@ -1,6 +1,6 @@
 ## Changelog
 
-### v1.2.1
+### v1.3.0
 #### Added
 - Storybook for documentation of the components. A static build can be seen on the [Github repo](https://nypl-simplified.github.io/reusable-components/).
 
