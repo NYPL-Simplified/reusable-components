@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 export interface ButtonProps {
-  callback?: (event: __React.MouseEvent) => void;
+  callback?: (event: React.MouseEvent) => void;
   content?: string | JSX.Element;
   className?: string;
   disabled?: boolean;
@@ -10,7 +10,7 @@ export interface ButtonProps {
   href?: string;
 }
 
-export default class Button extends React.Component<ButtonProps, void> {
+export default class Button extends React.Component<ButtonProps, {}> {
 
   constructor(props: ButtonProps) {
     super(props);
@@ -19,7 +19,6 @@ export default class Button extends React.Component<ButtonProps, void> {
   render(): JSX.Element {
    let content = this.props.content || "Submit";
    let className = `btn ${this.props.className || "btn-default"}`;
-
    let element = this.props.callback ?
     this.renderButton(content, className) :
     this.renderLink(content, className);
@@ -50,5 +49,4 @@ export default class Button extends React.Component<ButtonProps, void> {
      </Link>
    );
  }
-
 }

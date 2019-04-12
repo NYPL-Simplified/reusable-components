@@ -3,19 +3,15 @@ import { stub } from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
+import { Link } from "react-router-dom";
 
-import Button from "../Button";
-import { Link } from "react-router";
+import Button from "../../src/components/Button";
 
 describe("Button", () => {
-  let wrapper: Enzyme.ShallowWrapper<any, {}>;
+  let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   let callback = stub();
   beforeEach(() => {
-    wrapper = shallow(
-      <Button
-        callback={callback}
-      />
-    );
+    wrapper = Enzyme.shallow(<Button callback={callback} />);
   });
   it("calls the callback", () => {
     wrapper.simulate("click");
@@ -48,7 +44,7 @@ describe("Button", () => {
     expect(wrapper.prop("type")).to.equal("button");
   });
   it("optionally renders a link instead of a button", () => {
-    let linkWrapper = Enzyme.mount(
+    let linkWrapper = Enzyme.shallow(
       <Button href="https://" />
     );
     expect(linkWrapper.type()).not.to.equal("button");

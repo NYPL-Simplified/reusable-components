@@ -8,7 +8,7 @@ export interface HeaderProps {
   logOut?: string;
 }
 
-export default class Header extends React.Component<HeaderProps, void> {
+export default class Header extends React.Component<HeaderProps, {}> {
   render(): JSX.Element {
     let src = this.props.imgSrc ? require(`${this.props.imgSrc}`) : "";
     return(
@@ -20,10 +20,12 @@ export default class Header extends React.Component<HeaderProps, void> {
             <img className="navbar-brand img-rounded" alt={this.props.alt || ""} src={src} />
           }
         </div>
-        <a href={this.props.logOut} className="btn navbar-btn">
-          <span>Log Out</span>
-          <LogoutIcon />
-        </a>
+        { this.props.logOut && (
+          <a href={this.props.logOut} className="btn navbar-btn">
+            <span>Log Out</span>
+            <LogoutIcon />
+          </a>)
+        }
       </nav>
     );
   }

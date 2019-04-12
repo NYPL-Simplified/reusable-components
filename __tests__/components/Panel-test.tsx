@@ -3,10 +3,10 @@ import { expect } from "chai";
 import * as React from "react";
 import * as Enzyme from "enzyme";
 import * as Sinon from "sinon";
-import Panel from "../Panel";
+import Panel from "../../src/components/Panel";
 
 describe("Panel", () => {
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
+  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
   let style;
   let headerText;
   let content;

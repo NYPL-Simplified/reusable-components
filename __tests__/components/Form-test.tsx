@@ -2,16 +2,14 @@ import { expect } from "chai";
 import * as Sinon from "sinon";
 import * as Enzyme from "enzyme";
 import * as React from "react";
-import Form from "../Form";
-import Button from "../Button";
+import Form from "../../src/components/Form";
 
 describe("Form", () => {
-  let wrapper: Enzyme.CommonWrapper<any, any, {}>;
-  let content: Array<JSX.Element>;
+  const hiddenName = "hidden name";
+  const hiddenValue = "hidden value";
+  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
   let element1: JSX.Element;
   let element2: JSX.Element;
-  let hiddenName = "hidden name";
-  let hiddenValue = "hidden value";
   let onSubmit = Sinon.stub();
 
   beforeEach(() => {
@@ -152,7 +150,11 @@ describe("Form", () => {
   });
 
   it("should optionally send props to the Button", () => {
-    wrapper.setProps({ buttonClass: "success", buttonContent: "testing...", disableButton: true });
+    wrapper.setProps({
+      buttonClass: "success",
+      buttonContent: "testing...",
+      disableButton: true
+    });
     let button = wrapper.find("Button");
     expect(button.prop("className")).to.equal("success");
     expect(button.text()).to.equal("testing...");

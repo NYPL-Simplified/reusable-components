@@ -18,8 +18,7 @@ export interface FormProps {
   disableButton?: boolean;
 }
 
-export default class Form extends React.Component<FormProps, void> {
-
+export default class Form extends React.Component<FormProps, {}> {
   constructor(props: FormProps) {
     super(props);
     this.submit = this.submit.bind(this);
@@ -32,7 +31,7 @@ export default class Form extends React.Component<FormProps, void> {
     }
   }
 
-  submit(event: __React.MouseEvent): void {
+  submit(event: React.MouseEvent): void {
     event.preventDefault();
     let form = (this.refs["form"] as any);
     const data = new (window as any).FormData(form);
@@ -48,13 +47,16 @@ export default class Form extends React.Component<FormProps, void> {
   }
 
   render(): JSX.Element {
+    const formClass = `clearfix${this.props.className ? " " + this.props.className : ""}`;
+
     return(
-      <form ref="form" className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
+      <form ref="form" className={formClass}>
         {
           this.props.errorText && this.message(this.props.errorText, "danger")
         }
         {
-          this.props.successText && !this.props.errorText && this.message(this.props.successText, "success")
+          this.props.successText && !this.props.errorText &&
+          this.message(this.props.successText, "success")
         }
         {
           this.props.infoText && this.message(this.props.infoText, "info")

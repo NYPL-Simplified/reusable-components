@@ -18,20 +18,23 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     this.state = { tab: 0 };
   }
 
-  select(e:  __React.KeyboardEvent & __React.MouseEvent) {
+  select(e: React.KeyboardEvent<HTMLButtonElement> & React.MouseEvent<HTMLButtonElement>) {
     let idx = parseInt((e.currentTarget as HTMLElement).id);
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
-      // idx is the index of the tab you're already on, that you're trying to navigate away from;
+      // idx is the index of the tab you're already on, that you're trying
+      // to navigate away from.
       // newIdx will be the index of the tab you're trying to go to.
       let newIdx: number;
       let tabs = Object.keys(this.props.items);
       if (e.keyCode === 39) {
-        // Right arrow key: go to the next tab, or go back to the beginning if you were already on the last tab
+        // Right arrow key: go to the next tab, or go back to the beginning
+        // if you were already on the last tab
         newIdx = idx < tabs.length - 1 ? idx + 1 : 0;
       }
       else if (e.keyCode === 37) {
-        // Left arrow key: go to the previous tab, or go to the end if you were already on the first tab
+        // Left arrow key: go to the previous tab, or go to the end if you
+        // were already on the first tab
         newIdx = idx === 0 ? tabs.length - 1 : idx - 1;
       }
       else {
@@ -58,11 +61,11 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     items.map((item, idx) => {
       let [name, data] = item;
       let current = idx === this.state.tab;
-      let navItem = (
+      let navItem: JSX.Element = (
         <li key={name} role="presentation" className={`tab-nav ${current ? "current" : ""}`}>
           <button
             aria-controls={`panel-${idx}`}
-            aria-selected={current.toString()}
+            aria-selected={current}
             className="btn btn-default tab-button"
             id={idx.toString()}
             onClick={this.select}
@@ -78,7 +81,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
       navs.push(navItem);
 
-      let contentItem = (
+      let contentItem: JSX.Element = (
         <section
           aria-labelledby={idx.toString()}
           className={`tab-content ${current ? "" : "hidden"}`}

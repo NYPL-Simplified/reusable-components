@@ -2,15 +2,21 @@
   "version": "1.8.2",
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es5",
+    "lib": ["es2017", "dom"],
     "outDir": "lib",
-    "rootDir": "src",
-    "jsx": "react"
+    "rootDirs": [".", "stories"],
+    "jsx": "react",
+    "types": ["mocha", "node"],
+    "allowSyntheticDefaultImports": true
   },
+  "include": [
+    "src",
+    "__tests__"
+  ],
   "exclude": [
     "lib",
-    "node_modules",
-    "typings/main.d.ts",
-    "typings/main"
+    "node_modules"
   ]
 }
