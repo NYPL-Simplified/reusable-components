@@ -1,8 +1,0 @@
-{
-  "resolution": "main",
-  "tree": {
-    "src": "https://raw.githubusercontent.com/NYPL-Simplified/DefinitelyTyped/7d462d047559bc2587224e1ecdc3a043aa3e2626/react-bootstrap/react-bootstrap.d.ts",
-    "raw": "github:NYPL-Simplified/DefinitelyTyped/react-bootstrap/react-bootstrap.d.ts#7d462d047559bc2587224e1ecdc3a043aa3e2626",
-    "typings": "https://raw.githubusercontent.com/NYPL-Simplified/DefinitelyTyped/7d462d047559bc2587224e1ecdc3a043aa3e2626/react-bootstrap/react-bootstrap.d.ts"
-  }
-}
