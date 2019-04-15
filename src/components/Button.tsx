@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 export interface ButtonProps {
   callback?: (event: React.MouseEvent) => void;
@@ -41,12 +40,12 @@ export default class Button extends React.Component<ButtonProps, {}> {
 
  renderLink(content: string | JSX.Element, className: string): JSX.Element {
    return (
-     <Link
-      to={this.props.href}
+     <a
+      href={this.props.href}
       className={`${className} ${this.props.disabled ? "disabled" : ""}`}
      >
       {content}
-     </Link>
+     </a>
    );
  }
 }
