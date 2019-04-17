@@ -42,17 +42,4 @@ describe("Button", () => {
     wrapper.setProps({ type: "button" });
     expect(wrapper.prop("type")).to.equal("button");
   });
-  it("optionally renders a link instead of a button", () => {
-    let linkWrapper = Enzyme.shallow(
-      <Button href="https://" />
-    );
-    expect(linkWrapper.type()).not.to.equal("button");
-    expect(linkWrapper.find("a").prop("href")).to.equal("https://");
-  });
-  it("optionally disables a link", () => {
-    let linkWrapper = Enzyme.shallow(
-      <Button href="https://" disabled={true}/>
-    );
-    expect(linkWrapper.find("a").hasClass("disabled")).to.be.true;
-  });
 });

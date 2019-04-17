@@ -1,12 +1,11 @@
 import * as React from "react";
 
 export interface ButtonProps {
-  callback?: (event: React.MouseEvent) => void;
+  callback: (event: React.MouseEvent) => void;
   content?: string | JSX.Element;
   className?: string;
   disabled?: boolean;
   type?: string;
-  href?: string;
 }
 
 export default class Button extends React.Component<ButtonProps, {}> {
@@ -18,14 +17,6 @@ export default class Button extends React.Component<ButtonProps, {}> {
   render(): JSX.Element {
    let content = this.props.content || "Submit";
    let className = `btn ${this.props.className || "btn-default"}`;
-   let element = this.props.callback ?
-    this.renderButton(content, className) :
-    this.renderLink(content, className);
-
-   return element;
- }
-
- renderButton(content: string | JSX.Element, className: string): JSX.Element {
    return (
      <button
       type={this.props.type || "submit"}
@@ -38,14 +29,4 @@ export default class Button extends React.Component<ButtonProps, {}> {
    );
  }
 
- renderLink(content: string | JSX.Element, className: string): JSX.Element {
-   return (
-     <a
-      href={this.props.href}
-      className={`${className} ${this.props.disabled ? "disabled" : ""}`}
-     >
-      {content}
-     </a>
-   );
- }
 }

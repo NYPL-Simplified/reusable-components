@@ -2,14 +2,12 @@
   "version": "1.8.2",
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
     "target": "es5",
     "lib": ["es2017", "dom"],
     "outDir": "lib",
     "rootDirs": [".", "stories"],
     "jsx": "react",
-    "types": ["mocha", "node"],
-    "allowSyntheticDefaultImports": true
+    "types": ["mocha", "node"]
   },
   "include": [
     "src",
