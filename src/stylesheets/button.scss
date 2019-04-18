@@ -16,7 +16,7 @@ button.btn, a.btn {
   font-weight: bold;
   transition: background .5s, color .5s;
   min-height: 24px;
-  &:hover {
+  &:hover, &:active {
     background: $gray-brown;
     color: $white;
     border-color: $gray-brown;
@@ -24,6 +24,9 @@ button.btn, a.btn {
       fill: $white;
       transition: fill .5s;
     }
+  }
+  &:focus {
+    color: $white;
   }
   &:disabled {
     pointer-events: none;
