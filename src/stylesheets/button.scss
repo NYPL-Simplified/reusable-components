@@ -14,7 +14,7 @@ button.btn, a.btn {
   }
   padding: 6px 12px;
   font-weight: bold;
-  transition: background 1s, color 1s;
+  transition: background .5s, color .5s;
   min-height: 24px;
   &:hover {
     background: $gray-brown;
@@ -22,6 +22,7 @@ button.btn, a.btn {
     border-color: $gray-brown;
     svg {
       fill: $white;
+      transition: fill .5s;
     }
   }
   &:disabled {
