@@ -5,7 +5,7 @@ import Form from "./components/Form";
 import Fieldset from "./components/Fieldset";
 import Input from "./components/Input";
 import Tabs from "./components/Tabs";
-import SubmitButton from "./components/SubmitButton";
+import Button from "./components/Button";
 
 export interface DemoState {
   lights: boolean;
@@ -154,9 +154,9 @@ export default class Demo extends React.Component<{}, DemoState> {
           <Panel headerText="Danger panel" style="danger" content={panelBody} />
           <hr></hr>
           <section style={{display: "flex", justifyContent: "space-between", width: "42%", margin: "20px"}}>
-            <SubmitButton callback={this.setError} content="Error message" />
-            <SubmitButton callback={this.setSuccess} content="Success message" />
-            <SubmitButton callback={this.setInfo} content="Info message" />
+            <Button callback={this.setError} content="Error message" />
+            <Button callback={this.setSuccess} content="Success message" />
+            <Button callback={this.setInfo} content="Info message" />
           </section>
           <Form
             title="This is a form"
@@ -174,7 +174,7 @@ export default class Demo extends React.Component<{}, DemoState> {
               It is being used here to display the custom colors used throughout this package.
               Click the button to see how the colors look against a {this.state.lights ? "black" : "white"} background.
             </p>
-            <SubmitButton
+            <Button
               callback={this.toggleLights}
               content={`Turn ${this.state.lights ? "off" : "on"} the lights!`}
             />

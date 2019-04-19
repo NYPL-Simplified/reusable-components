@@ -1,5 +1,8 @@
 ## Changelog
 
+### v1.3.1
+- Added additional configuration options to the Button component.
+
 ### v1.3.0
 #### Added
 - Storybook for documentation of the components. A static build can be seen on the [Github repo](https://nypl-simplified.github.io/reusable-components/).

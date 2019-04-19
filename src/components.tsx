@@ -4,7 +4,7 @@ import Form from "./components/Form";
 import Fieldset from "./components/Fieldset";
 import Input from "./components/Input";
 import Tabs from "./components/Tabs";
-import SubmitButton from "./components/SubmitButton";
+import Button from "./components/Button";
 
 export {
   Fieldset,
@@ -12,6 +12,6 @@ export {
   Header,
   Input,
   Panel,
-  SubmitButton,
+  Button,
   Tabs,
 }

@@ -1,12 +1,31 @@
-button.btn {
+button.btn, a.btn {
   display: block;
-  background: $blue;
+  color: $white;
+  &:not(.btn-danger) {
+    background: $blue;
+  }
+  &.inverted {
+    background: $white;
+    color: $blue;
+    border: 1px solid $blue;
+    svg {
+      fill: $blue;
+    }
+  }
   padding: 6px 12px;
   font-weight: bold;
-  transition: background 1s, color 1s;
+  transition: background .5s, color .5s;
   min-height: 24px;
-  &:hover {
+  &:hover, &:active {
     background: $gray-brown;
+    color: $white;
+    border-color: $gray-brown;
+    svg {
+      fill: $white;
+      transition: fill .5s;
+    }
+  }
+  &:focus {
     color: $white;
   }
   &:disabled {

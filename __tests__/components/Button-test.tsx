@@ -4,13 +4,13 @@ import * as Enzyme from "enzyme";
 import * as React from "react";
 import { shallow, mount } from "enzyme";
 
-import SubmitButton from "../../src/components/SubmitButton";
+import Button from "../../src/components/Button";
 
-describe("SubmitButton", () => {
+describe("Button", () => {
   let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   let callback = stub();
   beforeEach(() => {
-    wrapper = shallow(<SubmitButton callback={callback} />);
+    wrapper = Enzyme.shallow(<Button callback={callback} />);
   });
   it("calls the callback", () => {
     wrapper.simulate("click");
@@ -36,5 +36,10 @@ describe("SubmitButton", () => {
     expect(wrapper.find("[disabled=true]").length).to.equal(0);
     wrapper.setProps({ disabled: true });
     expect(wrapper.find("[disabled=true]").length).to.equal(1);
+  });
+  it("optionally sets a type", () => {
+    expect(wrapper.prop("type")).to.equal("submit");
+    wrapper.setProps({ type: "button" });
+    expect(wrapper.prop("type")).to.equal("button");
   });
 });
