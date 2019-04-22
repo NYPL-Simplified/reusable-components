@@ -1,5 +1,8 @@
 ## Changelog
 
+### v1.3.2
+- Enabled optional specification of custom behavior on enter for the Panel component.
+
 ### v1.3.1
 - Added additional configuration options to the Button component.
 
