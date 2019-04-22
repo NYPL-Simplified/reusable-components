@@ -32,6 +32,7 @@ describe("Panel", () => {
     let header = wrapper.find(".panel-heading");
     expect(header.length).to.equal(1);
     expect(header.type()).to.equal("button");
+    expect(header.prop("type")).to.equal("button");
 
     let title = header.find(".panel-title");
     expect(title.length).to.equal(1);
@@ -99,6 +100,7 @@ describe("Panel", () => {
 
     expect(wrapper.state()["display"]).not.to.equal("collapse");
     expect(wrapper.find(".panel-heading").type()).to.equal("div");
+    expect(wrapper.find(".panel-heading").prop("type")).to.be.null;
     expect(wrapper.find(".panel-body").hasClass("collapse")).to.be.false;
     expect(wrapper.find("svg").length).to.equal(0);
 
@@ -108,6 +110,24 @@ describe("Panel", () => {
     expect(spyToggle.callCount).to.equal(0);
 
     spyToggle.restore();
+  });
+
+  it("should optionally accept a callback", () => {
+    let spyToggle = Sinon.spy(wrapper.instance(), "toggle");
+    let spyOverride = Sinon.spy(wrapper.instance(), "overrideEnter");
+    let onEnter = Sinon.stub();
+    let input = <input />;
+    wrapper.setProps({
+      toggle: spyToggle,
+      overrideEnter: spyOverride,
+      onEnter: onEnter,
+      content: input
+    });
+
+    wrapper.find("input").simulate("submit");
+    expect(spyToggle.callCount).to.equal(0);
+    expect(spyOverride.callCount).to.equal(1);
+    expect(onEnter.callCount).to.equal(1);
   });
 
 });

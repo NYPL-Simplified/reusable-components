@@ -13,12 +13,17 @@ import { GenericWedgeIcon } from "@nypl/dgx-svg-icons";
 // is clicked; render the header as a div rather than a button; and automatically ensure that the
 // panel is always open (i.e. you do not need to also set the openByDefault prop).
 
+// By default, a collapsible Panel will toggle on enter.  To override this behavior--e.g. if the Panel is
+// inside a form which should submit on enter, pass in the function that you'd like to trigger on enter
+// as the onEnter prop.
+
 export interface PanelOwnProps {
   style?: string;
   headerText: string;
   content: JSX.Element | string;
   openByDefault?: boolean;
   collapsible?: boolean;
+  onEnter?: () => any;
 }
 
 export interface PanelState {
@@ -36,6 +41,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     super(props);
     this.renderHeader = this.renderHeader.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.overrideEnter = this.overrideEnter.bind(this);
     let display = (this.props.openByDefault || !this.props.collapsible) ? "" : "collapse";
     this.state = { display };
   }
@@ -46,6 +52,10 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     this.setState({ display });
   }
 
+  overrideEnter(e) {
+    this.props.onEnter && this.props.onEnter();
+  }
+
   renderHeader(): JSX.Element {
     let title = <span className="panel-title">{this.props.headerText}</span>;
     let iconName = this.state.display === "collapse" ? "down-icon" : "up-icon";
@@ -53,7 +63,11 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
 
     return React.createElement(
       this.props.collapsible ? "button" : "div",
-      { className: "panel-heading", onClick: this.props.collapsible ? this.toggle : null },
+      {
+        className: "panel-heading",
+        onClick: this.props.collapsible ? this.toggle : null,
+        type: this.props.collapsible ? "button" : null
+      },
       [title, icon]
     );
   }
@@ -64,8 +78,8 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
       <div className={`panel panel-${this.props.style} ${staticPanel}`}>
         { this.renderHeader() }
         { typeof(this.props.content) === "string" ?
-          <section className={`panel-body ${this.state.display}`} dangerouslySetInnerHTML={{ __html: this.props.content }} /> :
-          <section className={`panel-body ${this.state.display}`}>{this.props.content}</section>
+          <section onSubmit={this.overrideEnter} className={`panel-body ${this.state.display}`} dangerouslySetInnerHTML={{ __html: this.props.content }} /> :
+          <section onSubmit={this.overrideEnter} className={`panel-body ${this.state.display}`}>{this.props.content}</section>
         }
       </div>
     );
