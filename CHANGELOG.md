@@ -2,6 +2,7 @@
 
 ### v1.3.2
 - Enabled optional specification of custom behavior on enter for the Panel component.
+- Enabled Panel component to recalculate its display on changes to the openByDefault prop.
 
 ### v1.3.1
 - Added additional configuration options to the Button component.

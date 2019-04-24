@@ -56,6 +56,11 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     this.props.onEnter && this.props.onEnter();
   }
 
+  componentWillReceiveProps(newProps) {
+    let display = newProps.openByDefault ? "" : "collapse";
+    this.props.collapsible && this.setState({...this.state, display });
+  }
+
   renderHeader(): JSX.Element {
     let title = <span className="panel-title">{this.props.headerText}</span>;
     let iconName = this.state.display === "collapse" ? "down-icon" : "up-icon";
