@@ -42,8 +42,19 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
     this.renderHeader = this.renderHeader.bind(this);
     this.toggle = this.toggle.bind(this);
     this.overrideEnter = this.overrideEnter.bind(this);
-    let display = (this.props.openByDefault || !this.props.collapsible) ? "" : "collapse";
-    this.state = { display };
+    this.state = { display: this.calculateDisplay(props) };
+  }
+
+  calculateDisplay(props: PanelOwnProps): string {
+    let display: string;
+    // If the panel isn't collapsible, that overrides everything else.
+    if (!props.collapsible) {
+      display = "";
+    }
+    else {
+      display = props.openByDefault ? "" : "collapse";
+    }
+    return display;
   }
 
   toggle(e) {
@@ -57,8 +68,7 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
   }
 
   componentWillReceiveProps(newProps) {
-    let display = newProps.openByDefault ? "" : "collapse";
-    this.props.collapsible && this.setState({...this.state, display });
+    this.setState({...this.state, display: this.calculateDisplay(newProps)});
   }
 
   renderHeader(): JSX.Element {

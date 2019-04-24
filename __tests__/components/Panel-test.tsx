@@ -130,4 +130,17 @@ describe("Panel", () => {
     expect(onEnter.callCount).to.equal(1);
   });
 
+  it("should update its display if the openByDefault prop changes", () => {
+    expect(wrapper.state()["display"]).to.equal("collapse");
+    wrapper.setProps({ openByDefault: true });
+    expect(wrapper.state()["display"]).to.equal("");
+  });
+
+  it("should not update its display if it is not collapsible", () => {
+    wrapper.setProps({ collapsible: false });
+    expect(wrapper.state()["display"]).to.equal("");
+    wrapper.setProps({ openByDefault: true });
+    expect(wrapper.state()["display"]).to.equal("");
+  });
+
 });
