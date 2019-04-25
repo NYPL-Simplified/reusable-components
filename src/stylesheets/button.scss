@@ -25,7 +25,7 @@ button.btn, a.btn {
       transition: fill .5s;
     }
   }
-  &:focus {
+  &:focus:not(.inverted) {
     color: $white;
   }
   &:disabled {
