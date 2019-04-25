@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.2
+#### Fixed
+- Fixed Button styling bug involving text color on focus.
+
 ### v1.3.1
 - Added additional configuration options to the Button component.
 
