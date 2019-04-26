@@ -1,7 +1,10 @@
 ## Changelog
 
 ### v1.3.2
-- Enabled optional specification of custom behavior on enter for the Panel component.
+#### Fixed
+- Fixed Button styling bug involving text color on focus.
+#### Added
+- Enabled optional specification of custom behavior on enter for the Panel component.  This fixes a bug whereby forms containing Panels would toggle the Panel on enter rather than submitting.
 - Enabled Panel component to recalculate its display on changes to the openByDefault prop.
 
 ### v1.3.1
