@@ -105,7 +105,6 @@ describe("Panel", () => {
     expect(wrapper.find("svg").length).to.equal(0);
 
     let spyToggle = Sinon.spy(wrapper.instance(), "toggle");
-    wrapper.setProps({ toggle: spyToggle });
     wrapper.find(".panel-heading").simulate("click");
     expect(spyToggle.callCount).to.equal(0);
 
@@ -118,8 +117,6 @@ describe("Panel", () => {
     let onEnter = Sinon.stub();
     let input = <input />;
     wrapper.setProps({
-      toggle: spyToggle,
-      overrideEnter: spyOverride,
       onEnter: onEnter,
       content: input
     });
