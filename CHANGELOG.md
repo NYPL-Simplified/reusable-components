@@ -1,5 +1,11 @@
 ## Changelog
 
+### v1.3.3
+#### Fixed
+- Color Contrast issue for the "danger" button style.
+#### Added
+- Stories for the Button component.
+
 ### v1.3.2
 #### Fixed
 - Fixed Button styling bug involving text color on focus.

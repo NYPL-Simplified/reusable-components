@@ -4,6 +4,9 @@ button.btn, a.btn {
   &:not(.btn-danger) {
     background: $blue;
   }
+  &.btn-danger {
+    background: $red;
+  }
   &.inverted {
     background: $white;
     color: $blue;
