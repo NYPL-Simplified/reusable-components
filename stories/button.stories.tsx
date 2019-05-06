@@ -20,11 +20,11 @@ const button = storiesOf('Components/Button', module)
       />,
       <Button
         callback={action('clicked')}
-        className="inverted"
+        className="Inverted"
       />,
       <Button
         callback={action('clicked')}
-        content="disabled"
+        content="Disabled"
         disabled={true}
       />
     ];
@@ -49,7 +49,7 @@ const button = storiesOf('Components/Button', module)
       />,
       <Button
         callback={action('clicked')}
-        content={text('content', 'custom text')}
+        content={text('content', 'Custom text')}
       />
     ];
   });
