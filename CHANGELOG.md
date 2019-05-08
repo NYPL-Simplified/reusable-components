@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.4
+#### Updated
+- Now React 16 for the build.
+
 ### v1.3.3
 #### Fixed
 - Color Contrast issue for the "danger" button style.
