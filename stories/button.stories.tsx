@@ -20,7 +20,8 @@ const button = storiesOf('Components/Button', module)
       />,
       <Button
         callback={action('clicked')}
-        className="Inverted"
+        content="Inverted"
+        className="inverted"
       />,
       <Button
         callback={action('clicked')}
