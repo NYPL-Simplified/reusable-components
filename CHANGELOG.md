@@ -1,6 +1,6 @@
 ## Changelog
 
-### v1.3.4
+### v1.3.5
 #### Added
 - Added `withInfo` Storybook addon to include better documentation for each component.
 
