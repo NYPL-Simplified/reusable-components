@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export interface ButtonProps {
+  /** The action to perform on the <button>'s onClick function */
   callback: (event: React.MouseEvent) => void;
   content?: string | JSX.Element;
   className?: string;

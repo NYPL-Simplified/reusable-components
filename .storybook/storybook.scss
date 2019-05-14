@@ -1,0 +1,13 @@
+/**
+ * Storybook style overrides
+ */
+
+// To make the `withInfo` proptype table readable.
+table {
+  border: 1px solid;
+
+  th, td {
+    padding: 5px;
+    border: 1px solid;
+  }
+}
