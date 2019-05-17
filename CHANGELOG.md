@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.5
+#### Added
+- More styling options for the Button component
+
 ### v1.3.4
 #### Updated
 - Now React 16 for the build.

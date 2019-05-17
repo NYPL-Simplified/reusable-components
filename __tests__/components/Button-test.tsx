@@ -28,7 +28,7 @@ describe("Button", () => {
     expect(wrapper.text()).to.equal("Element!");
   });
   it("optionally sets a className", () => {
-    expect(wrapper.prop("className")).to.equal("btn btn-default");
+    expect(wrapper.prop("className")).to.equal("btn");
     wrapper.setProps({ className: "custom-class" });
     expect(wrapper.prop("className")).to.equal("btn custom-class");
   });

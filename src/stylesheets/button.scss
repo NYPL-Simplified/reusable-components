@@ -1,11 +1,16 @@
 button.btn, a.btn {
   display: block;
   color: $white;
-  &:not(.btn-danger) {
-    background: $blue;
-  }
+  transition: background .5s, color .5s;
+  background: $blue;
+  margin: .5em;
+  border-radius: .25em;
+  font-size: 16px;
   &.btn-danger {
     background: $red;
+  }
+  &.success {
+    background: $green-bright;
   }
   &.inverted {
     background: $white;
@@ -17,33 +22,105 @@ button.btn, a.btn {
   }
   padding: 6px 12px;
   font-weight: bold;
-  transition: background .5s, color .5s;
   min-height: 24px;
-  &:hover, &:active {
+  &:hover:not(.transparent), &:active:not(.transparent) {
     background: $gray-brown;
     color: $white;
     border-color: $gray-brown;
+    span {
+      color: $white;
+    }
     svg {
       fill: $white;
       transition: fill .5s;
     }
   }
-  &:focus:not(.inverted) {
+  &:focus:not(.inverted), &:focus:not(.transparent) {
     color: $white;
   }
   &:disabled {
     pointer-events: none;
   }
-  &:not(.tab-button) {
-    border-radius: .25em;
-    margin: .5em;
+  &.left-align {
+    margin-left: 0;
+  }
+  &.right-align {
+    margin-right: 0;
+  }
+  &.top-align {
+    margin-top: 0;
+  }
+  &.bottom-align {
+    margin-bottom: 0;
+  }
+  &.inline {
+    display: inline-block;
+  }
+  &.centered {
+    margin: auto;
+    width: 25vw;
+    border: 1px solid $blue;
+    &:hover {
+      border-color: $gray-brown;
+    }
+  }
+  &.sharp {
+    border-radius: 0;
+  }
+  &.bottom-sharp {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+  }
+  &.big {
+    font-size: 18px;
+  }
+  &.small {
+    font-size: 14px;
+    svg {
+      height: .8em;
+      float: unset;
+      vertical-align: unset;
+      margin-left: .5em;
+    }
+  }
+  &.transparent {
+    background-color: transparent;
+    color: $black;
+    font-weight: normal;
+    padding: 0;
+    svg {
+      fill: $black;
+      height: .7em;
+      width: .7em;
+    }
+    &:hover, &:active {
+      color: $black;
+      border-color: transparent;
+    }
+  }
+  &.navbar-btn {
+    float: right;
+    margin: 0;
+    &:hover {
+      span {
+        color: $white;
+      }
+    }
   }
   svg {
     fill: $white;
     float: right;
-    width: 1.5em;
+    width: 1.4em;
     height: 100%;
-    margin-left: 1em;
+    margin-left: .8em;
     vertical-align: middle;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
