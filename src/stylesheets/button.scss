@@ -6,7 +6,7 @@ button.btn, a.btn {
   margin: .5em;
   border-radius: .25em;
   font-size: 16px;
-  &.btn-danger {
+  &.danger {
     background: $red;
   }
   &.success {
@@ -64,10 +64,10 @@ button.btn, a.btn {
       border-color: $gray-brown;
     }
   }
-  &.sharp {
+  &.squared {
     border-radius: 0;
   }
-  &.bottom-sharp {
+  &.bottom-squared {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-top-left-radius: .5em;

@@ -2,7 +2,10 @@ module.exports = async ({ config }) => {
   config.module.rules = config.module.rules.concat([
     {
       test: /\.(ts|tsx)$/,
-      loader: 'ts-loader'
+      loaders: [
+        'ts-loader',
+        'react-docgen-typescript-loader'
+      ]
     },
     {
       test: /\.stories\.tsx?$/,

@@ -16,7 +16,7 @@ const button = storiesOf('Components/Button', module)
       <Button
         callback={action('clicked')}
         content="Danger"
-        className="btn-danger"
+        className="danger"
       />,
       <Button
         callback={action('clicked')}
