@@ -11,3 +11,17 @@ table {
     border: 1px solid;
   }
 }
+
+.button-container {
+  border: 1px dotted black;
+  margin-right: 20px;
+  width: 122px;
+  float: left;
+}
+.button-container:nth-child(2) {
+  display: flex;
+  width: 260px;
+}
+.button-container:nth-child(3) {
+  width: auto;
+}
