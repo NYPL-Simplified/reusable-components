@@ -12,16 +12,34 @@ table {
   }
 }
 
-.button-container {
-  border: 1px dotted black;
-  margin-right: 20px;
-  width: 122px;
-  float: left;
-}
-.button-container:nth-child(2) {
-  display: flex;
-  width: 260px;
-}
-.button-container:nth-child(3) {
-  width: auto;
+.button-placement {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(22, 25px);
+  grid-template-rows: repeat(3, 60px);
+  .button-container {
+    display: grid;
+    border: 2px dashed black;
+  }
+  .button-container:nth-child(1) {
+    grid-column: 1 / 6;
+  }
+  .button-container:nth-child(2) {
+    grid-column: 6 / 11;
+  }
+  .button-container:nth-child(3) {
+    grid-column: 11 / 16;
+  }
+  .button-container:nth-child(4) {
+    grid-column: 16 / 22;
+  }
+  .button-container:nth-child(5) {
+    grid-column: 12 / 22;
+    grid-row-start: 2;
+  }
+  .button-container:nth-child(6) {
+    grid-column: 1 / 22;
+    grid-row-start: 3;
+    align-self: center;
+  }
 }

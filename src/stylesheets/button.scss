@@ -100,15 +100,6 @@ button.btn, a.btn {
       border-color: transparent;
     }
   }
-  &.navbar-btn {
-    float: right;
-    margin: 0;
-    &:hover {
-      span {
-        color: $white;
-      }
-    }
-  }
   svg {
     fill: $white;
     float: right;

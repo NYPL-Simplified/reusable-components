@@ -62,46 +62,49 @@ const button = storiesOf('Components/Button', module)
   })
   .add('with different placement', () => {
     return [
-      <div className="button-container">
-        <Button
-          callback={action('clicked')}
-          content="Left-Align"
-          className="left-align"
-        />
-        <Button
-          callback={action('clicked')}
-          content="Right-Align"
-          className="right-align"
-        />
-      </div>,
-      <div className="button-container">
-        <Button
-          callback={action('clicked')}
-          content="Top-Align"
-          className="top-align"
-        />
-        <Button
-          callback={action('clicked')}
-          content="Bottom-Align"
-          className="bottom-align"
-        />
-      </div>,
-      <div className="button-container">
-        <Button
-          callback={action('clicked')}
-          content="Navbar"
-          className="navbar-btn"
-        />
-        <Button
-          callback={action('clicked')}
-          content="Inline"
-          className="inline"
-        />
-        <Button
-          callback={action('clicked')}
-          content="Centered"
-          className="centered"
-        />
+      <div className="button-placement">
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Left-Align"
+            className="left-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Right-Align"
+            className="right-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Top-Align"
+            className="top-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Bottom-Align"
+            className="bottom-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Inline"
+            className="inline"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Centered"
+            className="centered"
+          />
+        </div>
       </div>
     ];
   })
