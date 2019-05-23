@@ -17,7 +17,7 @@ export default class Button extends React.Component<ButtonProps, {}> {
 
   render(): JSX.Element {
    let content = this.props.content || "Submit";
-   let className = `btn ${this.props.className || "btn-default"}`;
+   let className = `btn${this.props.className ? ` ${this.props.className}` : ""}`;
    return (
      <button
       type={this.props.type || "submit"}

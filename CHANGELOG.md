@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.3.6
+#### Added
+- More styling options for the Button component
+- More stories for the Button component
+
 ### v1.3.5
 #### Added
 - Added `withInfo` Storybook addon to include better documentation for each component.
