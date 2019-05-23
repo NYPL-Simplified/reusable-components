@@ -20,14 +20,92 @@ const button = storiesOf('Components/Button', module)
       />,
       <Button
         callback={action('clicked')}
+        content="Success"
+        className="success"
+      />,
+      <Button
+        callback={action('clicked')}
         content="Inverted"
         className="inverted"
+      />,
+      <Button
+        callback={action('clicked')}
+        content="Squared"
+        className="squared"
+      />,
+      <Button
+        callback={action('clicked')}
+        content="Bottom-Squared"
+        className="bottom-squared"
+      />,
+      <Button
+        callback={action('clicked')}
+        content="Small"
+        className="small"
+      />,
+      <Button
+        callback={action('clicked')}
+        content="Big"
+        className="big"
+      />,
+      <Button
+        callback={action('clicked')}
+        content="Transparent"
+        className="transparent"
       />,
       <Button
         callback={action('clicked')}
         content="Disabled"
         disabled={true}
       />
+    ];
+  })
+  .add('with different placement', () => {
+    return [
+      <div className="button-placement">
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Left-Align"
+            className="left-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Right-Align"
+            className="right-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Top-Align"
+            className="top-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Bottom-Align"
+            className="bottom-align"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Inline"
+            className="inline"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            callback={action('clicked')}
+            content="Centered"
+            className="centered"
+          />
+        </div>
+      </div>
     ];
   })
   .add('with icon', () => {

@@ -3,6 +3,7 @@
 ### v1.3.6
 #### Added
 - More styling options for the Button component
+- More stories for the Button component
 
 ### v1.3.5
 #### Added
