@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.7
+#### Updated
+- Committed new version of package-lock.json
+
 ### v1.3.6
 #### Added
 - More styling options for the Button component
