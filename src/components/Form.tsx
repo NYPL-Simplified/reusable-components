@@ -4,7 +4,7 @@ import Button from "./Button";
 import Fieldset from "./Fieldset";
 
 export interface FormProps {
-  content?: Array<JSX.Element>;
+  content?: JSX.Element | Array<JSX.Element>;
   onSubmit: any;
   title?: string;
   hiddenName?: string;
@@ -19,44 +19,42 @@ export interface FormProps {
 }
 
 export default class Form extends React.Component<FormProps, {}> {
+  private messageRef = React.createRef<HTMLParagraphElement>();
+  private formRef = React.createRef<HTMLFormElement>();
+
   constructor(props: FormProps) {
     super(props);
     this.submit = this.submit.bind(this);
     this.message = this.message.bind(this);
   }
 
-  componentDidUpdate() {
-    if (this.refs["errorMessage"]) {
-      (this.refs["errorMessage"] as HTMLElement).focus();
-    }
-  }
-
-  submit(event: React.MouseEvent): void {
+  async submit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    let form = (this.refs["form"] as any);
+    let form = this.formRef.current;
     const data = new (window as any).FormData(form);
-    this.props.onSubmit(data);
+
+    await this.props.onSubmit(data);
+    if (this.messageRef.current) {
+      this.messageRef.current.focus();
+    }
   };
 
   message(text: string, type: string): JSX.Element {
     return (
-      <p className={`alert alert-${type}`} role="alert" ref={`${type}Message`} tabIndex={-1}>
+      <p className={`alert alert-${type}`} role="alert" ref={this.messageRef} tabIndex={-1}>
         {text}
       </p>
     );
   }
 
   render(): JSX.Element {
-    const formClass = `clearfix${this.props.className ? " " + this.props.className : ""}`;
-
     return(
-      <form ref="form" className={formClass}>
+      <form ref={this.formRef} className={`clearfix${this.props.className ? " " + this.props.className : ""}`}>
         {
           this.props.errorText && this.message(this.props.errorText, "danger")
         }
         {
-          this.props.successText && !this.props.errorText &&
-          this.message(this.props.successText, "success")
+          this.props.successText && !this.props.errorText && this.message(this.props.successText, "success")
         }
         {
           this.props.infoText && this.message(this.props.infoText, "info")
