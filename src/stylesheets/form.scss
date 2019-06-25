@@ -1,11 +1,14 @@
 form {
   padding: 1em;
   border-radius: 0;
-  border: 1px solid $blue;
   margin: 20px;
   width: 55vw;
 
-  &.log-in {
+  &.border {
+    border: 1px solid $blue;
+  }
+
+  &.centered {
     margin: auto;
     fieldset.well {
       display: block;
@@ -13,12 +16,11 @@ form {
     }
   }
 
-  &.log-in {
+  &.centered {
     button.btn {
       display: block;
       margin: auto;
       width: 25vw;
-      border: 1px solid $blue;
       &:hover {
         border-color: $gray-brown;
       }
@@ -29,30 +31,43 @@ form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    border: none;
+    justify-content: flex-start;
+    width: 100%;
     padding: 0;
     margin: 0;
     .btn {
-      margin: 0 .5em;
+      margin: 0;
+      border: 0;
     }
-    .form-group {
-      display: flex;
-      min-width: 60%;
-      flex-grow: 0;
-      margin: 0 2em 0 0;
-      float: left;
+
+    .form-group, fieldset {
+      min-width: 50%;
+      flex: 2;
+      margin: 0;
+      input {
+        display: inline-block;
+        width: 40%;
+        margin-right: 12px;
+        padding: 6px 12px;
+      }
     }
-    .alert-success, .alert-danger {
+    .alert-success, .alert-danger, .alert-info {
       width: 100%;
       margin-top: 20px;
     }
   }
 
-  .alert-danger {
-    background-color: $red-error;
-    color: $dark-gray;
-    font-weight: bold;
+  .alert {
+    h4 {
+      margin-bottom: 0;
+    }
+    &.alert-danger {
+      background-color: $red-error;
+      color: $dark-gray;
+      font-weight: bold;
+    }
   }
+
 
   .form-title {
     display: block;

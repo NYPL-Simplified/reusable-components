@@ -44,6 +44,27 @@ table {
   }
 }
 
-form.inline {
-  margin-top: 40px;
+form {
+  &:not(.border) {
+    border: 3px dashed #ccc;
+  }
+  &.inline {
+    margin-top: 40px;
+    border: unset;
+  }
+  input[type="radio"] {
+    margin: 0 20px 20px 10px;
+  }
+  select {
+    display: block;
+    margin: 20px 0;
+  }
+  &.border {
+    fieldset {
+      margin: 8px;
+      input {
+        display: block;
+      }
+    }
+  }
 }
