@@ -4,21 +4,33 @@ import Button from "./Button";
 import Fieldset from "./Fieldset";
 
 export interface FormProps {
+  /** An element or array of elements that will be rendered in the body of the <form>. */
   content?: JSX.Element | Array<JSX.Element>;
+  /** The action to perform on the <form>'s onSubmit function and,
+  if there is a <button>, on the <button>'s onClick function. */
   onSubmit: any;
   title?: string;
+  className?: string;
   hiddenName?: string;
   hiddenValue?: string;
+
+  /** By default, the <button>'s content will be the string "Submit". */
   buttonContent?: string | JSX.Element;
   buttonClass?: string;
-  className?: string;
+  disableButton?: boolean;
+  /** Set this to true if you 1) want to use your own button element rather than the
+  reusable <Button> from this repo, or 2) want some other element (e.g. a checkbox) to
+  trigger the onSubmit function. */
+  withoutButton?: boolean;
+
+  /** You can set a variety of color-coded alerts to optionally render.  You can pass in a string,
+  or use one or more elements (e.g. a custom error message element).  The <Form> will take care of
+  making sure that the alert is only rendered when appropriate, and that focus goes to it. */
   errorText?: string | JSX.Element | Array<JSX.Element>;
   successText?: string | JSX.Element | Array<JSX.Element>;
   infoText?: string | JSX.Element | Array<JSX.Element>;
   loadingText?: string | JSX.Element | Array<JSX.Element>;
   warningText?: string | JSX.Element | Array<JSX.Element>;
-  disableButton?: boolean;
-  withoutButton?: boolean;
 }
 
 export default class Form extends React.Component<FormProps, {}> {
