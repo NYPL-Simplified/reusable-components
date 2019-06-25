@@ -16,6 +16,7 @@ export interface FormProps {
   successText?: string | JSX.Element | Array<JSX.Element>;
   infoText?: string | JSX.Element | Array<JSX.Element>;
   loadingText?: string | JSX.Element | Array<JSX.Element>;
+  warningText?: string | JSX.Element | Array<JSX.Element>;
   disableButton?: boolean;
   withoutButton?: boolean;
 }
@@ -70,6 +71,9 @@ export default class Form extends React.Component<FormProps, {}> {
         }
         {
           this.props.loadingText && this.message(this.props.loadingText, "loading")
+        }
+        {
+          this.props.warningText && this.message(this.props.warningText, "warning")
         }
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>

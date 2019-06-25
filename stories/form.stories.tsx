@@ -51,6 +51,12 @@ const form = storiesOf('Components/Form', module)
         onSubmit={action('clicked')}
         content={multiLineFieldset}
         loadingText="Loading..."
+      />,
+      <Form
+        title="With Warning Message"
+        onSubmit={action('clicked')}
+        content={multiLineFieldset}
+        warningText="This is a warning..."
       />
     ]
   })
