@@ -69,7 +69,7 @@ export default class Form extends React.Component<FormProps, {}> {
           this.props.infoText && this.message(this.props.infoText, "info")
         }
         {
-          this.props.loadingText && this.message(this.props.loadingText, "")
+          this.props.loadingText && this.message(this.props.loadingText, "loading")
         }
         { this.props.title &&
           <label className="form-title">{this.props.title}</label>

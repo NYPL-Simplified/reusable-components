@@ -66,8 +66,11 @@ form {
       color: $dark-gray;
       font-weight: bold;
     }
+    &.alert-loading {
+      background-color: $gray-tint;
+      color: $dark-gray;
+    }
   }
-
 
   .form-title {
     display: block;

@@ -45,6 +45,12 @@ const form = storiesOf('Components/Form', module)
         onSubmit={action('clicked')}
         content={multiLineFieldset}
         successText="It worked!"
+      />,
+      <Form
+        title="With Loading Message"
+        onSubmit={action('clicked')}
+        content={multiLineFieldset}
+        loadingText="Loading..."
       />
     ]
   })
