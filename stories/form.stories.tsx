@@ -92,10 +92,10 @@ const form = storiesOf('Components/Form', module)
       <Form
         title="With No Button"
         onSubmit={action('clicked')}
-        infoText="You might want to submit the form by doing something other than clicking a button--for example, by choosing an option."
+        infoText="You might want to use your own button element, instead of the default Button component that the Form automatically generates for you.  Just set the 'withoutButton' prop to true, and add your button to your array of elements in the 'content' prop."
         content={[
-          <p>You could set the submit function as the checkbox's "onChange" prop.</p>,
-          <input onChange={action('clicked')} type="checkbox"/>
+          <p>Don't forget to manually pass a callback to your button's 'onClick' function!</p>,
+          <button className="custom-button" onChange={action('clicked')}>Custom Button Element</button>
         ]}
         withoutButton={true}
       />

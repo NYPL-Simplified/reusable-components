@@ -43,14 +43,17 @@ export default class Form extends React.Component<FormProps, {}> {
     this.message = this.message.bind(this);
   }
 
+  componentDidUpdate() {
+    if (this.messageRef.current && this.messageRef.current.focus) {
+      this.messageRef.current.focus();
+    }
+  }
+
   async submit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     let form = this.formRef.current;
     const data = new (window as any).FormData(form);
     await this.props.onSubmit(data);
-    if (this.messageRef.current) {
-      this.messageRef.current.focus();
-    }
   };
 
   message(text, messageType: string) {
