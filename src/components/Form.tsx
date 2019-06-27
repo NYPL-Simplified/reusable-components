@@ -43,9 +43,13 @@ export default class Form extends React.Component<FormProps, {}> {
     this.message = this.message.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(oldProps: FormProps) {
     if (this.messageRef.current && this.messageRef.current.focus) {
-      this.messageRef.current.focus();
+      // If the message hasn't changed (e.g. the user has typed in new input
+      // but not re-submitted the form yet), there's no point re-focusing on it.
+      let messageProps = ["errorText", "successText", "warningText"];
+      let hasNewMessage = messageProps.some(prop => oldProps[prop] !== this.props[prop]);
+      hasNewMessage && this.messageRef.current.focus();
     }
   }
 
