@@ -95,7 +95,7 @@ const form = storiesOf('Components/Form', module)
         infoText="You might want to use your own button element, instead of the default Button component that the Form automatically generates for you.  Just set the 'withoutButton' prop to true, and add your button to your array of elements in the 'content' prop."
         content={[
           <p>Don't forget to manually pass a callback to your button's 'onClick' function!</p>,
-          <button className="custom-button" onChange={action('clicked')}>Custom Button Element</button>
+          <button className="custom-button" onClick={action('clicked')}>Custom Button Element</button>
         ]}
         withoutButton={true}
       />
