@@ -19,7 +19,7 @@ export interface FormProps {
   buttonClass?: string;
   disableButton?: boolean;
   /** Set this to true if you 1) want to use your own button element rather than the
-  reusable <Button> from this repo, or 2) want some other element (e.g. a checkbox) to
+  reusable <Button> from this repo, or 2) want some other element (e.g. a toggle) to
   trigger the onSubmit function. */
   withoutButton?: boolean;
 
