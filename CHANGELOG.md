@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.8
+#### Added
+- Updates and stories for the Form
+
 ### v1.3.7
 #### Updated
 - Committed new version of package-lock.json

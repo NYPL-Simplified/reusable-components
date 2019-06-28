@@ -43,3 +43,36 @@ table {
     align-self: center;
   }
 }
+
+form {
+  &:not(.border) {
+    border: 3px dashed #ccc;
+  }
+  &.inline {
+    margin-top: 40px;
+    border: unset;
+  }
+  input[type="radio"] {
+    margin: 0 20px 20px 10px;
+  }
+  select {
+    display: block;
+    margin: 20px 0;
+  }
+  &.border {
+    fieldset {
+      margin: 8px;
+      input {
+        display: block;
+      }
+    }
+  }
+  .custom-button {
+    background: black;
+    border: 6px outset red;
+    color: white;
+    padding: 8px 12px;
+    font-family: monospace;
+    margin: auto;
+  }
+}

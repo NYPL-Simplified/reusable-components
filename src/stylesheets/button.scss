@@ -35,8 +35,11 @@ button.btn, a.btn {
       transition: fill .5s;
     }
   }
-  &:focus:not(.inverted), &:focus:not(.transparent) {
+  &:focus {
     color: $white;
+    &.inverted, &.transparent {
+      color: $blue;
+    }
   }
   &:disabled {
     pointer-events: none;
@@ -58,6 +61,7 @@ button.btn, a.btn {
   }
   &.centered {
     margin: auto;
+    font-size: 1.2vw;
     width: 25vw;
     border: 1px solid $blue;
     &:hover {

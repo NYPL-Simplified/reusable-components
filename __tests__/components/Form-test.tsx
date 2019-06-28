@@ -143,6 +143,42 @@ describe("Form", () => {
     spyMessage.restore();
   });
 
+  it("should optionally render a loading message", () => {
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
+    let loading = wrapper.find(".alert-loading");
+    expect(spyMessage.callCount).to.equal(0);
+    expect(loading.length).to.equal(0);
+
+    wrapper.setProps({ loadingText: "Loading..." });
+
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][0]).to.equal("Loading...");
+    expect(spyMessage.args[0][1]).to.equal("loading");
+    loading = wrapper.find(".alert-loading");
+    expect(loading.length).to.equal(1);
+    expect(loading.text()).to.equal("Loading...");
+
+    spyMessage.restore();
+  });
+
+  it("should optionally render a warning message", () => {
+    let spyMessage = Sinon.spy(wrapper.instance(), "message");
+    let warning = wrapper.find(".alert-warning");
+    expect(spyMessage.callCount).to.equal(0);
+    expect(warning.length).to.equal(0);
+
+    wrapper.setProps({ warningText: "Warning!" });
+
+    expect(spyMessage.callCount).to.equal(1);
+    expect(spyMessage.args[0][0]).to.equal("Warning!");
+    expect(spyMessage.args[0][1]).to.equal("warning");
+    warning = wrapper.find(".alert-warning");
+    expect(warning.length).to.equal(1);
+    expect(warning.text()).to.equal("Warning!");
+
+    spyMessage.restore();
+  });
+
   it("should render a Button", () => {
     let button = wrapper.find("Button");
     expect(button.length).to.equal(1);
