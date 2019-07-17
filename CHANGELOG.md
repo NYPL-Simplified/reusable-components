@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.4.0
+#### Updated
+- Enabled optionally passing an onMouseDown handler to the Button
+
 ### v1.3.9
 #### Updated
 - Committed new version of package-lock.json

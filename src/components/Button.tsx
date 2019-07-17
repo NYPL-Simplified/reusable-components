@@ -7,9 +7,13 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: string;
+  mouseDown?: boolean;
 }
 
 export default class Button extends React.Component<ButtonProps, {}> {
+  static defaultProps = {
+    mouseDown: false
+  };
 
   constructor(props: ButtonProps) {
     super(props);
@@ -18,15 +22,16 @@ export default class Button extends React.Component<ButtonProps, {}> {
   render(): JSX.Element {
    let content = this.props.content || "Submit";
    let className = `btn${this.props.className ? ` ${this.props.className}` : ""}`;
-   return (
-     <button
-      type={this.props.type || "submit"}
-      className={className}
-      disabled={this.props.disabled || null}
-      onClick={this.props.callback}
-     >
-      {content}
-     </button>
+   let buttonProps = {
+     type: (this.props.type || "submit"),
+     className: className,
+     disabled: (this.props.disabled || null),
+   };
+   let callback = this.props.mouseDown ? {onMouseDown: this.props.callback} : {onClick: this.props.callback};
+   return React.createElement(
+     "button",
+     {...buttonProps, ...callback},
+     content
    );
  }
 
