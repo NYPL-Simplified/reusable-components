@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.10
+#### Added
+- Added `tslint-react-a11y` as a linter extension for checking for accessibility issues in the React components.
+
 ### v1.3.9
 #### Updated
 - Committed new version of package-lock.json
