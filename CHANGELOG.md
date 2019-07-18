@@ -1,6 +1,8 @@
 ## Changelog
 
-### v1.4.0
+### v1.3.10
+#### Added
+- Added `tslint-react-a11y` as a linter extension for checking for accessibility issues in the React components.
 #### Updated
 - Enabled optionally passing an onMouseDown handler to the Button
 
