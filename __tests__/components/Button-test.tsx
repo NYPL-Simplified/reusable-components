@@ -8,8 +8,9 @@ import Button from "../../src/components/Button";
 
 describe("Button", () => {
   let wrapper: Enzyme.ShallowWrapper<{}, {}>;
-  let callback = stub();
+  let callback;
   beforeEach(() => {
+    callback = stub();
     wrapper = Enzyme.shallow(<Button callback={callback} />);
   });
   it("calls the callback", () => {
@@ -41,5 +42,13 @@ describe("Button", () => {
     expect(wrapper.prop("type")).to.equal("submit");
     wrapper.setProps({ type: "button" });
     expect(wrapper.prop("type")).to.equal("button");
+  });
+  it("optionally calls the callback on mouseDown instead of on click", () => {
+    expect(callback.callCount).to.equal(0);
+    wrapper.setProps({ mouseDown: true });
+    wrapper.simulate("click");
+    expect(callback.callCount).to.equal(0);
+    wrapper.simulate("mouseDown");
+    expect(callback.callCount).to.equal(1);
   });
 });
