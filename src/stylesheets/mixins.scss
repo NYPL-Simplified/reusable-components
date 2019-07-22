@@ -18,3 +18,18 @@ $white: #FFF;
   outline-style: solid;
   outline-width: 3px;
 }
+
+@mixin hoverActiveBtnState($color) {
+  background: $color;
+
+  &:hover,
+  &:active {
+    background: $white;
+    color: $color;
+    border-color: $color;
+    svg {
+      fill: $color;
+      transition: fill .5s;
+    }
+  }
+}

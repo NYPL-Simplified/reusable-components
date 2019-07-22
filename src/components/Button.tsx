@@ -20,19 +20,19 @@ export default class Button extends React.Component<ButtonProps, {}> {
   }
 
   render(): JSX.Element {
-   let content = this.props.content || "Submit";
-   let className = `btn${this.props.className ? ` ${this.props.className}` : ""}`;
-   let buttonProps = {
-     type: (this.props.type || "submit"),
-     className: className,
-     disabled: (this.props.disabled || null),
-   };
-   let callback = this.props.mouseDown ? {onMouseDown: this.props.callback} : {onClick: this.props.callback};
-   return React.createElement(
-     "button",
-     {...buttonProps, ...callback},
-     content
-   );
- }
-
+    const { content, className, type, disabled, mouseDown, callback, ...rest } = this.props;
+    let btnContent = content || "Submit";
+    let btnClassName = `btn${className ? ` ${className}` : ""}`;
+    let btnProps = {
+      type: (type || "submit"),
+      className: btnClassName,
+      disabled: (disabled || null),
+    };
+    let btnCallback = mouseDown ? { onMouseDown: callback } : { onClick: callback };
+    return React.createElement(
+      "button",
+      {...btnProps, ...btnCallback, ...rest},
+      btnContent
+    );
+  }
 }

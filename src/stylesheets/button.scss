@@ -1,3 +1,13 @@
+%hoverActiveState {
+  background: $gray-brown;
+  color: $white;
+  border-color: $gray-brown;
+  svg {
+    fill: $white;
+    transition: fill .5s;
+  }
+}
+
 button.btn, a.btn {
   display: block;
   color: $white;
@@ -6,11 +16,19 @@ button.btn, a.btn {
   margin: .5em;
   border-radius: .25em;
   font-size: 16px;
+  padding: 6px 12px;
+  font-weight: bold;
+  min-height: 24px;
+
+  &:hover, &:active {
+    @extend %hoverActiveState;
+  }
+
   &.danger {
-    background: $red;
+    @include hoverActiveBtnState($red);
   }
   &.success {
-    background: $green-bright;
+    @include hoverActiveBtnState($green-bright);
   }
   &.inverted {
     background: $white;
@@ -19,22 +37,26 @@ button.btn, a.btn {
     svg {
       fill: $blue;
     }
-  }
-  padding: 6px 12px;
-  font-weight: bold;
-  min-height: 24px;
-  &:hover:not(.transparent), &:active:not(.transparent) {
-    background: $gray-brown;
-    color: $white;
-    border-color: $gray-brown;
-    span {
-      color: $white;
+    &:hover, &:active {
+      @extend %hoverActiveState;
     }
+  }
+  &.transparent {
+    background-color: transparent;
+    color: $black;
+    font-weight: normal;
+    padding: 0;
     svg {
-      fill: $white;
-      transition: fill .5s;
+      fill: $black;
+      height: .7em;
+      width: .7em;
+    }
+    &:hover, &:active {
+      color: $black;
+      border-color: transparent;
     }
   }
+
   &:focus {
     color: $white;
     &.inverted, &.transparent {
@@ -89,21 +111,7 @@ button.btn, a.btn {
       margin-left: .5em;
     }
   }
-  &.transparent {
-    background-color: transparent;
-    color: $black;
-    font-weight: normal;
-    padding: 0;
-    svg {
-      fill: $black;
-      height: .7em;
-      width: .7em;
-    }
-    &:hover, &:active {
-      color: $black;
-      border-color: transparent;
-    }
-  }
+
   svg {
     fill: $white;
     float: right;
