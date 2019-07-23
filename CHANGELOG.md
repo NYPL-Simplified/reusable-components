@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.11
+#### Updated
+- Updated the Button component to render extra props, for aria-* attributes. Updated related styles for hover state.
+
 ### v1.3.10
 #### Added
 - Added `tslint-react-a11y` as a linter extension for checking for accessibility issues in the React components.
