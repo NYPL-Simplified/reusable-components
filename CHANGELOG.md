@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.11
+### Updated
+- Updated the Header and Tabs components for documentation purposes.
+
 ### v1.3.10
 #### Added
 - Added `tslint-react-a11y` as a linter extension for checking for accessibility issues in the React components.
