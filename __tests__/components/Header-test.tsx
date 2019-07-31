@@ -8,7 +8,7 @@ describe("Header", () => {
   let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   beforeEach(() => {
     wrapper = Enzyme.shallow(
-      <Header text="Test Header!" logOut="logout_url"/>
+      <Header text="Test Header!" loggedIn={true} />
     );
   });
   it("should render text", () => {
@@ -16,10 +16,9 @@ describe("Header", () => {
     expect(text.text()).to.equal("Test Header!");
   });
   it("should render a logout button", () => {
-    let logout = wrapper.find(".navbar-btn");
+    let logout = wrapper.find(".header-btn");
     expect(logout.length).to.equal(1);
     expect(logout.find(".logoutIcon").length).to.equal(1);
-    expect(logout.find("span").text()).to.equal("Log Out");
-    expect((logout.props() as any).href).to.equal("logout_url");
+    expect(logout.find("span").text()).to.contain("Log Out");
   });
 });

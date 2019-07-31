@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.12
+### Updated
+- Updated the Header and Tabs components for documentation purposes.
+
 ### v1.3.11
 #### Updated
 - Updated the Button component to render extra props, for aria-* attributes. Updated related styles for hover state.
