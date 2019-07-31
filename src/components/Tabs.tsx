@@ -78,7 +78,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
       navs.push(navItem);
 
-      let contentItem = (
+      let contentItem: JSX.Element = (
         <section
           aria-labelledby={idx.toString()}
           className={`tab-content ${current ? "" : "hidden"}`}

@@ -1,24 +1,27 @@
-nav.reusable-navbar.navbar-default {
+header.reusable-header {
   background-color: $blue;
   border-radius: 0;
   padding: 20px;
-  .navbar-header {
-    span {
+
+  > span {
+    display: block;
+    float: left;
+    line-height: 2;
+    color: $white;
+    font-size: 1.5em;
+    margin: 0 1em;
+    height: 40px;
+    &:hover {
       color: $white;
-      font-size: 1.5em;
-      margin: 0 1em;
-      padding: 0;
-      &:hover {
-        color: $white;
-      }
-    }
-    .navbar-brand {
-      background: $white;
-      padding: 5px;
-      height: 40px;
     }
   }
-  .navbar-btn {
+  .header-brand {
+    background: $white;
+    padding: 5px;
+    height: 40px;
+  }
+
+  .header-btn {
     float: right;
     margin: 0;
     &:hover {

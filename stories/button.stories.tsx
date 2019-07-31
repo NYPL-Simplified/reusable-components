@@ -131,6 +131,22 @@ const button = storiesOf('Components/Button', module)
         content={text('content', 'Custom text')}
       />
     ];
+  })
+  .add('with aria attributes', () => {
+    return [
+      <span>
+        This button contains many aria-attributes just as examples:
+        <Button
+          className="inverted left-align"
+          callback={action('clicked')}
+          content={text('Aria-*')}
+          aria-selected={true}
+          aria-label='Aria Label Attribute'
+          aria-expanded={true}
+          aria-pressed={true}
+        />
+      </span>
+    ]
   });
 
 export default button;

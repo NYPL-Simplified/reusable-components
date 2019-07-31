@@ -16,7 +16,7 @@ describe("Header", () => {
     expect(text.text()).to.equal("Test Header!");
   });
   it("should render a logout button", () => {
-    let logout = wrapper.find(".navbar-btn");
+    let logout = wrapper.find(".header-btn");
     expect(logout.length).to.equal(1);
     expect(logout.find(".logoutIcon").length).to.equal(1);
     expect(logout.find("span").text()).to.contain("Log Out");
