@@ -1,7 +1,11 @@
 ## Changelog
 
+### v1.3.13
+#### Updated
+- Updated the Panel component to have aria attributes for accessibility. Added a static panel example to the Storybook instance.
+
 ### v1.3.12
-### Updated
+#### Updated
 - Updated the Header and Tabs components for documentation purposes.
 
 ### v1.3.11
