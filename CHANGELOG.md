@@ -4,6 +4,7 @@
 #### Updated
 - Updated the Panel component to have aria attributes for accessibility. Added a static panel example to the Storybook instance.
 - Added Travis CI hook to deploy Storybook to Github Pages on a successful pass on `master`.
+- Updated the Header component with styling for the logo and optional nav element.
 
 ### v1.3.12
 #### Updated
