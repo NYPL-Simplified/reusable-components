@@ -13,5 +13,5 @@ deploy:
   keep-history: true
   github_token: $GITHUB_TOKEN
   on:
-    branch: deploy-storybook-travis
+    branch: master
   local_dir: storybook-static
