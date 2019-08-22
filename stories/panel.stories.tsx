@@ -35,6 +35,7 @@ const panel = storiesOf('Components/Panel', module)
   })
   .add('default', () =>
     <Panel
+      id="default"
       headerText={text('headerText', 'Default Panel Title')}
       content={panelContent}
     />
@@ -42,31 +43,49 @@ const panel = storiesOf('Components/Panel', module)
   .add('all panels with styles', () => {
     return [
       <Panel
+        key="1"
+        id="default"
         headerText="Default Panel"
         style={text('style', 'default')}
         content={panelContent}
       />,
       <Panel
+        key="2"
+        id="success"
         headerText="Success Panel"
         style="success"
         content={panelContent}
       />,
       <Panel
+        key="3"
+        id="warning"
         headerText="Warning Panel"
         style="warning"
         content={panelContent}
       />,
       <Panel
+        key="4"
+        id="danger"
         headerText="Danger Panel"
         style="danger"
         content={panelContent}
       />,
       <Panel
+        key="5"
+        id="instruction"
         headerText="Instruction Panel"
         style="instruction"
         content={panelContent}
       />
     ]
-  });
+  })
+  .add('static panel', () =>
+    <Panel
+      id="static"
+      content={panelContent}
+      headerText="Static Panel"
+      collapsible={false}
+    />
+  );
 
 export default panel;

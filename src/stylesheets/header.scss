@@ -1,16 +1,17 @@
 header.reusable-header {
+  display: flex;
+  align-items: center;
   background-color: $blue;
   border-radius: 0;
   padding: 20px;
 
-  > span {
-    display: block;
-    float: left;
-    line-height: 2;
+  .header-title {
+    flex-grow: 1;
     color: $white;
     font-size: 1.5em;
     margin: 0 1em;
     height: 40px;
+    padding: 5px;
     &:hover {
       color: $white;
     }
@@ -22,11 +23,31 @@ header.reusable-header {
   }
 
   .header-btn {
-    float: right;
     margin: 0;
     &:hover {
       span {
         color: $white;
+      }
+    }
+  }
+
+  nav {
+    margin-right: 20px;
+
+    ul {
+      list-style: none;
+      li {
+        float: left;
+
+        a {
+          padding: 5px;
+          font-size: 1.2em;
+          color: $white;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

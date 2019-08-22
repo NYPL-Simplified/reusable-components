@@ -148,10 +148,10 @@ export default class Demo extends React.Component<{}, DemoState> {
       <div id="demo">
         <Header text="Welcome to the demo page!" imgSrc="./logo.png" logOut="#" />
         <div className="list">
-          <Panel headerText="The default panel" content={panelBody} />
-          <Panel headerText="Success panel" style="success" content={panelBody} />
-          <Panel headerText="Warning panel" style="warning" content={panelBody} />
-          <Panel headerText="Danger panel" style="danger" content={panelBody} />
+          <Panel id="default" headerText="The default panel" content={panelBody} />
+          <Panel id="success" headerText="Success panel" style="success" content={panelBody} />
+          <Panel id="warning" headerText="Warning panel" style="warning" content={panelBody} />
+          <Panel id="danger" headerText="Danger panel" style="danger" content={panelBody} />
           <hr></hr>
           <section style={{display: "flex", justifyContent: "space-between", width: "42%", margin: "20px"}}>
             <Button callback={this.setError} content="Error message" />

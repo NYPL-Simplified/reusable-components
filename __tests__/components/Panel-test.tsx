@@ -15,7 +15,7 @@ describe("Panel", () => {
     headerText = "test panel header!";
     content = <div>Test panel content</div>;
     wrapper = Enzyme.mount(
-      <Panel headerText={headerText} content={content} />
+      <Panel id="test1" headerText={headerText} content={content} />
     );
   });
 
@@ -33,6 +33,9 @@ describe("Panel", () => {
     expect(header.length).to.equal(1);
     expect(header.type()).to.equal("button");
     expect(header.prop("type")).to.equal("button");
+    expect(header.prop("aria-expanded")).to.be.false;
+    expect(header.prop("aria-controls")).to.equal("test1-panel");
+    expect(wrapper.find(".panel-body").prop("id")).to.equal("test1-panel");
 
     let title = header.find(".panel-title");
     expect(title.length).to.equal(1);
@@ -60,7 +63,7 @@ describe("Panel", () => {
 
   it("should optionally be open by default", () => {
     wrapper = Enzyme.mount(
-      <Panel headerText={"OPEN"} openByDefault={true} content={<div></div>} />
+      <Panel id="test2" headerText={"OPEN"} openByDefault={true} content={<div></div>} />
     );
     expect(wrapper.state()["display"]).not.to.equal("collapse");
     let panelBody = wrapper.find(".panel-body");
@@ -75,6 +78,8 @@ describe("Panel", () => {
     expect(wrapper.state().display).to.equal("collapse");
     expect(wrapper.find("section").hasClass("collapse")).to.be.true;
     expect(wrapper.find("svg").hasClass("down-icon")).to.be.true;
+    expect(wrapper.find(".panel-heading").prop("aria-expanded")).to.be.false;
+    expect(wrapper.find(".panel-body").prop("aria-hidden")).to.be.true;
 
     wrapper.find("button").simulate("click");
     expect(spyToggle.callCount).to.equal(1);
@@ -82,6 +87,8 @@ describe("Panel", () => {
     expect(wrapper.state().display).to.equal("");
     expect(wrapper.find("section").hasClass("collapse")).to.be.false;
     expect(wrapper.find("svg").hasClass("up-icon")).to.be.true;
+    expect(wrapper.find(".panel-heading").prop("aria-expanded")).to.be.true;
+    expect(wrapper.find(".panel-body").prop("aria-hidden")).to.be.false;
 
     wrapper.find("button").simulate("click");
     expect(spyToggle.callCount).to.equal(2);
@@ -89,19 +96,24 @@ describe("Panel", () => {
     expect(wrapper.state().display).to.equal("collapse");
     expect(wrapper.find("section").hasClass("collapse")).to.be.true;
     expect(wrapper.find("svg").hasClass("down-icon")).to.be.true;
+    expect(wrapper.find(".panel-heading").prop("aria-expanded")).to.be.false;
+    expect(wrapper.find(".panel-body").prop("aria-hidden")).to.be.true;
 
     spyToggle.restore();
   });
 
   it("should optionally render a static panel", () => {
     wrapper = Enzyme.mount(
-      <Panel headerText={"STATIC"} collapsible={false} content={<div></div>} />
+      <Panel id="test3" headerText={"STATIC"} collapsible={false} content={<div></div>} />
     );
 
     expect(wrapper.state()["display"]).not.to.equal("collapse");
     expect(wrapper.find(".panel-heading").type()).to.equal("div");
     expect(wrapper.find(".panel-heading").prop("type")).to.be.null;
+    expect(wrapper.find(".panel-heading").prop("aria-expanded")).to.be.undefined;
+    expect(wrapper.find(".panel-heading").prop("aria-controls")).to.be.undefined;
     expect(wrapper.find(".panel-body").hasClass("collapse")).to.be.false;
+    expect(wrapper.find(".panel-body").prop("aria-hidden")).to.be.null;
     expect(wrapper.find("svg").length).to.equal(0);
 
     let spyToggle = Sinon.spy(wrapper.instance(), "toggle");

@@ -7,6 +7,8 @@ export interface HeaderProps {
   alt?: string;
   logOut?: string;
   loggedIn?: boolean;
+  /** This is expected to be a ul element or a div with an ul element. */
+  nav?: JSX.Element;
 }
 
 export default class Header extends React.Component<HeaderProps, {}> {
@@ -15,19 +17,20 @@ export default class Header extends React.Component<HeaderProps, {}> {
   };
 
   render(): JSX.Element {
-    let src = this.props.imgSrc ? require(`${this.props.imgSrc}`) : "";
+    const { imgSrc, alt, text, nav, loggedIn, logOut } = this.props;
+    let src = imgSrc ? require(`${imgSrc}`) : "";
     return(
       <header className="reusable-header clearfix">
-        <span>{this.props.text}</span>
         {
-          this.props.imgSrc &&
-          <img className="header-brand img-rounded" alt={this.props.alt || ""} src={src} />
+          imgSrc &&
+          <span>
+            <img className="header-brand img-rounded" alt={alt || ""} src={src} />
+          </span>
         }
-        { this.props.loggedIn &&
-          <a
-            className="btn header-btn big inverted"
-            href={this.props.logOut}
-          >
+        <span className="header-title">{text}</span>
+        { nav && <nav role="navigation">{nav}</nav>}
+        { loggedIn &&
+          <a className="btn header-btn big inverted" href={logOut}>
             <span>Log Out <LogoutIcon /></span>
           </a>
         }
