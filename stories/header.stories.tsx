@@ -8,12 +8,13 @@ const header = storiesOf("Components/Header", module)
     <Header text="SimplyE" />
   )
   .add("with logout link", () =>
-    <Header text="SimplyE" loggedIn={true} />
+    <Header text="SimplyE" loggedIn={true} logOut="#" />
   )
   .add("with navigation", () =>
     <Header
       text="SimplyE"
       loggedIn={true}
+      logOut="#"
       nav={
         <ul>
           <li><a href="/about">About</a></li>

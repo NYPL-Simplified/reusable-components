@@ -23,18 +23,17 @@ export default class Header extends React.Component<HeaderProps, {}> {
       <header className="reusable-header clearfix">
         {
           imgSrc &&
-          <img className="header-brand img-rounded" alt={alt || ""} src={src} />
+          <span>
+            <img className="header-brand img-rounded" alt={alt || ""} src={src} />
+          </span>
         }
-        <span>{text}</span>
+        <span className="header-title">{text}</span>
+        { nav && <nav role="navigation">{nav}</nav>}
         { loggedIn &&
-          <a
-            className="btn header-btn big inverted"
-            href={logOut}
-          >
+          <a className="btn header-btn big inverted" href={logOut}>
             <span>Log Out <LogoutIcon /></span>
           </a>
         }
-        { nav && <nav role="navigation">{nav}</nav>}
       </header>
     );
   }
