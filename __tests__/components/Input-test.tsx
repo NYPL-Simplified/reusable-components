@@ -7,7 +7,7 @@ describe("Input", () => {
   let wrapper: Enzyme.ShallowWrapper<{}, {}>;
   beforeEach(() => {
     wrapper = Enzyme.shallow(
-      <Input label="A label" name="inputName"/>
+      <Input label="A label" name="inputName" id="id" />
     );
   });
   it("displays a label", () => {
@@ -19,7 +19,7 @@ describe("Input", () => {
   it("displays an input field with a name and id", () => {
     let input = wrapper.find("input");
     expect(input.prop("name")).to.equal("inputName");
-    expect(input.prop("id")).to.equal("inputName");
+    expect(input.prop("id")).to.equal("id");
   });
   it("defaults to setting the input's type as text", () => {
     let input = wrapper.find("input");
@@ -27,7 +27,7 @@ describe("Input", () => {
   });
   it("optionally accepts a type prop", () => {
     wrapper = Enzyme.shallow(
-      <Input label="Radio" name="radioInputName" type="radio" />
+      <Input label="Radio" name="radioInputName" type="radio" id="2" />
     );
     let input = wrapper.find("input");
     expect(input.prop("type")).to.equal("radio");

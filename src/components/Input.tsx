@@ -4,6 +4,7 @@ export interface InputProps {
   type?: string;
   name: string;
   label: string;
+  id: string;
 }
 
 export default class Input extends React.Component<InputProps, {}> {
@@ -15,7 +16,7 @@ export default class Input extends React.Component<InputProps, {}> {
           className="form-control"
           type={this.props.type || "text"}
           name={this.props.name}
-          id={this.props.name}
+          id={this.props.id}
         />
       </div>
     );

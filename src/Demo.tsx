@@ -139,7 +139,7 @@ export default class Demo extends React.Component<{}, DemoState> {
         key="fieldset"
         legend="This is a fieldset"
         elements={[
-          <Input key="input" label="An input field" name="name"/>
+          <Input key="input" label="An input field" name="name" id="input-demo" />
         ]}
       />
     );
