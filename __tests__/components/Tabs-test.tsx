@@ -5,9 +5,9 @@ import Tabs from "../../src/components/Tabs";
 
 describe("Tabs", () => {
   let wrapper;
-  let content1 = <p>Content item #1</p>;
-  let content2 = <p>Another content item</p>;
-  let content3 = <p>More content!</p>;
+  const content1 = <p>Content item #1</p>;
+  const content2 = <p>Another content item</p>;
+  const content3 = <p>More content!</p>;
   beforeEach(() => {
     wrapper = Enzyme.mount(
       <Tabs
