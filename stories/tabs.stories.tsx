@@ -44,20 +44,20 @@ const tabs = storiesOf('Components/Tabs', module)
           "#F5F4F3": "$gray-tint"
         }
       };
-  
+
       let items = {};
       Object.keys(COLORS).forEach((colorCategory: string) => {
         items[colorCategory] = makeColorList(COLORS[colorCategory]);
       });
       return items;
     };
-  
+
     const makeColorList = (colors: {}) => (
       <ul className="clearfix" style={{margin: "0", backgroundColor: "#fff"}}>
         { Object.entries(colors).map(color => makeColorSwatch(color)) }
       </ul>
     );
-  
+
     const makeColorSwatch = (info: string[] | {}) => {
       const liStyle = {
         display: "flex",
@@ -92,7 +92,7 @@ const tabs = storiesOf('Components/Tabs', module)
       );
     }
 
-    return <Tabs items={makeTabItems()} />;
+    return <Tabs items={makeTabItems()} uniqueId="demo"/>;
   });
 
 export default tabs;

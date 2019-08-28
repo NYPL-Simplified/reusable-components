@@ -4,18 +4,20 @@ import * as React from "react";
 import Tabs from "../../src/components/Tabs";
 
 describe("Tabs", () => {
+  let wrapper;
   const content1 = <p>Content item #1</p>;
   const content2 = <p>Another content item</p>;
   const content3 = <p>More content!</p>;
-  let wrapper: Enzyme.CommonWrapper<{}, {}, {}>;
-
   beforeEach(() => {
     wrapper = Enzyme.mount(
-      <Tabs items={{
-        "content1": content1,
-        "content2": content2,
-        "content3": content3
-      }}/>
+      <Tabs
+        items={{
+          "content1": content1,
+          "content2": content2,
+          "content3": content3
+        }}
+        uniqueId="test"
+      />
     );
   });
   it("should render nav buttons", () => {
@@ -51,15 +53,27 @@ describe("Tabs", () => {
     expect(tabNav2.hasClass("current")).to.be.true;
     expect(wrapper.find(".tab-content").at(1).hasClass("hidden")).to.be.false;
   });
-
+  it("should generate unique IDs", () => {
+    // Each button should have an ID in the format "button-{idx}-{this.props.uniqueId}",
+    // and an aria-controls property pointing to the ID of the corresponding panel.
+    wrapper.find(".tab-nav button").map((b, idx) => {
+      expect(b.prop("id")).to.equal(`button-${idx}-test`);
+      expect(b.prop("aria-controls")).to.equal(`content-${idx}-test`);
+    });
+    // Each panel should have an ID in the format "panel-{idx}-{this.props.uniqueId}",
+    // and an aria-labelledby property pointing to the ID of the corresponding button.
+    wrapper.find(".tab-content").map((p, idx) => {
+      expect(p.prop("id")).to.equal(`content-${idx}-test`);
+      expect(p.prop("aria-labelledby")).to.equal(`button-${idx}-test`);
+    });
+  });
   describe("keyboard navigation", () => {
     it("should switch tabs via the right arrow key", () => {
       let button1 = wrapper.find(".tab-nav button").at(0);
       let button2 = wrapper.find(".tab-nav button").at(1);
       let button3 = wrapper.find(".tab-nav button").at(2);
 
-      // Start out on the leftmost tab,
-      // then press the right arrow key to go to the middle tab
+      // Start out on the leftmost tab, then press the right arrow key to go to the middle tab
       button1.simulate("keydown", {keyCode: 39, currentTarget: {id: "0"}});
       expect(wrapper.state()["tab"]).to.equal(1);
       expect(button2.parents().at(0).render().hasClass("current")).to.be.true;
@@ -83,8 +97,7 @@ describe("Tabs", () => {
       let button2 = wrapper.find(".tab-nav button").at(1);
       let button3 = wrapper.find(".tab-nav button").at(2);
 
-      // Start out on the rightmost tab,
-      // then press the left arrow key to go to the middle tab
+      // Start out on the rightmost tab, then press the left arrow key to go to the middle tab
       button3.simulate("keydown", {keyCode: 37, currentTarget: {id: "2"}});
       expect(wrapper.state()["tab"]).to.equal(1);
       expect(button2.parents().at(0).render().hasClass("current")).to.be.true;
