@@ -179,7 +179,7 @@ export default class Demo extends React.Component<{}, DemoState> {
               content={`Turn ${this.state.lights ? "off" : "on"} the lights!`}
             />
           </div>
-          <Tabs items={this.makeTabItems()}/>
+          <Tabs items={this.makeTabItems()} uniqueId="demo"/>
         </div>
       </div>
     );
