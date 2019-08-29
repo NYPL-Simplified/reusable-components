@@ -12,11 +12,17 @@ export interface TabsState {
 }
 
 export default class Tabs extends React.Component<TabsProps, TabsState> {
+  private buttonRef = React.createRef<HTMLButtonElement>();
+
   constructor(props: TabsProps) {
     super(props);
     this.select = this.select.bind(this);
     this.makeTabs = this.makeTabs.bind(this);
     this.state = { tab: 0 };
+  }
+
+  componentDidUpdate() {
+    this.buttonRef.current.focus();
   }
 
   select(e:  React.KeyboardEvent<HTMLButtonElement> & React.MouseEvent<HTMLButtonElement>) {
@@ -42,8 +48,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
         return;
       }
       this.setState({ tab: newIdx });
-      // The focus is still on the original tab; manually update it to the new tab.
-      (this.refs[newIdx] as HTMLElement).focus();
+      // componentDidUpdate will move the focus to the new tab.
     }
     else {
       // Click
@@ -73,7 +78,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
             onKeyDown={this.select}
             role="tab"
             tabIndex={current ? 0 : -1}
-            ref={`${idx}`}
+            ref={current ? this.buttonRef : null}
           >
             {name}
           </button>
