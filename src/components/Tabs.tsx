@@ -4,6 +4,7 @@ export interface TabsProps {
   items: {
     [key: string]: JSX.Element;
   };
+  uniqueId: string;
 }
 
 export interface TabsState {
@@ -11,6 +12,8 @@ export interface TabsState {
 }
 
 export default class Tabs extends React.Component<TabsProps, TabsState> {
+  private buttonRef = React.createRef<HTMLButtonElement>();
+
   constructor(props: TabsProps) {
     super(props);
     this.select = this.select.bind(this);
@@ -18,8 +21,13 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     this.state = { tab: 0 };
   }
 
+  componentDidUpdate() {
+    this.buttonRef.current.focus();
+  }
+
   select(e:  React.KeyboardEvent<HTMLButtonElement> & React.MouseEvent<HTMLButtonElement>) {
-    let idx = parseInt((e.currentTarget as HTMLElement).id);
+    // The element's ID is in the form `button-{idx}-{uniqueId}`
+    let idx = parseInt((e.currentTarget as HTMLElement).id.split("button-")[1], 10);
     if (e.keyCode) {
       // Keyboard navigation with arrow keys
       // idx is the index of the tab you're already on, that you're trying to navigate away from;
@@ -40,8 +48,7 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
         return;
       }
       this.setState({ tab: newIdx });
-      // The focus is still on the original tab; manually update it to the new tab.
-      (this.refs[newIdx] as HTMLElement).focus();
+      // componentDidUpdate will move the focus to the new tab.
     }
     else {
       // Click
@@ -58,18 +65,20 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
     items.map((item, idx) => {
       let [name, data] = item;
       let current = idx === this.state.tab;
+      let idString = `${idx.toString()}-${this.props.uniqueId.split(" ").join("-")}`;
+
       let navItem = (
         <li key={name} role="presentation" className={`tab-nav ${current ? "current" : ""}`}>
           <button
-            aria-controls={`panel-${idx}`}
+            aria-controls={`content-${idString}`}
             aria-selected={current}
             className="btn bottom-align left-align bottom-squared"
-            id={idx.toString()}
+            id={`button-${idString}`}
             onClick={this.select}
             onKeyDown={this.select}
             role="tab"
             tabIndex={current ? 0 : -1}
-            ref={`${idx}`}
+            ref={current ? this.buttonRef : null}
           >
             {name}
           </button>
@@ -80,9 +89,9 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
 
       let contentItem: JSX.Element = (
         <section
-          aria-labelledby={idx.toString()}
+          aria-labelledby={`button-${idString}`}
           className={`tab-content ${current ? "" : "hidden"}`}
-          id={`panel-${idx}`}
+          id={`content-${idString}`}
           key={name}
           role="tabpanel"
           tabIndex={0}

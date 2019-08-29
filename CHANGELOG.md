@@ -1,5 +1,13 @@
 ## Changelog
 
+### v1.3.15
+#### Fixed
+- Updated ref usage in the Tabs component to fix compatibility issues.
+
+### v1.3.14
+#### Updated
+- Updated the Tabs component to comply with accessibility standards.
+
 ### v1.3.13
 #### Updated
 - Updated the Panel component to have aria attributes for accessibility. Added a static panel example to the Storybook instance.
