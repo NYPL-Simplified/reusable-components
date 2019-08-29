@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.15
+#### Fixed
+- Updated ref usage in the Tabs component to fix compatibility issues.
+
 ### v1.3.14
 #### Updated
 - Updated the Tabs component to comply with accessibility standards.
