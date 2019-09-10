@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.16
+#### Updated
+- Updated the Input component to comply with accessibility standards. Added minor tweaks to the Form component and minor style updates.
+
 ### v1.3.15
 #### Fixed
 - Updated ref usage in the Tabs component to fix compatibility issues.

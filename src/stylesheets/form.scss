@@ -4,6 +4,18 @@ form {
   margin: 20px;
   width: 55vw;
 
+  label {
+    margin-right: 10px;
+
+    &.block { 
+      display: block;
+    }
+  }
+
+  input {
+    margin-bottom: 5px;
+  }
+
   &.border {
     border: 1px solid $blue;
   }
@@ -30,7 +42,7 @@ form {
   &.inline {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
     width: 100%;
     padding: 0;
@@ -46,8 +58,9 @@ form {
       margin: 0;
       input {
         display: inline-block;
-        width: 40%;
+        width: 35%;
         margin-right: 12px;
+        margin-bottom: 0;
         padding: 6px 12px;
       }
     }
@@ -55,6 +68,10 @@ form {
       width: 100%;
       margin-top: 20px;
     }
+  }
+
+  .form-group {
+    margin: 15px 0;
   }
 
   .alert {
@@ -119,7 +136,6 @@ form {
       }
     }
     .form-group {
-      margin: 15px 0;
       input.form-control {
         border-radius: .25em;
         padding: 5px;

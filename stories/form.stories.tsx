@@ -4,16 +4,21 @@ import { action } from '@storybook/addon-actions';
 
 import Form from '../src/components/Form';
 
-const multiLineFieldset =  (
+const multiLineFieldset = (id: number) => (
   <fieldset className="well">
     <legend>Sample fieldset</legend>
-    <input placeholder="A sample field"></input>
-    <input placeholder="Another sample field"></input>
+    <label htmlFor={`input-${id}`}>Sample 1</label>
+    <input id={`input-${id}`} placeholder="A sample field"></input>
+    <label htmlFor={`input-${id + 1}`}>Sample 2</label>
+    <input id={`input-${id + 1}`} placeholder="Another sample field"></input>
   </fieldset>
 );
 const singleLineFieldset = (
   <fieldset>
-    <input placeholder="A field"></input><input placeholder="Another field"></input>
+    <label htmlFor="single-input-1">Field 1</label>
+    <input id="single-input-1" placeholder="A field"></input>
+    <label htmlFor="single-input-2">Field 2</label>
+    <input id="single-input-2" placeholder="Another field"></input>
   </fieldset>
 );
 const form = storiesOf('Components/Form', module)
@@ -22,7 +27,7 @@ const form = storiesOf('Components/Form', module)
       <Form
       title="Default Form"
       onSubmit={action('clicked')}
-      content={[multiLineFieldset, multiLineFieldset]}
+      content={[multiLineFieldset(0), multiLineFieldset(2)]}
       />
     ]
   })
@@ -31,31 +36,31 @@ const form = storiesOf('Components/Form', module)
       <Form
         title="With Info Message"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(4)}
         infoText="Use this space to display information about the form!"
       />,
       <Form
         title="With Error Message"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(6)}
         errorText="Something went wrong!"
       />,
       <Form
         title="With Success Message"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(8)}
         successText="It worked!"
       />,
       <Form
         title="With Loading Message"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(10)}
         loadingText="Loading..."
       />,
       <Form
         title="With Warning Message"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(12)}
         warningText="This is a warning..."
       />
     ]
@@ -73,18 +78,20 @@ const form = storiesOf('Components/Form', module)
         onSubmit={action('clicked')}
         content={[
           <p>You can also pass in an array of elements:</p>,
-          <input placeholder="An input field"/>,
-          <select>
+          <label htmlFor="input-custom">Label for field</label>,
+          <input id="input-custom" placeholder="An input field"/>,
+          <label htmlFor="select-options" className="block">Select an option</label>,
+          <select id="select-options">
             <option>Option #1</option>
             <option>Option #2</option>
             <option>Option #3</option>
           </select>,
-          <label>A</label>,
-          <input type="radio" />,
-          <label>B</label>,
-          <input type="radio" />,
-          <label>C</label>,
-          <input type="radio" />
+          <label htmlFor="a">A</label>,
+          <input id="a" type="radio" />,
+          <label htmlFor="b">B</label>,
+          <input id="b" type="radio" />,
+          <label htmlFor="c">C</label>,
+          <input id="c" type="radio" />
         ]}
         buttonClass="centered"
         buttonContent="A centered button!"
@@ -106,7 +113,7 @@ const form = storiesOf('Components/Form', module)
       <Form
         title="Centered"
         onSubmit={action('clicked')}
-        content={multiLineFieldset}
+        content={multiLineFieldset(14)}
         className="centered"
       />,
       <Form
@@ -114,12 +121,12 @@ const form = storiesOf('Components/Form', module)
         onSubmit={action('clicked')}
         content={
           <fieldset>
-            <label>Field #1</label>
-            <input />
-            <label>Field #2</label>
-            <input />
-            <label>Field #3</label>
-            <input />
+            <label htmlFor="border-1">Field #1</label>
+            <input id="border-1" />
+            <label htmlFor="border-2">Field #2</label>
+            <input id="border-2" />
+            <label htmlFor="border-3">Field #3</label>
+            <input id="border-3" />
           </fieldset>
         }
         className="border"
