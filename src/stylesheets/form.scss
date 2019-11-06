@@ -7,7 +7,7 @@ form {
   label {
     margin-right: 10px;
 
-    &.block { 
+    &.block {
       display: block;
     }
   }
@@ -33,6 +33,7 @@ form {
       display: block;
       margin: auto;
       width: 25vw;
+      font-size: 1.2em;
       &:hover {
         border-color: $gray-brown;
       }

@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.17
+#### Fixed
+- Resized the font for centered buttons on forms.
+
 ### v1.3.16
 #### Updated
 - Updated the Input component to comply with accessibility standards. Added minor tweaks to the Form component and minor style updates.
