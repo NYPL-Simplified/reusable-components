@@ -14,8 +14,8 @@
     "lint": "tslint -c tslint.json src/*.ts src/*.tsx src/components/*.ts src/components/*.tsx && sass-lint -c .sass-lint.yml -v -q",
     "test": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/__tests__/testHelper.js lib/__tests__/*.js lib/__tests__/**/*.js",
     "test-file": "npm run lint && tsc && cp -r src/stylesheets lib && mocha --require lib/testHelper.js",
-    "dev": "webpack --watch --progress --display-modules --config webpack.dev.js",
-    "prod": "webpack --progress --display-modules --config webpack.prod.js",
+    "dev": "webpack --watch --progress --config webpack.dev.js",
+    "prod": "webpack --progress --config webpack.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages"
@@ -38,7 +38,7 @@
     "@storybook/react": "^5.0.6",
     "@storybook/storybook-deployer": "^2.8.1",
     "@storybook/theming": "^5.0.6",
-    "@types/mocha": ">=5.2.6",
+    "@types/mocha": "^5.2.6",
     "@types/node": "^11.13.0",
     "@types/react": "16.4.7",
     "babel-loader": "^8.0.5",
@@ -52,7 +52,7 @@
     "jsdom": ">=9.5.0",
     "json-loader": ">=0.5.4",
     "mini-css-extract-plugin": "^0.5.0",
-    "mocha": ">=5.2.0",
+    "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "react-docgen-typescript": "1.6.2",
     "react-docgen-typescript-loader": "2.1.1",
@@ -65,10 +65,10 @@
     "ts-loader": "4.3.1",
     "tslint": "^4.0.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "^2.7.2",
+    "typescript": "3.9.2",
     "url-loader": ">=0.5.7",
-    "webpack": "^4.29.6",
-    "webpack-cli": ">=3.3.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": ">=3.3.10",
     "webpack-merge": ">=4.2.1"
   }
 }

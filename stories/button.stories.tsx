@@ -58,7 +58,7 @@ const button = storiesOf('Components/Button', module)
         content="Disabled"
         disabled={true}
       />
-    ];
+    ] as any;
   })
   .add('with different placement', () => {
     return [
