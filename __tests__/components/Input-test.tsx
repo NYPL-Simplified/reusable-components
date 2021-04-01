@@ -20,9 +20,9 @@ describe("Input", () => {
     let input = wrapper.find("input");
     let label = wrapper.find("label");
     expect(wrapper.find("div").prop("className")).to.equal("form-group ");
-    expect(input.prop("callback")).to.not.be.defined;
+    expect(input.prop("callback")).to.be.undefined;
     expect(input.prop("readOnly")).to.equal(false);
-    expect(input.prop("placeholder")).to.not.be.defined;
+    expect(input.prop("placeholder")).to.be.undefined;
   });
   it("displays an input field with a name and id", () => {
     let input = wrapper.find("input");
@@ -48,7 +48,7 @@ describe("Input", () => {
     let input = wrapper.find("input");
     expect(input.prop("placeholder")).to.equal("i am a placeholder");
   });
-  
+
   it("optionally accepts a value prop", () => {
     wrapper.setProps({ value: "ABC" });
     expect(wrapper.find("input").prop("defaultValue")).to.equal("ABC");
