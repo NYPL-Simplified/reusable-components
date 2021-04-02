@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 
 import Panel from '../src/components/Panel';
 
@@ -37,7 +37,7 @@ const panel = storiesOf('Components/Panel', module)
     <Panel
       id="default"
       headerText={text('headerText', 'Default Panel Title')}
-      content={panelContent}
+      content={panelContent as any}
     />
   )
   .add('all panels with styles', () => {
@@ -47,42 +47,42 @@ const panel = storiesOf('Components/Panel', module)
         id="default"
         headerText="Default Panel"
         style={text('style', 'default')}
-        content={panelContent}
+        content={panelContent as any}
       />,
       <Panel
         key="2"
         id="success"
         headerText="Success Panel"
         style="success"
-        content={panelContent}
+        content={panelContent as any}
       />,
       <Panel
         key="3"
         id="warning"
         headerText="Warning Panel"
         style="warning"
-        content={panelContent}
+        content={panelContent as any}
       />,
       <Panel
         key="4"
         id="danger"
         headerText="Danger Panel"
         style="danger"
-        content={panelContent}
+        content={panelContent as any}
       />,
       <Panel
         key="5"
         id="instruction"
         headerText="Instruction Panel"
         style="instruction"
-        content={panelContent}
+        content={panelContent as any}
       />
     ]
   })
   .add('static panel', () =>
     <Panel
       id="static"
-      content={panelContent}
+      content={panelContent as any}
       headerText="Static Panel"
       collapsible={false}
     />

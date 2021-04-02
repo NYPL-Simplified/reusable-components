@@ -1,5 +1,13 @@
 {
   "extends": ["tslint-react-a11y"],
+  "linterOptions": {
+    "exclude": [
+     "node_modules/**"
+    ]
+  },
+  "exclude": [
+     "node_modules/**"
+  ],
   "rules": {
     "class-name": true,
     "comment-format": [
