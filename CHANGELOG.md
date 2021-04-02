@@ -2,7 +2,7 @@
 
 ### v1.3.18
 #### Updated
-- Updated selected dependencies.
+- Updated selected NPM dependencies.
 
 ### v1.3.17
 #### Fixed
