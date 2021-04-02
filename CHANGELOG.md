@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.3.18
+#### Updated
+- Updated dependencies.
+
 ### v1.3.17
 #### Fixed
 - Resized the font for centered buttons on forms.
