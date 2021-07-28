@@ -5,10 +5,11 @@ export interface PanelOwnProps {
   id: string;
   style?: string;
   headerText: string;
-  content: JSX.Element | string;
+  content: JSX.Element | string | null;
   openByDefault?: boolean;
   collapsible?: boolean;
   onEnter?: () => any;
+  onClick?: () => void;
 }
 
 export interface PanelState {
@@ -51,6 +52,9 @@ export default class Panel extends React.Component<PanelOwnProps, PanelState> {
   toggle(e) {
     e.preventDefault();
     let display = this.state.display === "collapse" ? "" : "collapse";
+    // This custom onClick is passed optionally through props 
+    // and executes only when a user is toggling the panel.
+    this.props.onClick && this.props.onClick()
     this.setState({ display });
   }
 

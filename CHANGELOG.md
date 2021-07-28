@@ -1,5 +1,7 @@
 ## Changelog
-
+### v1.3.19
+#### Updated
+- Updated Panel component to optionally accept and execute an onClick prop.
 ### v1.3.18
 #### Updated
 - Updated selected dependencies.
