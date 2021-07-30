@@ -53,7 +53,8 @@ form {
       border: 0;
     }
 
-    .form-group, fieldset {
+    .form-group,
+    fieldset {
       min-width: 50%;
       flex: 2;
       margin: 0;
@@ -65,7 +66,10 @@ form {
         padding: 6px 12px;
       }
     }
-    .alert-success, .alert-danger, .alert-info {
+    .alert-success,
+    .alert-danger,
+    .alert-info,
+    .alert-loading {
       width: 100%;
       margin-top: 20px;
     }
@@ -95,14 +99,14 @@ form {
     text-align: center;
     width: 80%;
     margin: 1em auto 2em auto;
-    padding-bottom: .5em;
+    padding-bottom: 0.5em;
     border-bottom: 1px solid $blue-dark;
   }
 
   fieldset.well {
     display: inline-block;
     width: 25vw;
-    margin: .5em;
+    margin: 0.5em;
     position: relative;
     legend {
       font-size: 1em;
@@ -138,7 +142,7 @@ form {
     }
     .form-group {
       input.form-control {
-        border-radius: .25em;
+        border-radius: 0.25em;
         padding: 5px;
       }
     }
