@@ -4,8 +4,9 @@
 
 #### Updated
 
-- Updated form.scss so that .alert-loading appears in the same way as
-  .alert-error and .alert-success within the inline class.
+- Updated form.scss so that `.alert-loading` appears in the same way as
+  `.alert-error` and `.alert-success` within the `inline` class in the Form
+  component.
 
 ### v1.3.19
 
